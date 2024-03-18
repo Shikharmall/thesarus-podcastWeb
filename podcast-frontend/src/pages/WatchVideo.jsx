@@ -296,7 +296,7 @@ export default function WatchVideo() {
         </div>
       )}
 
-      <div className="absolute top-0 left-0 w-[100%] z-3 flex flex-col bg-black bg-opacity-5 bg-gradient-to-t from-transparent to-black">
+      <div className="absolute top-0 left-0 w-[100%] z-3 flex flex-col bg-gradient-to-t from-transparent to-black">
         <div className="flex justify-between">
           <div className="flex items-center cursor-pointer m-5 ml-10 w-1/2">
             <svg
@@ -351,7 +351,7 @@ export default function WatchVideo() {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 w-[100%] z-3 flex flex-col pt-4 bg-black bg-opacity-5 bg-gradient-to-b from-transparent to-black">
+      <div className="absolute bottom-0 left-0 w-[100%] z-3 flex flex-col pt-4  bg-gradient-to-b from-transparent to-black">
         <div className="flex justify-between items-center">
           <div>
             <p
