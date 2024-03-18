@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/channel.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <title>The SARUS Podcast</title>
+</head>
+<body id="disablescroll">
+
+    <!--sideheader-->
+        <div class="sideheader">
+    
+            <div class="sideheader1">
+                    <h1>The <br> SARUS</h1>
+            </div>
+            <br><br><br><br><br>
+    
+            <div class="sideheaderimg">
+                <a href="user" class="tooltip">
+                    <img src="image/user.png" alt="img1">
+                    <span class="tooltiptext">User</span>
+                </a>
+            </div>
+    
+            <div class="sideheaderimg">
+                <a href="/" class="tooltip">
+                    <img src="image/home.png" alt="img1">
+                    <span class="tooltiptext">Home</span>
+                </a>
+            </div>
+    
+            <div class="sideheaderimg">
+                <a href="search" class="tooltip">
+                    <img src="image/search.png" alt="img1">
+                    <span class="tooltiptext">search</span>
+                </a>
+            </div>
+
+            <div class="sideheaderimg">
+                <a href="/channel" class="tooltip">
+                    <img src="image/channel.png" alt="img1">
+                    <span class="tooltiptext">Channels</span>
+                </a>
+            </div>
+    
+        </div>
+    <!--sideheader-->
+    
+    <!--hamburger-->
+        <div class="hamburger">
+
+            <div class="hamburgericon">
+                <img src="image/hamburger.png" alt="hamburger" onclick="opennav()">
+            </div>
+
+            <div class="hamburgerheading">
+                <h1>The SARUS</h1>
+            </div>
+
+            <div class="hamburgersearch">
+                <img src="image/search.png" alt="search">
+            </div>
+
+        </div>
+
+        <div class="hamburgercontent"  id ="openham">
+
+            <div class="hamburgerclose" onclick="closenav()">
+                <img src="image/close.png" alt="close">
+            </div>
+
+
+            <div class="subhamburgercontent" id="subopenham">
+
+                <div class="hamburgerimg1">
+                    <img src="image/user.png" alt="img1">
+                    <h1>Profile</h1>
+                </div>
+                
+                <div class="hamburgerimg2">
+                    <img src="image/home.png" alt="img1">
+                    <h1>Home</h1>
+                </div>
+                
+                <div class="hamburgerimg3">
+                    <img src="image/channel.png" alt="img1">
+                    <h1>Channels</h1>
+                </div>
+
+            </div>
+
+        </div>
+    <!--hamburger-->
+
+    <!--searchbox-->
+        <div class="searchbox">
+            <form id="myForm" >
+                <div class="searchboxinput">
+    
+                    <input type="text" placeholder="channels"  name="search">
+                    
+                    <img src="image/search.png" alt="search" onclick="searchquery()">
+                    <!--<img src="image/close.png" alt="close" onclick="removecontentsearch()">-->
+    
+                </div>
+            </form>
+
+            <br> <br>
+
+            <div class="searchboxdisplay">
+
+              <h3>Popular Searches</h3>
+
+              <br>
+
+              <div class="subsearchboxdisplay">
+
+                <% let a = 12;
+                   if(userCount != 0 ){
+                        for(let i=0 ; i < userCount ; i++){
+                %>
+                
+                <div>
+                    <a href="/searchuser?id=<%= userData[i]._id %>"> 
+
+                        <img src="users/<%= userData[i].profileimage %>" alt="poster"> 
+
+                        <center>
+                            <p> <%= userData[i].name %> </p>
+                        </center> 
+
+                    </a>
+                </div>
+
+                <%          a--;
+                            if(a==0){
+                                break;
+                            }
+            
+                        }
+                    }
+                    else{
+
+                %>
+
+                    <div class="searchboxdisplay1">
+                        <br><br><br><br><br>
+                        
+                        <center>
+                            <h1 style="color: rgb(160, 160, 160); font-family: "Inter",sans-serif;">No Result found</h1>
+                        </center> 
+                        <br> <br><br><br><br><br><br><br><br>
+          
+                    </div>
+                
+                <%
+
+                    }
+                %>
+
+              </div>
+
+            </div>
+        </div>
+    <!--searchbox-->
+
+
+    <br><br>
+
+    <!--footer-->
+        <footer>
+    
+            <div class="footer0">
+                <h3>Company</h3>
+                <br><br>
+    
+                <a href="">
+                    <p>About US</p>
+                </a>
+    
+                <br>
+    
+                <a href="">
+                    <p>Careers</p>
+                </a>
+    
+                <br><br>
+    
+                <p>© 2023 The SARUS. All Rights Reserved. </p>
+            </div>
+    
+            <div class="footer1">
+                <h3>View Website in</h3>
+    
+                <br><br>
+    
+                <a href="">
+                    <p>✔ &nbsp; English</p>
+                </a>
+    
+            </div>
+    
+            <div class="footer2">
+                <h3>Need help?</h3>
+    
+                <br><br>
+    
+                <a href="">
+                    <p>Visit Help Center</p>
+                </a>
+    
+                <br>
+    
+                <a href="">
+                    <p>Share Feedback</p>
+                </a>
+    
+            </div>
+    
+            <div class="footer3">
+                <h3>Connect With Us</h3>
+                <br><br>
+    
+                <div class="subfooter3">
+                    <a href="">
+                        <img src="image/twitter.png" alt="twitter">
+                    </a>
+                    <br>
+                    <a href="">
+                        <img src="image/instagram.png" alt="insta">
+                    </a>
+                    <br>
+                    <a href="">
+                        <img src="image/youtube.png" alt="youtube">
+                    </a>
+                </div>
+    
+            </div>
+    
+        </footer>
+    <!--footer-->
+
+
+    <script src="js/hamburger.js"></script>
+    <script src="js/slider.js"></script>
+    <script src="js/removecontentsearch.js"></script>
+
+</body>
+</html>

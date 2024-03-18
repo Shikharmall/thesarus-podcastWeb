@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/createchannel.css">
+    <title>The SARUS Podcast</title>
+</head>
+<body>
+
+    <div class="closepage">
+        <a href="user">
+            <img src="image/closeblue.png" alt="close">
+        </a>
+    </div>
+
+    
+    <!--midcontent-->
+
+        <div class="content">
+            <div class="midcontent">
+    
+                <h1>Create Podcast</h1>
+    
+                <br><br>
+    
+                <form action="/addchannel" method="post" enctype="multipart/form-data">
+    
+                    <input type="radio" id="type1" name="channeltype" value="0">
+                    <label for="type1">Series wise?</label>
+    
+                    &nbsp; &nbsp; 
+                    
+                    <input type="radio" id="type2" name="channeltype" value="1">
+                    <label for="type2">Playlist type?</label>
+    
+                    <br> <br>
+    
+                    <input type="text" name="channelname" id="channelname" placeholder="Enter Podcast Name" required>
+    
+                    <br> <br>
+
+
+                    <textarea name="description" id="description" rows="5" placeholder="Short Description About Podcast"></textarea>
+
+                    <br> <br>
+
+                    <!--<center>
+                        <label for="image1">
+                            <div class="imageee1">
+                                <img src="image/upload.png" alt="plus" style="width: 60px; margin: 15px; cursor: pointer;">
+                                <h3>Upload Cover Image</h3>
+                                <br>
+                                <p>Image dimension should be 500px by 40px</p>
+                                <br>
+                                <img  alt="image1" style="width: 100%; height: 100%;" id="imageeeee1">
+                            </div>
+                        </label>
+                    </center>
+
+                    <input type="file" accept=".png,.jpg" id="image1" name="file1" style="display: none;" multiple>-->
+
+                    <!-- onchange="displayImage(this.value)" -->
+
+                    <!--<br> <br>-->
+
+                    <center>
+                        <label for="image2">
+                            <div class="imageee2">
+                                <img src="image/upload.png" alt="plus" style="width: 60px; margin: 15px; cursor: pointer;">
+                                <h3>Upload Image</h3>
+                                <br>
+                                <p>Image dimension sholud be 40px by 500px</p>
+                                <br>
+                                <img  alt="image1" style="width: 100%; height: 100%;" id="imageeeee1">
+                            </div>
+                        </label>
+                    </center>
+
+                    <input type="file" accept=".png,.jpg" id="image2" name="file" style="display: none;">
+
+                    <br> <br>
+
+                    <!--<center>
+                        <label for="image3">
+                            <div class="imageee3">
+                                <img src="image/upload.png" alt="plus" style="width: 60px; margin: 15px; cursor: pointer;">
+                                <h3>Upload Image</h3>
+                                <br>
+                                <p>Image dimension sholud be 40px by 500px</p>
+                                <br>
+                                <img  alt="image1" style="width: 100%; height: 100%;" id="imageeeee1">
+                            </div>
+                        </label>
+                    </center>
+
+                    <input type="file" accept=".png,.jpg" id="image3" name="file3" style="display: none;">
+
+                    <br> <br>-->
+
+
+                    <select data-placeholder="Choose a Language..." name="language">
+                        <option disabled selected>Select Language</option>
+                        <option value="Afrikaans">Afrikaans</option>
+                        <option value="Albanian">Albanian</option>
+                        <option value="Arabic">Arabic</option>
+                        <option value="Armenian">Armenian</option>
+                        <option value="Basque">Basque</option>
+                        <option value="Bengali">Bengali</option>
+                        <option value="Bulgarian">Bulgarian</option>
+                        <option value="Catalan">Catalan</option>
+                        <option value="Cambodian">Cambodian</option>
+                        <option value="Chinese (Mandarin)">Chinese (Mandarin)</option>
+                        <option value="Croatian">Croatian</option>
+                        <option value="Czech">Czech</option>
+                        <option value="Danish">Danish</option>
+                        <option value="Dutch">Dutch</option>
+                        <option value="English">English</option>
+                        <option value="Estonian">Estonian</option>
+                        <option value="Fiji">Fiji</option>
+                        <option value="Finnish">Finnish</option>
+                        <option value="French">French</option>
+                        <option value="Georgian">Georgian</option>
+                        <option value="German">German</option>
+                        <option value="Greek">Greek</option>
+                        <option value="Gujarati">Gujarati</option>
+                        <option value="Hebrew">Hebrew</option>
+                        <option value="Hindi">Hindi</option>
+                        <option value="Hungarian">Hungarian</option>
+                        <option value="Icelandic">Icelandic</option>
+                        <option value="Indonesian">Indonesian</option>
+                        <option value="Irish">Irish</option>
+                        <option value="Italian">Italian</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="Javanese">Javanese</option>
+                        <option value="Korean">Korean</option>
+                        <option value="Latin">Latin</option>
+                        <option value="Latvian">Latvian</option>
+                        <option value="Lithuanian">Lithuanian</option>
+                        <option value="Macedonian">Macedonian</option>
+                        <option value="Malay">Malay</option>
+                        <option value="Malayalam">Malayalam</option>
+                        <option value="Maltese">Maltese</option>
+                        <option value="Maori">Maori</option>
+                        <option value="Marathi">Marathi</option>
+                        <option value="Mongolian">Mongolian</option>
+                        <option value="Nepali">Nepali</option>
+                        <option value="Norwegian">Norwegian</option>
+                        <option value="Persian">Persian</option>
+                        <option value="Polish">Polish</option>
+                        <option value="Portuguese">Portuguese</option>
+                        <option value="Punjabi">Punjabi</option>
+                        <option value="Quechua">Quechua</option>
+                        <option value="Romanian">Romanian</option>
+                        <option value="Russian">Russian</option>
+                        <option value="Samoan">Samoan</option>
+                        <option value="Serbian">Serbian</option>
+                        <option value="Slovak">Slovak</option>
+                        <option value="Slovenian">Slovenian</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="Swahili">Swahili</option>
+                        <option value="Swedish ">Swedish </option>
+                        <option value="Tamil">Tamil</option>
+                        <option value="Tatar">Tatar</option>
+                        <option value="Telugu">Telugu</option>
+                        <option value="Thai">Thai</option>
+                        <option value="Tibetan">Tibetan</option>
+                        <option value="Tonga">Tonga</option>
+                        <option value="Turkish">Turkish</option>
+                        <option value="Ukrainian">Ukrainian</option>
+                        <option value="Urdu">Urdu</option>
+                        <option value="Uzbek">Uzbek</option>
+                        <option value="Vietnamese">Vietnamese</option>
+                        <option value="Welsh">Welsh</option>
+                        <option value="Xhosa">Xhosa</option>
+                    </select>
+
+                    <br> <br> 
+                    
+                    <select data-placeholder="Choose viewers age..." name="age">
+                        <option disabled selected>Select Viewers Age</option>
+                        <option value="U">U</option>
+                        <option value="U/A 7+">U/A 7+</option>
+                        <option value="U/A 13+">U/A 13+</option>
+                        <option value="U/A 16+">U/A 16+</option>
+                        <option value="A">A</option>
+                    </select>
+                    
+                    <br> <br> <br>
+    
+                    <input type="submit" value="Create">
+    
+                </form>
+    
+            </div>
+        </div>
+    <!--midcontent-->
+
+    <!--<script>
+        function displayImage(image) {
+          var newimg = image/*.replace(/^.*\\/,"")*/;
+          console.log(newimg);
+
+          var imgElement = document.getElementById("imageeeee1");
+          imgElement.style.display = "block";
+          imgElement.src = newimg;
+
+           /* const reader = new FileReader();
+		    reader.onload = ()=> {
+			const allImg = imgArea.querySelectorAll('imageeeee1');
+			allImg.forEach(item=> item.remove());
+			const imgUrl = reader.result;
+			const img = document.createElement('imageeeee1');
+			img.src = imgUrl;
+			imgArea.appendChild(img);
+			imgArea.classList.add('active');
+			imgArea.dataset.img = image.name;
+		    }
+		    reader.readAsDataURL(image);*/
+        }   
+    </script>-->
+
+</body>
+</html>

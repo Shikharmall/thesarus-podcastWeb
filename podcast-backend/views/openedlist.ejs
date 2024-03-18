@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/openedlist.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <title>The SARUS Podcast | <%= channelData.name %></title>
+</head>
+<body  id="disablescroll">
+
+    <!--sideheader-->
+        <div class="sideheader">
+        
+            <div class="sideheader1">
+                    <h1>The <br> SARUS</h1>
+            </div>
+            <br><br><br><br><br>
+    
+            <div class="sideheaderimg">
+                <a href="user" class="tooltip">
+                    <img src="image/user.png" alt="img1">
+                    <span class="tooltiptext">User</span>
+                </a>
+            </div>
+    
+            <div class="sideheaderimg">
+                <a href="/" class="tooltip">
+                    <img src="image/home.png" alt="img1">
+                    <span class="tooltiptext">Home</span>
+                </a>
+            </div>
+    
+            <div class="sideheaderimg">
+                <a href="search" class="tooltip">
+                    <img src="image/search.png" alt="img1">
+                    <span class="tooltiptext">search</span>
+                </a>
+            </div>
+    
+            <div class="sideheaderimg">
+                <a href="/channel" class="tooltip">
+                    <img src="image/channel.png" alt="img1">
+                    <span class="tooltiptext">Channels</span>
+                </a>
+            </div>
+    
+        </div>
+    <!--sideheader-->
+    
+    <!--hamburger-->
+        <div class="hamburger">
+    
+            <div class="hamburgericon">
+                <img src="image/hamburger.png" alt="hamburger" onclick="opennav()">
+            </div>
+    
+            <div class="hamburgerheading">
+                <h1>The SARUS</h1>
+            </div>
+    
+            <div class="hamburgersearch">
+                <a href="search"> <img src="image/search.png" alt="search"> </a>
+            </div>
+    
+        </div>
+    
+        <div class="hamburgercontent"  id ="openham">
+    
+            <div class="hamburgerclose" onclick="closenav()">
+                <img src="image/close.png" alt="close">
+            </div>
+    
+    
+            <div class="subhamburgercontent" id="subopenham">
+                  
+                <div class="hamburgerimg1">
+                    <a href="user"> <img src="image/user.png" alt="img1"> </a>
+                    <a href="user"> <h1>Profile</h1> </a>
+                </div>
+            
+                <div class="hamburgerimg2">
+                    <a href="/"> <img src="image/home.png" alt="img1"> </a>
+                    <a href="/"> <h1>Home</h1>  </a>
+                </div>
+            
+                <div class="hamburgerimg3">
+                    <a href="/"> <img src="image/channel.png" alt="img1"> </a>
+                    <a href="/"> <h1>Channels</h1> </a>
+                </div>
+                
+            </div>
+    
+        </div>
+    <!--hamburger-->
+    
+    <div class="maincontent">
+
+        <!--header-->
+            <div class="header">
+
+                <div class="headerimg">
+                   <img src="image/avatarposter.png" alt="poster">
+                </div>
+
+                <div class="midcontentheading">
+                    <img src="image/avatarlogo.png" alt="logo">
+                    <br>
+                    <br id="showresponsive"> 
+                    <br id="showresponsive">
+                    <h4 id="greyyy"><%= channelData.createdAt.getFullYear() %> <b>&#x2022;</b> 2 Season <b>&#x2022;</b> 1 Languages <b>&#x2022;</b> <%= channelData.age%></h4>
+                    <br>
+                    <h4 id="vanishresponsive"><%= channelData.description %></h4>
+                </div>
+
+                <div class="midcontentupper1">
+                    <button> <h2> <img src="image/playw.png" alt="play" style="width: 16px; opacity: 1;"> Watch Now</h2> </button>
+                </div>
+                
+                <div class="midcontentupper11">
+                    <button> <h2> <img src="image/playw.png" alt="play" style="width: 16px; opacity: 1;"> Watch Now</h2></button>
+                </div>
+
+                <% if(flag == 1){%>
+
+                <div class="midcontentupperoptions">
+
+                    <% if(channelData.live == "0"){%>
+                    <img src="image/live.png" alt="delete" style="width: 25px; cursor: pointer;">
+                    <%}else{%>
+                    <img src="image/offline.png"   alt="delete" style="width: 25px; cursor: pointer;">
+                    <%}%>
+
+                    <img src="image/edit.png"      alt="delete" style="width: 25px; cursor: pointer;">
+                    <img src="image/imageedit.png" alt="delete" style="width: 25px; cursor: pointer;">
+                    <img src="image/delete.png"    alt="delete" style="width: 25px; cursor: pointer;">
+                </div>
+                
+                <%}%>
+
+                <div class="midcontentheading1">
+                    <img src="image/avatarlogo.png" alt="logo">
+                </div>
+                
+
+            </div>
+        <!--header-->
+
+      <div class="submaincontent">
+
+        <div class="stickattop">
+            <!--seasons-->
+                <div class="seasons">
+
+                    <% for(let i=1 ; i<= channelData.season ; i++){%>
+
+                    <div class="seasons"> <h3 <% if(i == 1) {%>id="active" <%}%> >Season <%= i %></h3> </div>
+                    
+                    <% } %>
+
+                    <% if(flag == 1){ %>
+                        <div class="seasons"> 
+                            <img src="image/plus.png"      onclick="openoverlayer1()" alt="add"      style="width: 10%; margin: 10px; margin-right: 3px; cursor: pointer;">
+                            <img src="image/substract.png" onclick="openoverlayer2()" alt="sub" style="width: 10%; margin: 10px; margin-left:  3px; cursor: pointer;">
+                        </div>
+                    <% } %>
+                </div>
+            <!--seasons-->
+
+            <hr>
+        </div>
+    
+        <!--seasonvedio-->
+            <div class="seasonvedio">
+                
+                <a href="playpage">
+                    <div class="subseasonvedio">
+                        <div class="playimg">
+                            <img src="image/avatarposter.png" alt="thumbnail">
+                            <img src="image/playw.png" alt="play" id ="subplayimg">
+                        </div>
+                        <div class="subsubseasonvedio">
+                            <h3>The Shoot-Out</h3>
+                            <br>
+                            <h4>S1-E1 . 5 May 2023 . 38m</h4>
+                            <br>
+                            <h4 id="greyyy">Set more than a decade after the first film, dive into the
+                                story of the Sully family; the lengths they go to keep
+                                each other safe and the tragedies they endure.</h4>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="playpage">
+                    <div class="subseasonvedio">
+                        <div class="playimg">
+                            <img src="image/avatarposter2.png" alt="thumbnail">
+                            <img src="image/playw.png" alt="play" id ="subplayimg">
+                        </div>
+                        <div class="subsubseasonvedio">
+                            <h3>The Shoot-Out</h3>
+                            <br>
+                            <h4>S1-E1 . 5 May 2023 . 38m</h4>
+                            <br>
+                            <h4 id="greyyy">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente quos totam natus......</h4>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="playpage">
+                    <div class="subseasonvedio">
+                        <div class="playimg">
+                            <img src="image/avatarposter3.png" alt="thumbnail">
+                            <img src="image/playw.png" alt="play" id ="subplayimg">
+                        </div>
+                        <div class="subsubseasonvedio">
+                            <h3>The Shoot-Out</h3>
+                            <br>
+                            <h4>S1-E1 . 5 May 2023 . 38m</h4>
+                            <br>
+                            <h4 id="greyyy">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente quos totam natus......</h4>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="playpage">
+                    <div class="subseasonvedio">
+                        <div class="playimg">
+                            <img src="image/avatarposter4.png" alt="thumbnail">
+                            <img src="image/playw.png" alt="play" id ="subplayimg">
+                        </div>
+                        <div class="subsubseasonvedio">
+                            <h3>The Shoot-Out</h3>
+                            <br>
+                            <h4>S1-E1 . 5 May 2023 . 38m</h4>
+                            <br>
+                            <h4 id="greyyy">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente quos totam natus......</h4>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="playpage">
+                    <div class="subseasonvedio">
+                        <div class="playimg">
+                            <img src="image/avatarposter.png" alt="thumbnail">
+                            <img src="image/playw.png" alt="play" id ="subplayimg">
+                        </div>
+                        <div class="subsubseasonvedio">
+                            <h3>The Shoot-Out</h3>
+                            <br>
+                            <h4>S1-E1 . 5 May 2023 . 38m</h4>
+                            <br>
+                            <h4 id="greyyy">Set more than a decade after the first film, dive into the
+                                story of the Sully family; the lengths they go to keep
+                                each other safe and the tragedies they endure.</h4>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="playpage">
+                    <div class="subseasonvedio">
+                        <div class="playimg">
+                            <img src="image/avatarposter2.png" alt="thumbnail">
+                            <img src="image/playw.png" alt="play" id ="subplayimg">
+                        </div>
+                        <div class="subsubseasonvedio">
+                            <h3>The Shoot-Out</h3>
+                            <br>
+                            <h4>S1-E1 . 5 May 2023 . 38m</h4>
+                            <br>
+                            <h4 id="greyyy">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente quos totam natus......</h4>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="playpage">
+                    <div class="subseasonvedio">
+                        <div class="playimg">
+                            <img src="image/avatarposter3.png" alt="thumbnail">
+                            <img src="image/playw.png" alt="play" id ="subplayimg">
+                        </div>
+                        <div class="subsubseasonvedio">
+                            <h3>The Shoot-Out</h3>
+                            <br>
+                            <h4>S1-E1 . 5 May 2023 . 38m</h4>
+                            <br>
+                            <h4 id="greyyy">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente quos totam natus......</h4>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="playpage">
+                    <div class="subseasonvedio">
+                        <div class="playimg">
+                            <img src="image/avatarposter4.png" alt="thumbnail">
+                            <img src="image/playw.png" alt="play" id ="subplayimg">
+                        </div>
+                        <div class="subsubseasonvedio">
+                            <h3>The Shoot-Out</h3>
+                            <br>
+                            <h4>S1-E1 . 5 May 2023 . 38m</h4>
+                            <br>
+                            <h4 id="greyyy">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente quos totam natus......</h4>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        <!--seasonvedio-->
+      </div>
+    </div>
+
+
+    <br><br>
+
+    <!--overlayer-->
+
+    <% if(flag==1){ %>
+        
+        <div class="overlayer" id="overlayerview1">
+            <div class="suboverlayer2" >
+                <img src="image/close.png" alt="close" style="width: 25px; float: right; margin: 10px; cursor: pointer;" onclick="openoverlayer1()">
+                <br> <br> <br><br>
+                <form action="" method="post">
+                    <div class="insideform2">
+
+                        <!--<label for="profileimgsubmit2" id="labelposition">
+                            <img src="image/defaultcoverpic.png" alt="profile" style="width: 400px; height: 130px; border-radius: 5px; margin: 5px">
+                            <p style="left: 40%; bottom: 20%;">Do you Want to add season?</p>
+                        </label>
+
+                        <input type="file" style=" display: none;" id="profileimgsubmit2" name="image" accept=".png,.jpg">-->
+
+                        <h1>Do you want to Add season?</h1>
+
+                    </div>
+
+                    <br> <br> <br> <br>
+
+                    <center >
+                        <input type="submit" value="Add Season" id="submitprofileimg">
+                    </center>
+
+                </form>
+
+            </div>
+        </div>
+
+        <div class="overlayer" id="overlayerview2">
+            <div class="suboverlayer1" >
+                <img src="image/close.png" alt="close" style="width: 25px; float: right; margin: 10px; cursor: pointer;" onclick="openoverlayer2()">
+                <br> <br> <br> <br>
+
+
+                <form action="/changeprofilepic" method="post" enctype="multipart/form-data">
+                    <div class="insideform2">
+
+                        <!--<label for="profileimgsubmit1" id="labelposition">
+                            <img src="image/defautprofile.png" alt="profile">
+                            <p>Do you want to delete season?</p>
+                        </label>
+                        <input type="file" id="profileimgsubmit1"  style="display: none;" name="image" accept=".png,.jpg">-->
+
+                        <h1>Do you want to Delete season?</h1>
+
+                    </div>
+
+                    <br> <br><br><br>
+
+                    <center >
+                        <input type="submit" value="Delete" id="submitprofileimg">
+                    </center>
+
+                </form>
+
+            </div>
+        </div>
+
+        
+
+        <div class="overlayer" id="overlayerview3">
+            <div class="suboverlayer" >
+                <img src="image/close.png" alt="close" style="width: 25px; float: right; margin: 10px; cursor: pointer;" onclick="openoverlayer3()">
+                <br> <br> <br> <br>
+                <form action="/edituser" style="text-align: center;" method="post">
+                    <input type="text" value="" name="name"> <br>
+                    <input type="text" value="" readonly> <br>
+                    <input type="text" value="" readonly> <br>
+                    <textarea name="description" id="description" cols="30" rows="10"></textarea> <br>
+                    <input type="submit" value="Edit">
+                </form>
+
+            </div>
+        </div>
+
+        <div class="overlayer" id="overlayerview3">
+            <div class="suboverlayer" >
+                <img src="image/close.png" alt="close" style="width: 25px; float: right; margin: 10px; cursor: pointer;" onclick="openoverlayer3()">
+                <br> <br> <br> <br>
+                <form action="/edituser" style="text-align: center;" method="post">
+                    <input type="text" value="" name="name"> <br>
+                    <input type="text" value="" readonly> <br>
+                    <input type="text" value="" readonly> <br>
+                    <textarea name="description" id="description" cols="30" rows="10"></textarea> <br>
+                    <input type="submit" value="Edit">
+                </form>
+
+            </div>
+        </div>
+
+        <div class="overlayer" id="overlayerview3">
+            <div class="suboverlayer" >
+                <img src="image/close.png" alt="close" style="width: 25px; float: right; margin: 10px; cursor: pointer;" onclick="openoverlayer3()">
+                <br> <br> <br> <br>
+                <form action="/edituser" style="text-align: center;" method="post">
+                    <input type="text" value="" name="name"> <br>
+                    <input type="text" value="" readonly> <br>
+                    <input type="text" value="" readonly> <br>
+                    <textarea name="description" id="description" cols="30" rows="10"></textarea> <br>
+                    <input type="submit" value="Edit">
+                </form>
+
+            </div>
+        </div>
+
+        <div class="overlayer" id="overlayerview3">
+            <div class="suboverlayer" >
+                <img src="image/close.png" alt="close" style="width: 25px; float: right; margin: 10px; cursor: pointer;" onclick="openoverlayer3()">
+                <br> <br> <br> <br>
+                <form action="/edituser" style="text-align: center;" method="post">
+                    <input type="text" value="" name="name"> <br>
+                    <input type="text" value="" readonly> <br>
+                    <input type="text" value="" readonly> <br>
+                    <textarea name="description" id="description" cols="30" rows="10"></textarea> <br>
+                    <input type="submit" value="Edit">
+                </form>
+
+            </div>
+        </div>
+
+    <% } %>
+
+    <!--overlayer-->
+
+    <!--footer-->
+        <footer>
+        
+            <div class="footer0">
+                <h3>Company</h3>
+                <br><br>
+    
+                <a href="">
+                    <p>About US</p>
+                </a>
+    
+                <br>
+    
+                <a href="">
+                    <p>Careers</p>
+                </a>
+    
+                <br><br>
+    
+                <p>© 2023 The SARUS. All Rights Reserved. </p>
+            </div>
+    
+            <div class="footer1">
+                <h3>View Website in</h3>
+    
+                <br><br>
+    
+                <a href="">
+                    <p>✔ &nbsp; English</p>
+                </a>
+    
+            </div>
+    
+            <div class="footer2">
+                <h3>Need help?</h3>
+    
+                <br><br>
+    
+                <a href="">
+                    <p>Visit Help Center</p>
+                </a>
+    
+                <br>
+    
+                <a href="">
+                    <p>Share Feedback</p>
+                </a>
+    
+            </div>
+    
+            <div class="footer3">
+                <h3>Connect With Us</h3>
+                <br><br>
+    
+                <div class="subfooter3">
+                    <a href="">
+                        <img src="image/twitter.png" alt="twitter">
+                    </a>
+                    <br>
+                    <a href="">
+                        <img src="image/instagram.png" alt="insta">
+                    </a>
+                    <br>
+                    <a href="">
+                        <img src="image/youtube.png" alt="youtube">
+                    </a>
+                </div>
+    
+            </div>
+    
+        </footer>
+    <!--footer-->
+
+    <script src="js/hamburger.js"></script>
+    <script src="js/overlayer.js"></script>
+        
+</body>
+</html>

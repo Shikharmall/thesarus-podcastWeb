@@ -1,0 +1,106 @@
+*{
+    margin: 0;
+}
+
+body{
+    background-color: #0f1014;
+}
+
+
+.loginbox{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+}
+
+
+.subloginbox{
+    width:  700px;
+    height: 450px;
+    background-color: #16181f;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+}
+
+
+.subloginbox1{
+    width: 45%;
+    height: 100%;
+    -webkit-mask-image: linear-gradient(to left, transparent 0.5%, #16181f);
+}
+
+.subloginbox1 img{
+    width:  100%;
+    height: 100%;
+}
+
+.subloginbox2{
+    width: 55%;
+    height: 100%;
+    margin: 10px;
+}
+
+.subloginbox2 form{
+    margin: 5px;
+}
+
+.subloginbox2 img{
+    width:  30px;
+    height: 30px;
+    float: right;
+    cursor: pointer;
+}
+
+.subloginbox2 h3{
+    color: rgb(177, 177, 177);
+    font-family: "Inter",sans-serif;
+}
+
+.subloginbox2 input{
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+    margin: 10px;
+    background-color: #16181f;
+    border: none;
+    border: 1px solid rgb(177, 177, 177);
+    color: white;
+}
+
+.subloginbox2 input:hover{
+    outline: none;
+}
+
+.subloginbox2 a{
+    text-decoration: none;
+    color: rgb(177, 177, 177);
+}
+
+
+
+#submitdetails:hover{
+    background-color: rgb(65, 65, 65);
+    cursor: pointer;
+}
+
+
+@media (min-width: 0px) and (max-width: 750px) {
+
+    .subloginbox{
+        margin: 10px;
+    }
+
+    .subloginbox1{
+        display: none;
+    }
+
+    .subloginbox2{
+        width: 100%;
+    }
+
+}
+

@@ -1,0 +1,269 @@
+*{
+    margin: 0;
+}
+
+body{
+    background-color: #0f1014;
+}
+
+hr{
+    opacity: 0.1;
+}
+
+
+.midcontent{
+    position: relative;
+}
+
+.submidcontent{
+   padding-top: 10px;
+   padding-bottom: 50px;
+   position: absolute;
+   top: 0;
+   left: 0;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
+   background-color: rgb(0,0,0); /* Fallback color */
+   background-color: rgba(13, 13, 13, 0.4);
+   -webkit-mask-image: linear-gradient(to top, transparent 5%, #110f0f);
+  
+}
+
+#showcontrol{
+    visibility: hidden;
+}
+
+.submidcontent a{
+    text-decoration: none;
+ }
+
+.subsubmidcontent{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.subsubmidcontent1{
+    text-align: center;
+}
+
+
+.subsubmidcontent1 img{
+    width:  30%;
+    height: 30%;
+    cursor: pointer;
+}
+
+.subsubmidcontent2 h2{
+    color: #f1f1f1;
+    font-family: "Inter",sans-serif;
+}
+
+.subsubmidcontent2 h3{
+    color: rgb(208, 208, 208);
+    font-family: "Inter",sans-serif;
+}
+
+.subsubmidcontent0{
+    display: flex;
+}
+
+.subsubmidcontent0 img{
+    width:  10%;
+    height: 30%;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.subsubmidcontent0 h3{
+    color: white;
+    font-family: "Inter",sans-serif;
+}
+
+
+
+
+.description{
+    margin: 10px;
+}
+
+.description h3{
+    font-family: "Inter",sans-serif;
+    color: white;
+    font-size: 20px;
+}
+
+.description h4{
+    font-family: "Inter",sans-serif;
+    color: white;
+    font-size: 15px;
+    font-weight: 200;
+    padding: 2px;
+}
+
+.description p{
+    font-family: "Inter",sans-serif;
+    color: rgb(152, 152, 152);
+    font-size: 12px;
+    padding: 2px;
+}
+
+.description button{
+    font-family: "Inter",sans-serif;
+    color: #1054dc;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+}
+
+.imaginary{
+    display: none;
+}
+
+.show{
+    display: block;
+}
+
+#greyyy{
+    color: rgb(152, 152, 152);
+}
+
+#bluee{
+    color: #1054dc;
+}
+
+
+
+
+.restepisodeheading h3{
+    margin: 10px;
+    color: white;
+    font-family: "Inter",sans-serif;
+}
+
+
+
+.slider{
+
+    margin: 10px;
+    color: white;
+    display: flex;
+    overflow-x: auto;
+    cursor: grab;
+    scroll-snap-type: x;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+
+}
+  
+
+.slider::-webkit-scrollbar{
+    display: none;
+}
+
+
+
+/*.restepisode.grab {
+    cursor: grabbing;
+    user-select: none;
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+}*/
+
+
+/*
+.restepisode > div {
+    flex-shrink: 0;
+    /*width: 300px;
+    height: 300px;*/
+    /*line-height: 300px;*/
+    /*text-align: center;*/
+    /*background-color: #f0f0f0;*/
+   /*margin-right: 15px;*/
+    /*border-radius: 5px;*//*
+}
+*/
+
+
+
+.slide{
+    margin: 10px;
+    position: relative;
+}
+
+.slide img{
+    width:  250px;
+    height: 130px;
+    border-radius: 5px;
+}
+
+.slide h4{
+    font-size: 15px;
+    font-family: "Inter",sans-serif;
+}
+
+.slide p{
+    font-size: 12px;
+    font-family: "Inter",sans-serif;
+}
+
+#playimg{
+    width: 20px; 
+    height: 20px;
+    position: absolute;
+    bottom:  30%;
+    left: 5%;
+}
+
+
+
+.share a{
+    float: right;
+    margin: 15px;
+    color: rgb(152, 152, 152);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.share a img{
+   width: 30px;
+
+}
+
+.copymessage{
+    position: fixed;
+    top:  2%;
+    left: 2%;
+    color: rgb(181, 181, 181);
+    background-color: #16181f;
+    padding: 1.25em;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    display: none;
+}
+
+.copymessage img{
+    width: 30px;
+    margin: 3px;
+}
+
+
+
+
+@media (min-width: 0px) and (max-width: 420px) {
+
+    #vediodisplay{
+        height: 250px;
+    }
+    .copymessage{
+        top:  1.25%;
+        left: 1.25%;
+        padding: 1em;
+        font-size: 10px;
+    }
+
+}

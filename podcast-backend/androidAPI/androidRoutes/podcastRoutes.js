@@ -1,0 +1,171 @@
+var express = require("express");
+var podcast_route = express();
+
+//const auth = require('../middleware/auth');
+
+const podcastController = require("../androidControllers/podcastControllers");
+//const channelController = require('../controllers/channelControllers');
+//const channelAPIController = require('../controllers/channelAPIControllers');
+
+//const config = require("../androidConfig/config");
+
+const cookieParser = require("cookie-parser");
+podcast_route.use(cookieParser());
+
+podcast_route.set("view engine", "ejs");
+podcast_route.set("views", "./views");
+
+const bodyParser = require("body-parser");
+podcast_route.use(bodyParser.json());
+podcast_route.use(bodyParser.urlencoded({ extended: true }));
+
+function randomnumber() {
+  return Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
+}
+
+const multer = require("multer");
+
+const path = require("path");
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, "../../public/userData"));
+  },
+  filename: function (req, file, cb) {
+    const name = Date.now() + "-" + randomnumber() + ".png";
+    cb(null, name);
+  },
+});
+
+const upload = multer({ storage: storage });
+
+const uploader = multer({
+  storage: multer.diskStorage({}),
+  limits: { fileSize: 500000 },
+});
+
+//const upload1 = multer({ dest: '../public/users/' });
+
+podcast_route.use(express.static("public"));
+
+// create podcast
+
+podcast_route.post("/createPodcast", podcastController.createPodcast);
+
+// create season
+
+podcast_route.post("/createSeason", podcastController.createSeason);
+
+//podcast_route.post("/loginUser", userController.loginUser);
+
+// edit user route  (name,description,channelName)
+
+//podcast_route.put("/editUser", userController.editUser);
+
+// change user profile image
+
+/*
+podcast_route.put(
+  "/changeProfileImage",
+  //auth.islogout,
+  uploader.single("image"),
+  userController.changeProfileImage
+);*/
+
+// change user cover image
+/*
+podcast_route.put(
+  "/changeCoverImage",
+  //auth.islogout,
+  uploader.single("image"),
+  userController.changeCoverImage
+);*/
+
+
+/*
+
+// playpage
+
+    podcast_route.get('/playpage', auth.islogout , userController.playpage);
+
+
+// search 
+
+    podcast_route.get('/search',channelController.podcast);
+
+
+
+// channel 
+
+    podcast_route.get('/channel',channelController.channel);
+
+// user page 
+
+    podcast_route.get('/user', auth.islogout , userController.userpage);
+
+    podcast_route.get('/searchuser',  userController.searchuser);
+
+// login page 
+
+    podcast_route.get('/login', auth.islogin , userController.loginpage);
+
+
+// register to podcast 
+
+    podcast_route.get('/register', auth.islogin , userController.loadRegister);
+    
+    podcast_route.post('/registeruser', auth.islogin , userController.insertUser);
+
+    podcast_route.get('/verifymail', auth.islogin , userController.verifymail);
+
+    podcast_route.post('/edituser', auth.islogout , userController.edituser);
+
+    podcast_route.post('/changeprofilepic', auth.islogout , upload.single('image') , userController.changeprofilepic);
+
+    podcast_route.post('/changecoverpic', auth.islogout , upload.single('image') , userController.changecoverpic);
+
+    podcast_route.post('/subscribe', auth.islogout ,  userController.subscribe);
+
+    podcast_route.post('/unsubscribe', auth.islogout ,  userController.unsubscribe);
+
+
+// opened list page
+
+    podcast_route.get('/openedlist' , userController.openedlist);
+    
+    podcast_route.get('/openedlistlogin' , auth.islogout , userController.openedlistlogin);
+
+
+// forgot password
+
+    podcast_route.get('/forgotpassword',userController.loadforgotpassword);
+    
+    podcast_route.post('/forgotpasswordsendemail',userController.forgotpasswordsendemail);
+    
+    podcast_route.get('/forgotpaswordedit',userController.forgotpaswordedit);
+    
+    podcast_route.post('/changepassword',userController.changepassword);
+
+
+// check login 
+
+    podcast_route.post('/checklogin',userController.checkUser);
+
+// channel 
+
+    podcast_route.get('/createchannel', auth.islogout ,  channelController.createchannel);
+    
+    podcast_route.post('/addchannel',auth.islogout , upload.single('file') , channelController.insertChannel);
+
+    //podcast_route.get('/makelive', auth.islogout ,  channelController.makelive);
+    
+    //podcast_route.get('/addepisode', auth.islogout , channelController.addepisode);
+
+
+// logout 
+
+    podcast_route.get('/logout', auth.islogout , userController.logout);
+
+*/
+
+module.exports = podcast_route;

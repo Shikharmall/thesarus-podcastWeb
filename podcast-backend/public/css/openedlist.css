@@ -1,0 +1,605 @@
+*{
+    margin: 0;
+}
+
+body{
+    background-color: #0f1014;
+}
+
+.sideheader {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    margin: 10px;
+    flex-direction: column;
+    width: 10%;
+    z-index: 10;
+}
+
+
+.sideheader h1{
+    color: white;
+    font-family: Comic sans MS;
+}
+
+.sideheaderimg img{
+    width: 35px;
+    margin: 20px;
+}
+
+.sideheaderimg a{
+    text-decoration: none;
+}
+
+
+
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+ /* background-color: #16181f;
+  color: #fff;*/
+  background-color: #fff;
+  color: #16181f;
+  text-align: center;
+  border-radius: 10px;
+  border-bottom-left-radius: 0px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+
+
+.sidecontent{
+  width: 90%;
+}
+
+
+
+
+
+
+.hamburger{
+    display: flex;
+    padding: 8px;
+    background-color: #16181f;
+    display: none;
+}
+
+.hamburger img{
+    width: 35px;
+}
+
+.hamburgericon{
+  width: 15%;
+}
+
+.hamburgercontent{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #16181f;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    
+    animation-name: navigator;
+    animation-duration: 400ms;
+    /*animation-iteration-count: 1;*/
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}
+
+@keyframes navigator {
+    from{
+        width: 0%;
+    }
+
+    to{
+        width: 100%;
+    }
+}
+
+
+
+
+.hamburgerclose img{
+  float: right;
+  width: 35px;
+  margin: 10px;
+}
+
+.subhamburgercontent{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 20px;
+    justify-content: center;
+    display: none;
+}
+
+
+
+.hamburgerimg1 img,
+.hamburgerimg2 img,
+.hamburgerimg3 img{
+    width: 35px;
+    height: 35px;
+    margin: 2px;
+}
+
+.hamburgerimg1 h1,
+.hamburgerimg2 h1,
+.hamburgerimg3 h1{
+    color: white;
+}
+
+
+.hamburgerimg1 {
+    display: flex;
+    height: 18%;
+}
+.hamburgerimg2 {
+    display: flex;
+    height: 18%;
+}
+.hamburgerimg3 {
+    display: flex;
+    height: 18%;
+}
+
+
+.hamburgerheading{
+  width: 80%;
+}
+
+.hamburgerheading h1{
+    color: white;
+    font-family: Comic sans MS;
+}
+
+.hamburgersearch{
+    width: 5%;
+}
+
+.hamburgersearch img{
+    float: right;
+}
+
+
+
+
+
+.submaincontent{
+    margin-left: 10%;
+}
+
+.header{
+    position: relative;
+}
+
+.headerimg img{
+    width: 100%;
+    -webkit-mask-image: linear-gradient(to right, transparent 2%, #16181f);
+}
+
+
+
+.midcontentupper1{
+    position: absolute;
+    top:  70%;
+    left: 10%;
+}
+
+.midcontentupper11{
+    position: absolute;
+    top:  70%;
+    left: 10%;
+}
+ 
+.midcontentupper1 button{
+   padding: 8%;
+   width: 200px;
+   opacity: 0.1;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+}
+
+
+.midcontentupper11 button{
+    padding: 8%;
+    width: 200px;
+    border: none;
+    border-radius: 5px;
+    background-color: transparent;
+    cursor: pointer;
+}
+ 
+.midcontentupper1 button h2{
+  color: white;
+}
+
+.midcontentupper11 button h2{
+    color: white;
+}
+
+.midcontentheading{
+    position: absolute;
+    top:  20%;
+    left: 10%;
+    width: 400px;
+}
+
+.midcontentheading h4{
+    color: #fff;
+    font-family: "Inter",sans-serif;
+    font-weight: 100;
+}
+
+.midcontentheading1{
+    display: none;
+}
+
+.midcontentupperoptions{
+    position: absolute;
+    bottom: 4%;
+    right:  2%;
+}
+
+
+
+
+
+
+.stickattop{
+    background-color: #0f1014;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.seasons{
+    margin-left:  5px;
+    margin-right: 5px;
+    display: flex;
+    overflow-x: auto;
+
+   /*-webkit-overflow-scrolling: touch;
+    scroll-snap-points-x: repeat(300px);
+    scroll-snap-type: mandatory;*/
+}
+
+.seasons::-webkit-scrollbar {
+    display: none;
+}
+
+.seasons > div {
+    flex-shrink: 0;
+    /*width: 300px;
+    height: 300px;*/
+    /*line-height: 300px;*/
+    /*text-align: center;*/
+    /*background-color: #f0f0f0;*/
+    margin-right: 15px;
+    /*border-radius: 5px;*/
+}
+
+
+.seasons h3{
+    color: rgb(152, 152, 152);
+    margin: 10px;
+    font-family: "Inter",sans-serif;
+    font-size: larger;
+    cursor: pointer;
+}
+
+hr{
+    opacity: 0.1;
+}
+
+#active{
+    color: #fff;
+}
+
+.seasonvedio{
+    margin: 10px;
+}
+
+.seasonvedio a{
+    text-decoration: none;
+}
+
+.subseasonvedio{
+    display: flex;
+    margin: 10px;
+    align-items: center;
+}
+
+.playimg{
+    position: relative;
+}
+
+#subplayimg{
+    position: absolute;
+    bottom:  8%;
+    left: 4%;
+    width:  20px;
+    height: 20px;
+}
+
+.subseasonvedio:hover{
+    background-color: #0b0b0c;
+}
+
+.subseasonvedio img{
+    width: 200px;
+    height: 90px;
+    border-radius: 3px;
+    margin: 20px;
+}
+
+.subsubseasonvedio{
+    padding: 10px;
+}
+
+.subseasonvedio h3,h4{
+    color: white;
+    font-family: "Inter",sans-serif;
+}
+
+#greyyy{
+    color: rgb(159, 159, 159);
+}
+
+
+
+
+.overlayer{
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width:  100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 15;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.suboverlayer1{
+    margin: 5px;
+    width:  500px;
+    height: 300px;
+    background-color: #16181f;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.suboverlayer2{
+    margin: 5px;
+    width:  500px;
+    height: 300px;
+    background-color: #16181f;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+
+.suboverlayer{
+    margin: 5px;
+    width:  500px;
+    height: 300px;
+    background-color: #16181f;
+    border-radius: 15px;
+    overflow: hidden;                                                                                                
+}
+
+.insideform2{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
+
+.insideform2 h1{
+    color: rgb(163, 163, 163);
+}
+ 
+
+.insideform2 img{
+    width:  200px;
+    height: 200px;
+}
+
+#submitprofileimg{
+    padding: 15px;
+    width: 150px;
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: #16181f;
+    border: none;
+    border: 1px solid rgb(177, 177, 177);
+    color: white;
+    cursor: pointer;
+}
+
+#submitprofileimg:hover{
+    outline: none;
+    background-color: rgb(65, 65, 65);
+}
+
+#labelposition{
+    position: relative;
+    cursor: pointer;
+}
+
+#labelposition p{
+    color: #fff;
+    position: absolute;
+    bottom: 10%;
+    left:  20%;
+}
+
+
+
+/* media query */
+
+@media (min-width: 1000px) and (max-width: 1350px) {
+   
+    .midcontentupper1{
+        position: absolute;
+        top:  83%;
+        left: 10%;
+    }
+    
+    .midcontentupper11{
+        position: absolute;
+        top:  83%;
+        left: 10%;
+    }
+
+}
+
+@media (min-width: 900px) and (max-width: 1000px) {
+    
+    .midcontentheading{
+        top:  8%;
+        left: 10%;
+    }
+
+    .midcontentupper1{
+        position: absolute;
+        top:  82%;
+        left: 10%;
+    }
+    
+    .midcontentupper11{
+        position: absolute;
+        top:  82%;
+        left: 10%;
+    }
+
+}
+
+@media (min-width: 0px) and (max-width: 900px) {
+    
+    .midcontentheading{
+        top:  8%;
+        left: 10%;
+    }
+
+    .midcontentupper1{
+        display: none;
+    }
+    
+    .midcontentupper11{
+        position: absolute;
+        top:  82%;
+        left: 10%;
+    }
+
+    .midcontentheading{
+        display: none;
+    }
+
+
+    .midcontentheading1{
+        display: block;
+        position: absolute;
+        top:   5%;
+        right: 10%;
+    }
+
+    .midcontentheading1{
+        margin: 5px;
+        width: 40%;
+    }
+
+    .midcontentheading1 img{
+        width:  100%;
+        height: 100%;
+    }
+
+}
+
+@media (min-width: 0px) and (max-width: 700px) {
+
+    .submaincontent{
+        margin-left: 0%;
+    }
+
+    .sideheader {
+        display: none;
+    }
+
+    .hamburger{
+        display: block;
+        display: flex;
+    }
+
+    .header img{
+        width: 100%;
+        -webkit-mask-image: none;
+    }
+
+    .midcontentheading img{
+        width: 70%;
+    }
+
+    .midcontentupper11{
+        position: absolute;
+        top:  70%;
+        left: 0%;
+    }
+
+    .midcontentupper11 button{
+        padding: 10px;
+        width: 100%;
+    }
+
+    .midcontentupper11 h2{
+        font-size: 16px;
+    }
+
+}
+
+
+@media (min-width: 0px) and (max-width: 350px) {
+    
+    .midcontentupper11{
+        position: absolute;
+        top:  60%;
+    }
+}
+
+@media (min-width: 0px) and (max-width: 500px) {
+
+    .subseasonvedio{
+        flex-direction: column;
+    }
+    .subseasonvedio{
+        align-items: flex-start;
+    }
+
+}
+

@@ -1,0 +1,218 @@
+*{
+    margin: 0;
+}
+
+body{
+    background-color: #0f1014;
+}
+
+#greyyy{
+    color: rgb(167, 167, 167);
+}
+
+.closepage{
+    display: flex;
+    margin: 10px;
+    justify-content: flex-end;
+
+}
+
+.closepage a img{
+    text-decoration: none;
+}
+
+.closepage a img{
+    width: 40px;
+}
+
+.content{
+    display: flex;
+    justify-content: center;
+}
+
+.midcontent{
+    background-color: #16181f;
+    width: 550px;
+    margin: 1%;
+    border-radius: 15px;
+    padding: 1.5%;
+    text-align: center;
+}
+
+.midcontent h1{
+    color: #fff;
+    font-family: "Inter",sans-serif;
+}
+
+.midcontent input[type=radio]{
+    width: 5%;
+    height: 1.5em;
+}
+
+.midcontent label{
+    color: #c0c0c0;
+    font-size: 1.25em;
+    font-family: "Inter",sans-serif;
+}
+
+.midcontent input[type=text]{
+    width: 70%;
+    padding: 1.5%;
+    border-radius: 5px;
+    font-size: 1.25em;
+    background-color: #16181f;
+    border: none;
+    border: 1px solid rgb(177, 177, 177);
+    color: #fff;
+    font-family: "Inter",sans-serif;
+}
+
+.midcontent input[type=text]:hover{
+    outline: none;
+}
+
+
+.midcontent textarea{
+    width: 70%;
+    padding: 1.5%;
+    border-radius: 5px;
+    font-size: 1.25em;
+    background-color: #16181f;
+    border: none;
+    border: 1px solid rgb(177, 177, 177);
+    color: #fff;
+    font-family: "Inter",sans-serif;
+}
+
+.midcontent select{
+    width: 73.5%;
+    padding: 1.5%;
+    border-radius: 5px;
+    font-size: 1.25em;
+    background-color: #16181f;
+    border: none;
+    border: 1px solid rgb(177, 177, 177);
+    color: #fff;
+    font-family: "Inter",sans-serif;
+}
+
+.imageee1{
+    width: 73%;
+    height: 20%;
+    border:  1px dashed #c0c0c0;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.imageee1 h3{
+    font-weight: 100;
+    color: #fff;
+    font-family: "Inter",sans-serif;
+}
+
+.imageee1 p{
+    font-weight: 100;
+    font-size: 15px;
+    color: #fff;
+    font-family: "Inter",sans-serif;
+}
+
+.imageee2{
+    width: 40%;
+    height: 110%;
+    border:  1px dashed #c0c0c0;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.imageee2 h3{
+    font-weight: 100;
+    color: #fff;
+    font-family: "Inter",sans-serif;
+}
+
+.imageee2 p{
+    font-weight: 100;
+    font-size: 15px;
+    color: #fff;
+    font-family: "Inter",sans-serif;
+}
+
+
+.imageee3{
+    width: 60%;
+    height: 15%;
+    border:  1px dashed #c0c0c0;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.imageee3 h3{
+    font-weight: 100;
+    color: #fff;
+    font-family: "Inter",sans-serif;
+}
+
+.imageee3 p{
+    font-weight: 100;
+    font-size: 15px;
+    color: #fff;
+    font-family: "Inter",sans-serif;
+}
+
+#imageeeee1{
+    display: none;
+}
+
+.midcontent input[type=file]{
+    width: 70%;
+    padding: 1.5%;
+    border-radius: 5px;
+    font-size: 1.25em;
+    background-color: #16181f;
+    border: none;
+    border: 1px solid rgb(177, 177, 177);
+    color: #fff;
+    font-family: "Inter",sans-serif;
+}
+
+.midcontent input[type=submit]{
+    width: 30%;
+    padding: 2%;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: transparent;
+    border: none;
+    border: 1px solid white;
+    color: white;
+    cursor: pointer;
+    font-family: "Inter",sans-serif;
+}
+
+.midcontent input[type=submit]:hover{
+    background-color: rgb(65, 65, 65);
+}
+
+
+
+
+
+@media (min-width: 0px) and (max-width: 580px) {
+
+    .midcontent{
+        background-color: #16181f;
+        width: 400px;
+        margin: 1%;
+        border-radius: 15px;
+        padding: 1.5%;
+        text-align: center;
+    }
+
+}
+
+
+
+

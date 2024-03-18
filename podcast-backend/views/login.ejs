@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login.css">
+    <title>The SARUS Podcast</title>
+</head>
+<body>
+
+    
+    <div class= "loginbox">
+
+        <div class= "subloginbox">
+
+            <div class="subloginbox1">
+                <img src="image/avatarpostercrop.png" alt="poster">
+            </div>
+
+            <div class="subloginbox2">
+
+                <a onclick="history.back()">
+                    <img src="image/close.png" alt="close">
+                </a>
+
+                <form action="checklogin" method="post">
+                    <br> <br>
+                    <h3>Login to continue</h3>
+
+                    <% 
+                        if(typeof message !== 'undefined'){
+                    %>  
+                        <br>
+                        <p style="color: red; margin: 1px;"><%= message %></p>
+                    <%
+                        }
+                        else{
+                    %>
+                        <br> 
+                    <%
+                        }
+                    %>
+
+                    <br>
+
+                    <input type="email" id="email" placeholder="Enter your email" name="email">
+                    <br>
+                    <input type="password" id="password" placeholder="Enter your password" name="pass">
+                    <br>
+                    <a href="forgotpassword" style="margin-left: 12px;">Forgot password?</a>
+                    <br> <br> <br>
+                    <input type="submit" value="Login" id="submitdetails">
+                    <br><br>
+
+                    <a href="register" style="margin-left: 12px;">New? Signup</a>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+    
+</body>
+</html>

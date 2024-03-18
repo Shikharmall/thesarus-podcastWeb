@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/user.css">
+    <title>The SARUS Podcast | <%= user.name%></title>
+</head>
+<body id = "disablescroll">
+
+
+    <!--sideheader-->
+        <div class="sideheader">
+        
+            <div class="sideheader1">
+                    <h1>The <br> SARUS</h1>
+            </div>
+            <br><br><br><br><br>
+    
+            <div class="sideheaderimg">
+                <a href="user" class="tooltip">
+                    <img src="image/user.png" alt="img1">
+                    <span class="tooltiptext">User</span>
+                </a>
+            </div>
+    
+            <div class="sideheaderimg">
+                <a href="/" class="tooltip">
+                    <img src="image/home.png" alt="img1">
+                    <span class="tooltiptext">Home</span>
+                </a>
+            </div>
+    
+            <div class="sideheaderimg">
+                <a href="search" class="tooltip">
+                    <img src="image/search.png" alt="img1">
+                    <span class="tooltiptext">search</span>
+                </a>
+            </div>
+    
+            <div class="sideheaderimg">
+                <a href="/channel" class="tooltip">
+                    <img src="image/channel.png" alt="img1">
+                    <span class="tooltiptext">Channels</span>
+                </a>
+            </div>
+
+            <%
+                if(flag=="1"){
+            %>
+
+            <div class="sideheaderimg">
+                <a href="logout"  class="tooltip">
+                    <img src="image/logout.png" alt="img1">
+                    <span class="tooltiptext">Logout</span>
+                </a>
+            </div>
+
+            <%
+                }
+            %>
+    
+        </div>
+    <!--sideheader-->
+
+    <!--hamburger-->
+        <div class="hamburger">
+    
+            <div class="hamburgericon">
+                <img src="image/hamburger.png" alt="hamburger" onclick="opennav()">
+            </div>
+    
+            <div class="hamburgerheading">
+                <h1>The SARUS</h1>
+            </div>
+    
+            <div class="hamburgersearch">
+                <img src="image/search.png" alt="search">
+            </div>
+    
+        </div>
+    
+        <div class="hamburgercontent"  id ="openham">
+    
+            <div class="hamburgerclose" onclick="closenav()">
+                <img src="image/close.png" alt="close">
+            </div>
+    
+    
+            <div class="subhamburgercontent" id="subopenham">
+    
+                <div class="hamburgerimg1">
+                    <img src="image/user.png" alt="img1">
+                    <h1>Profile</h1>
+                </div>
+                
+                <div class="hamburgerimg2">
+                    <img src="image/home.png" alt="img1">
+                    <h1>Home</h1>
+                </div>
+                
+                <div class="hamburgerimg3">
+                    <img src="image/channel.png" alt="img1">
+                    <h1>Channels</h1>
+                </div>
+
+                <%
+                if(flag=="1"){
+                %>
+
+                <div class="hamburgerimg3">
+                    <img src="image/logout.png" alt="img1">
+                    <h1>Logout</h1>
+                </div>
+
+                <%
+                    }
+                %>
+    
+            </div>
+    
+        </div>
+    <!--hamburger-->
+
+    <!--topcontent-->
+        <div class = "topcontent">
+            <div class = "subtopcontent1">
+                <img src="users/<%= user.coverimage %>" alt="<%= user.coverimage %>">
+                
+                <%
+                if(flag == "1"){
+                %>
+
+                    <p>Upload Cover Image</p>
+
+                    <div class = "subsubtopcontent1">
+                        <img src="image/imageedit.png" alt="imageedit" onclick="openoverlayer1()">
+                    </div>
+
+                <%
+                    }
+                %>
+
+            </div>
+
+            <div class = "subtopcontent2">
+                    <img src="users/<%= user.profileimage %>" alt="<%= user.profileimage %>">
+                    <%
+                        if(flag=="1"){
+                    %>
+                        <div class = "subsubtopcontent2">
+                            <img src="image/profilechange.png" alt="imageedit" onclick="openoverlayer2()">
+                        </div>
+                    <%
+                        }
+                    %>
+            </div>
+        </div>
+    <!--topcontent-->
+    
+    <!--midcontent-->
+        <div class = "midcontent">
+            <div class = "submidcontent">
+              <div class = "submidcontent1">
+
+                    <div class = "submidcontentimg">
+                        <h2> <%= user.name %> </h2> 
+                    <%
+                        if(flag=="1"){
+                    %>
+                        <img src="image/edit.png" alt="edit"  onclick="openoverlayer3()">
+                    <%
+                        }
+                    %>
+                        
+                    </div>
+
+                    <br>
+                    <h4><%= user.subscribers %> Subscribers</h4>
+                    <br>
+                    
+                    <div class="submidcontentbutton">
+                        
+                        <%
+                            if(flag == "1"){
+                        %>
+                            <a href="createchannel"> <button>Create podcast</button> </a> 
+                        <%
+                            }
+                            if(flag == "0"){
+                                if(sub == "1"){
+                        %>
+
+                            <form action="/subscribe" method="post">
+                                
+                                <input type="hidden" name="channeluser" value="<%= user._id %>">
+                                <input type="submit" value="Subscribe">
+
+                            </form>
+
+                        <%
+                            }
+                            else{
+                        %>
+
+                            <form action="/unsubscribe" method="post">
+                                    
+                                <input type="hidden" name="channeluser" value="<%= user._id %>">
+                                <input type="submit" value="Unsubscribe">
+    
+                            </form>
+
+                        <%      
+                                }
+                            }
+                        %>
+
+                    </div>
+                    
+                    <br> <br>
+                    <h2>About Us</h2>
+                    <br>
+
+                    <h4> <%= user.description %>  </h4>
+
+                    <br> <br>
+                    <h2>Podcasts</h2>
+                    <br>
+
+                    <div class="podcast">
+
+                        <% 
+                            if(channelCount){ 
+                                for(let i=0 ; i < channelCount ; i++){ 
+                                    if(flag == 1){
+                        %>
+            
+                            <div class="subpodcast">
+                
+                                <a href="openedlistlogin?id=<%= channelData[i]._id %>">
+                                    <img src="users/<%= channelData[i].frontimage %>" alt="logo">
+                                    <br> <br>
+                                    <h3> <%= channelData[i].name %> </h3>
+                                </a>
+                                
+                            </div>
+                            
+                        <% 
+
+                                    }
+                                    else{
+
+                        %>
+
+                            <div class="subpodcast">
+                    
+                                <a href="/openedlist?channelid=<%= channelData[i]._id %>">
+                                    <img src="users/<%= channelData[i].frontimage %>" alt="logo">
+                                    <br> <br>
+                                    <h3> <%= channelData[i].name %> </h3>
+                                </a>
+                                
+                            </div>
+
+                        <%
+                                    }
+                                } 
+                            }
+                            else{
+                        %>        
+                            <div class="subpodcast">
+                        <%        
+                            if(flag == 1){      
+                        %>
+                            
+                            <h3>Create podcast..</h3>
+
+                        <%           
+                            }else{
+                                
+                        %>
+
+                            <h3>No podcast..</h3>
+
+                        <%
+                            }
+                        %>
+                                
+                            </div>
+                            
+                        <% 
+                            }
+                        %>
+            
+                    </div>
+
+              </div>
+            </div>
+        </div>
+    <!--midcontent-->
+
+    <!--overlayer-->
+
+    <% if(flag==1){ %>
+        
+        <div class="overlayer" id="overlayerview1">
+            <div class="suboverlayer2" >
+                <img src="image/close.png" alt="close" style="width: 25px; float: right; margin: 10px; cursor: pointer;" onclick="openoverlayer1()">
+                <br> <br>
+                <form action="/changecoverpic" method="post" enctype="multipart/form-data">
+                    <div class="insideform2">
+
+                        <label for="profileimgsubmit2" id="labelposition">
+                            <img src="image/defaultcoverpic.png" alt="profile" style="width: 400px; height: 130px; border-radius: 5px; margin: 5px">
+                            <p style="left: 40%; bottom: 20%;">Select Image</p>
+                        </label>
+
+                        <input type="file" style=" display: none;" id="profileimgsubmit2" name="image" accept=".png,.jpg">
+
+                    </div>
+
+                    <br> <br>
+
+                    <center >
+                        <input type="submit" value="Upload" id="submitprofileimg">
+                    </center>
+
+                </form>
+
+            </div>
+        </div>
+
+        <div class="overlayer" id="overlayerview2">
+            <div class="suboverlayer1" >
+                <img src="image/close.png" alt="close" style="width: 25px; float: right; margin: 10px; cursor: pointer;" onclick="openoverlayer2()">
+                <br> <br>
+
+                <form action="/changeprofilepic" method="post" enctype="multipart/form-data">
+                    <div class="insideform2">
+
+                        <label for="profileimgsubmit1" id="labelposition">
+                            <img src="image/defautprofile.png" alt="profile">
+                            <p>Select Image</p>
+                        </label>
+                        <input type="file" id="profileimgsubmit1"  style="display: none;" name="image" accept=".png,.jpg">
+
+
+                    </div>
+
+                    <br>
+
+                    <center >
+                        <input type="submit" value="Upload" id="submitprofileimg">
+                    </center>
+
+                </form>
+
+            </div>
+        </div>
+
+
+        <div class="overlayer" id="overlayerview3">
+            <div class="suboverlayer" >
+                <img src="image/close.png" alt="close" style="width: 25px; float: right; margin: 10px; cursor: pointer;" onclick="openoverlayer3()">
+                <br> <br> <br> <br>
+                <form action="/edituser" style="text-align: center;" method="post">
+                    <input type="text" value="<%= user.name %>" name="name"> <br>
+                    <input type="text" value="<%= user.phone %>" name="phone"> <br>
+                    <input type="text" value="<%= user.email %>" readonly> <br>
+                    <textarea name="description" id="description" cols="30" rows="10"><%= user.description %></textarea> <br>
+                    <input type="submit" value="Edit">
+                    
+                    <br> <br> 
+                    <a href="">change password?</a> 
+                </form>
+
+            </div>
+        </div>
+
+    <% } %>
+
+    <!--overlayer-->
+
+    <script src="js/hamburger.js"></script>
+    <script src="js/overlayer.js"></script>
+
+</body>
+</html>
