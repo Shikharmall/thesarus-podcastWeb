@@ -17,7 +17,8 @@ import ReactPlayer from "react-player";
 
 export default function WatchVideo() {
   let container = useRef(null);
-  //console.log(container);
+  let optionsUpper = useRef(null);
+  let optionsBottom = useRef(null);
 
   const ref = useRef(null);
 
@@ -48,10 +49,9 @@ export default function WatchVideo() {
     setControls(false);
   };
 
-  const [currentTime, setCurrentTime] = useState(0);
+  //const [currentTime, setCurrentTime] = useState(0);
 
   useEffect(() => {
-    console.log(container);
     //TweenMax.to
     const box = container.current;
 
@@ -78,6 +78,35 @@ export default function WatchVideo() {
     };
   }, [clicked]);
 
+  useEffect(() => {
+    const box = optionsUpper.current;
+
+    const tl = gsap.timeline({ paused: true });
+
+    tl.from(box, { duration: 0.4, y: -100, opacity: 0, ease: "power4.out" });
+
+    const box1 = optionsBottom.current;
+
+    const tl1 = gsap.timeline({ paused: true });
+
+    tl1.from(box1, { duration: 0.4, y: 100, opacity: 0, ease: "power4.out" });
+
+    if (controls) {
+      tl.play();
+      tl1.play();
+    } else {
+      tl.reverse();
+      tl1.reverse();
+    }
+
+    // Return a cleanup function to ensure animation is destroyed when component unmounts
+    return () => {
+      tl.kill(); // Kill the animation to prevent memory leaks
+      tl1.kill(); // Kill the animation to prevent memory leaks
+      //tl.to(box, { duration: 1, x: -100, opacity: 0, ease: 'power4.in' });
+    };
+  }, [controls]);
+
   const videoRef = useRef(null);
 
   const toggleFullScreen = () => {
@@ -99,6 +128,7 @@ export default function WatchVideo() {
       }
     }
   };
+
   const handleContextMenu = (event) => {
     event.preventDefault(); // Prevent the default right-click context menu
   };
@@ -357,6 +387,7 @@ export default function WatchVideo() {
             className="absolute top-0 left-0 w-[100%] z-3 flex flex-col bg-gradient-to-t from-transparent to-black py-4 transition-opacity duration-300"
             onMouseOver={handleMouseOver}
             onMouseOut={handleMouseOut}
+            ref={optionsUpper}
           >
             <div className="flex justify-between">
               <div className="flex items-center cursor-pointer m-5 ml-10 w-1/2">
@@ -415,8 +446,9 @@ export default function WatchVideo() {
             className="absolute bottom-0 left-0 w-[100%] z-3 flex flex-col pt-4 bg-gradient-to-b from-transparent to-black transition-opacity duration-300"
             onMouseOver={handleMouseOver}
             onMouseOut={handleMouseOut}
+            //ref={optionsBottom}
           >
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center " ref={optionsBottom}>
               <div>
                 <p
                   className="text-white ml-10"
@@ -431,6 +463,12 @@ export default function WatchVideo() {
                 //value={volume}
                 className="w-[100%] h-1 bg-white bg-opacity-40 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 m-3"
               />
+              {/*<input
+                id="range"
+                type="range"
+                className="block w-full h-1 py-2 mt-2 text-gray-700 bg-red bg-opacity-40 border border-gray-300 rounded-md"
+              />*/}
+
               <div>
                 <p
                   className="text-white mr-10"
