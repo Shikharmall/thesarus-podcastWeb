@@ -1,34 +1,35 @@
 import React from "react";
 
-export default function BottomOptions(
-  //handleMouseOut,
-  //handleMouseOver,
-  //optionsBottom,
+export default function BottomOptions({
+  handleMouseOut,
+  handleMouseOver,
+  optionsBottom,
   paused,
- // togglePause,
   mute,
- // toggleMute,
   volume,
- // changeVolume,
- // toggleFullScreen
-) {
+  changeVolume,
+  toggleFullScreen,
+  toggleClick,
+  setPauseFunc,
+  setPlayFunc,
+  setMuteFunc,
+  setUnMuteFunc,
+}) {
   return (
     <div
       className="absolute bottom-0 left-0 w-[100%] z-3 flex flex-col pt-4 bg-gradient-to-b from-transparent to-black transition-opacity duration-300"
-      //onMouseOver={handleMouseOver}
-      //onMouseOut={handleMouseOut}
-      //ref={optionsBottom}
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOut}
+      //onMouseOut={() => {
+      //  setTimeout(() => {
+      //    handleMouseOut();
+      //  }, 5000);
+      //}}
+      ref={optionsBottom}
     >
-      <div
-        className="flex justify-between items-center " /*ref={optionsBottom}*/
-      >
+      <div className="flex justify-between items-center">
         <div>
-          <p
-            className="text-white ml-10"
-            style={{ fontFamily: '"Inter",sans-serif' }}
-          >
-            00:07
-          </p>
+          <p className="text-white ml-10 font-roboto">00:07</p>
         </div>
         <input
           id="default-range"
@@ -43,12 +44,7 @@ export default function BottomOptions(
               />*/}
 
         <div>
-          <p
-            className="text-white mr-10"
-            style={{ fontFamily: '"Inter",sans-serif' }}
-          >
-            00:07
-          </p>
+          <p className="text-white mr-10 font-roboto">00:07</p>
         </div>
       </div>
 
@@ -56,24 +52,24 @@ export default function BottomOptions(
         <div className="flex items-center cursor-pointer m-5 ml-10 w-1/3">
           {paused ? (
             <svg
-              className="h-10 w-10 text-white mr-5 rounded-lg"
+              className="h-12 w-12 text-white mr-5 hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-1"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               onClick={() => {
-                //togglePause();
+                setPlayFunc();
               }}
             >
-              <path d="M10 6v12l10-6z" fill="#fff" />
+              <path d="M8 6v12l10-6z" fill="#fff" />
             </svg>
           ) : (
             <svg
-              className="h-10 w-10 text-white mr-5"
+              className="h-12 w-12 text-white mr-5 hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-1"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               onClick={() => {
-                //togglePause();
+                setPauseFunc();
               }}
             >
               <path
@@ -85,15 +81,13 @@ export default function BottomOptions(
           <div className="flex items-center">
             {mute ? (
               <svg
-                className="h-10 w-10 text-white m-1"
+                className="h-12 w-12 text-white m-1 hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-1"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 onClick={() => {
-                  //setMute(false);
-                  //setVolume("50");
-                  //toggleMute();
-                  //changeVolume("50");
+                  setUnMuteFunc();
+                  changeVolume("50");
                 }}
               >
                 <path
@@ -112,15 +106,13 @@ export default function BottomOptions(
               </svg>
             ) : (
               <svg
-                className="h-10 w-10 text-white m-1"
+                className="h-12 w-12 text-white m-1 hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-1"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 onClick={() => {
-                  //setMute(true);
-                  //setVolume("0");
-                  //toggleMute();
-                  //changeVolume("0");
+                  setMuteFunc();
+                  changeVolume("0");
                 }}
               >
                 <path
@@ -135,18 +127,15 @@ export default function BottomOptions(
               id="default-range"
               type="range"
               value={volume}
-              className="w-full h-1 bg-white bg-opacity-20 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 m-1 ml-3"
+              className="w-full h-1 bg-white bg-opacity-20 rounded-lg appearance-none cursor-pointer m-1 ml-3"
               onChange={(e) => {
                 if (e.target.value === "0") {
-                  //setMute(true);
-                  //toggleMute();
+                  setMuteFunc();
                 }
                 if (e.target.value !== "0") {
-                  //setMute(false);
-                  //toggleMute();
+                  setUnMuteFunc();
                 }
-                //setVolume(e.target.value);
-                //changeVolume(e.target.value);
+                changeVolume(e.target.value);
               }}
             />
           </div>
@@ -154,9 +143,8 @@ export default function BottomOptions(
         <div
           className="flex justify-center items-center cursor-pointer m-3 transform transition-transform duration-500 hover:scale-105 text-gray-200 hover:text-white w-1/3"
           onClick={() => {
-            //setPaused(true);
-            //togglePause();
-            //setClicked(true);
+            setPauseFunc();
+            toggleClick();
           }}
         >
           <p className="m-1 font-sans font-semibold text-[18px]">Episodes</p>
@@ -186,7 +174,7 @@ export default function BottomOptions(
             fill="none"
             className="cursor-pointer transform transition-transform duration-500 hover:scale-105"
             xmlns="http://www.w3.org/2000/svg"
-            //onClick={toggleFullScreen}
+            onClick={toggleFullScreen}
           >
             <path
               d="M9 4H7C5.58579 4 4.87868 4 4.43934 4.43934C4 4.87868 4 5.58579 4 7V9"

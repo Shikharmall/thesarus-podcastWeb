@@ -25,11 +25,8 @@ export default function TopOptions({
       tl.reverse();
     }
 
-    // Return a cleanup function to ensure animation is destroyed when component unmounts
     return () => {
-      tl.kill(); // Kill the animation to prevent memory leaks
-
-      //tl.to(box, { duration: 1, x: -100, opacity: 0, ease: 'power4.in' });
+      tl.kill();
     };
   }, [showPopUp]);
 
@@ -38,6 +35,11 @@ export default function TopOptions({
       className="absolute top-0 left-0 w-[100%] z-3 flex flex-col bg-gradient-to-t from-transparent to-black py-4 transition-opacity duration-300"
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
+      //onMouseOut={() => {
+      //  setTimeout(() => {
+      //    handleMouseOut();
+      //  }, 5000);
+      //}}
       ref={optionsUpper}
     >
       <div className="flex justify-between">
@@ -56,16 +58,10 @@ export default function TopOptions({
             />
           </svg>
           <div className="flex flex-col">
-            <p
-              className="font-semibold text-[20px] text-white font-roboto"
-              //style={{ fontFamily: '"Inter",sans-serif' }}
-            >
+            <p className="font-semibold text-[20px] text-white font-roboto">
               Arya
             </p>
-            <p
-              className="text-[17px] text-white text-opacity-65 font-roboto"
-              //style={{ fontFamily: '"Inter",sans-serif' }}
-            >
+            <p className="text-[17px] text-white text-opacity-65 font-roboto">
               S3 E1 Part1: Kahani Abhi Khatam Nahi Hui Hai
             </p>
           </div>
@@ -73,7 +69,7 @@ export default function TopOptions({
 
         <div className="flex justify-end items-center m-5 mr-10 w-1/2 relative">
           <Link
-            className="cursor-pointer transform transition-transform duration-500 hover:scale-105 flex items-center"
+            className="cursor-pointer transform transition-transform duration-300 hover:scale-105 flex items-center"
             onMouseOver={() => {
               setShowPopUp(true);
             }}
@@ -94,10 +90,7 @@ export default function TopOptions({
                 fill="#fff"
               />
             </svg>
-            <p
-              className="font-semibold text-[17px] text-[#ffffff] font-roboto"
-              //style={{ fontFamily: '"Inter",sans-serif' }}
-            >
+            <p className="font-semibold text-[17px] text-[#ffffff] font-roboto">
               Next Episode
             </p>
           </Link>
@@ -113,12 +106,25 @@ export default function TopOptions({
               }}
             >
               <div className="m-3 flex items-center justify-center bg-black bg-opacity-90 rounded-md cursor-pointer">
-                <div className="m-3 w-1/2">
+                <div className="m-3 w-1/2 relative m-6">
                   <img
                     src={Img}
                     alt="poster"
                     className="w-[320px] h-[123.75px] rounded-md"
                   />
+
+                  <svg
+                    className="h-8 w-8 absolute left-2 bottom-2"
+                    fill="#ffffff"
+                    viewBox="0 0 16 16"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <path
+                      d="M5.008 12.897a.644.644 0 0 1-.91-.227.719.719 0 0 1-.098-.364V3.693C4 3.31 4.296 3 4.662 3a.64.64 0 0 1 .346.103l6.677 4.306a.713.713 0 0 1 0 1.182l-6.677 4.306z"
+                      id="a"
+                    />
+                  </svg>
                 </div>
                 <div className="m-3 ml-0 w-1/2">
                   <p
@@ -127,16 +133,10 @@ export default function TopOptions({
                   >
                     Mother's Day
                   </p>
-                  <p
-                    className="text-white text-[16px] font-[600] m-1 font-roboto"
-                    ///style={{ fontFamily: '"Inter",sans-serif' }}
-                  >
-                    S1 E1 . 27 Apr 2023 . 30m
+                  <p className="text-white text-[16px] font-[600] m-1 font-roboto">
+                    S1 E1 · 27 Apr 2023 · 30m
                   </p>
-                  <p
-                    className="text-white text-opacity-60 text-[14px] font-[400] m-1 font-roboto"
-                    //style={{ fontFamily: '"Inter",sans-serif' }}
-                  >
+                  <p className="text-white text-opacity-60 text-[14px] font-[400] m-1 font-roboto">
                     Three frustrated husbands are in the police station for a
                     drunk-and-drive case and start telling their life ......
                   </p>
