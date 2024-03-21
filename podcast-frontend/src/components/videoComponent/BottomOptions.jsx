@@ -8,12 +8,14 @@ export default function BottomOptions({
   mute,
   volume,
   changeVolume,
-  toggleFullScreen,
   toggleClick,
   setPauseFunc,
   setPlayFunc,
   setMuteFunc,
   setUnMuteFunc,
+  isFullScreen,
+  setFullScreen,
+  setMinimiseScreen,
 }) {
   return (
     <div
@@ -191,36 +193,55 @@ export default function BottomOptions({
           </div>
         </div>
         <div className="flex justify-end items-center m-5 mr-10 w-1/3">
-          <svg
-            width="30px"
-            height="30px"
-            viewBox="0 0 24 24"
-            fill="none"
-            className="cursor-pointer transform transition-transform duration-500 hover:scale-105"
-            xmlns="http://www.w3.org/2000/svg"
-            onClick={toggleFullScreen}
-          >
-            <path
-              d="M9 4H7C5.58579 4 4.87868 4 4.43934 4.43934C4 4.87868 4 5.58579 4 7V9"
-              stroke="#fff"
-              strokeLinecap="round"
-            />
-            <path
-              d="M9 20H7C5.58579 20 4.87868 20 4.43934 19.5607C4 19.1213 4 18.4142 4 17V15"
-              stroke="#fff"
-              strokeLinecap="round"
-            />
-            <path
-              d="M15 4H17C18.4142 4 19.1213 4 19.5607 4.43934C20 4.87868 20 5.58579 20 7V9"
-              stroke="#fff"
-              strokeLinecap="round"
-            />
-            <path
-              d="M15 20H17C18.4142 20 19.1213 20 19.5607 19.5607C20 19.1213 20 18.4142 20 17V15"
-              stroke="#fff"
-              strokeLinecap="round"
-            />
-          </svg>
+          {isFullScreen ? (
+            <svg
+              width="30px"
+              height="30px"
+              viewBox="0 0 32 32"
+              id="i-fullscreen-exit"
+              className="cursor-pointer transform transition-transform duration-500 hover:scale-105"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="#ffffff"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1"
+              onClick={setMinimiseScreen}
+            >
+              <path d="M4 12 L12 12 12 4 M20 4 L20 12 28 12 M4 20 L12 20 12 28 M28 20 L20 20 20 28" />
+            </svg>
+          ) : (
+            <svg
+              width="30px"
+              height="30px"
+              viewBox="0 0 24 24"
+              fill="none"
+              className="cursor-pointer transform transition-transform duration-500 hover:scale-105"
+              xmlns="http://www.w3.org/2000/svg"
+              onClick={setFullScreen}
+            >
+              <path
+                d="M9 4H7C5.58579 4 4.87868 4 4.43934 4.43934C4 4.87868 4 5.58579 4 7V9"
+                stroke="#fff"
+                strokeLinecap="round"
+              />
+              <path
+                d="M9 20H7C5.58579 20 4.87868 20 4.43934 19.5607C4 19.1213 4 18.4142 4 17V15"
+                stroke="#fff"
+                strokeLinecap="round"
+              />
+              <path
+                d="M15 4H17C18.4142 4 19.1213 4 19.5607 4.43934C20 4.87868 20 5.58579 20 7V9"
+                stroke="#fff"
+                strokeLinecap="round"
+              />
+              <path
+                d="M15 20H17C18.4142 20 19.1213 20 19.5607 19.5607C20 19.1213 20 18.4142 20 17V15"
+                stroke="#fff"
+                strokeLinecap="round"
+              />
+            </svg>
+          )}
         </div>
       </div>
     </div>

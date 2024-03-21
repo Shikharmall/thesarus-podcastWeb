@@ -24,7 +24,7 @@ export default function WatchVideo() {
   let optionsUpper = useRef(null);
   let optionsBottom = useRef(null);
 
-  const ref = useRef(null);
+  const playerRef = useRef(null);
 
   //const [progress, setProgress] = useState(null);
   const [mute, setMute] = useState(false);
@@ -84,7 +84,6 @@ export default function WatchVideo() {
 
   useEffect(() => {
     const boxUpper = optionsUpper.current;
-    console.log(boxUpper);
     const tlUpper = gsap.timeline({ paused: true });
     tlUpper.from(boxUpper, {
       duration: 0.4,
@@ -94,8 +93,6 @@ export default function WatchVideo() {
     });
 
     const boxBottom = optionsBottom.current;
-    console.log(boxBottom);
-
     const tlBottom = gsap.timeline({ paused: true });
     tlBottom.from(boxBottom, {
       duration: 0.4,
@@ -120,25 +117,42 @@ export default function WatchVideo() {
     };
   }, [controls]);
 
-  const videoRef = useRef(null);
+  const fullScreenRef = useRef(null);
+  const [isFullScreen, setIsFullScreen] = useState(false);
 
-  const toggleFullScreen = () => {
-    const videoElement = ref.current;
-    console.log(videoElement);
+  const setFullScreen = () => {
+    setIsFullScreen(true);
 
-    if (videoElement) {
-      if (videoElement.requestFullscreen) {
-        videoElement.requestFullscreen();
-      } else if (videoElement.mozRequestFullScreen) {
-        /* Firefox */
-        videoElement.mozRequestFullScreen();
-      } else if (videoElement.webkitRequestFullscreen) {
-        /* Chrome, Safari & Opera */
-        videoElement.webkitRequestFullscreen();
-      } else if (videoElement.msRequestFullscreen) {
-        /* IE/Edge */
-        videoElement.msRequestFullscreen();
-      }
+    const elem = fullScreenRef.current;
+
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) {
+      /* Firefox */
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) {
+      /* Chrome, Safari and Opera */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      /* IE/Edge */
+      elem.msRequestFullscreen();
+    }
+  };
+
+  const setMinimiseScreen = () => {
+    setIsFullScreen(false);
+
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      /* Firefox */
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+      /* Chrome, Safari and Opera */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+      /* IE/Edge */
+      document.msExitFullscreen();
     }
   };
 
@@ -171,7 +185,10 @@ export default function WatchVideo() {
   };
 
   return (
-    <div className="w-screen h-screen bg-black relative overflow-hidden">
+    <div
+      className="w-screen h-screen bg-black relative overflow-hidden"
+      ref={fullScreenRef}
+    >
       <ReactPlayer
         onContextMenu={handleContextMenu}
         url={Video1}
@@ -181,7 +198,7 @@ export default function WatchVideo() {
         width={`100%`}
         height={`100%`}
         volume={volume / 100}
-        ref={ref}
+
         //onProgress={(x) => {
         //  //console.log(x);
         //  setProgress(x);
@@ -255,7 +272,9 @@ export default function WatchVideo() {
             mute={mute}
             setMuteFunc={setMuteFunc}
             setUnMuteFunc={setUnMuteFunc}
-            toggleFullScreen={toggleFullScreen}
+            isFullScreen={isFullScreen}
+            setFullScreen={setFullScreen}
+            setMinimiseScreen={setMinimiseScreen}
           />
         </>
       ) : null}
