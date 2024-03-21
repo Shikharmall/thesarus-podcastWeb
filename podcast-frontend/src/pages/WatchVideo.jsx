@@ -4,16 +4,19 @@ import Img from "../images/avatarposter1.png";
 import Video1 from "../../../../videos/BigBuckBunny.mp4";
 import Video2 from "../../../../videos/avatar2.mp4";
 //import { VideoSeekSlider } from "react-video-seek-slider";
-import { VideoSeekSlider } from "react-video-seek-slider";
 
 //import { TweenMax, Power3 } from "gsap/gsap-core";
 //import { TweenMax, Power3 } from "gsap";
 
 import "../css/CustomScrollbar.css";
 
+//import gsap from "gsap";
+
 import gsap from "gsap";
 
 import ReactPlayer from "react-player";
+import TopOptions from "../components/video/TopOptions";
+import BottomOptions from "../components/video/BottomOptions";
 
 export default function WatchVideo() {
   let container = useRef(null);
@@ -133,6 +136,18 @@ export default function WatchVideo() {
     event.preventDefault(); // Prevent the default right-click context menu
   };
 
+  const toggleMute = () => {
+    setMute(!mute);
+  };
+
+  const togglePause = () => {
+    setMute(!mute);
+  };
+
+  const changeVolume = (val) => {
+    setVolume(val);
+  };
+
   return (
     <div
       className="w-screen h-screen bg-black relative"
@@ -150,7 +165,7 @@ export default function WatchVideo() {
         url={Video1}
         playing={!paused}
         muted={mute}
-        //controls={true}
+        controls={true}
         width={`100%`}
         height={`100%`}
         volume={volume / 100}
@@ -383,72 +398,41 @@ export default function WatchVideo() {
 
       {controls ? (
         <>
-          <div
-            className="absolute top-0 left-0 w-[100%] z-3 flex flex-col bg-gradient-to-t from-transparent to-black py-4 transition-opacity duration-300"
-            onMouseOver={handleMouseOver}
-            onMouseOut={handleMouseOut}
-            ref={optionsUpper}
-          >
-            <div className="flex justify-between">
-              <div className="flex items-center cursor-pointer m-5 ml-10 w-1/2">
-                <svg
-                  className="h-6 w-6 text-white mr-10"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                  />
-                </svg>
-                <div className="flex flex-col">
-                  <p
-                    className=" font-semibold text-[20px] text-white"
-                    style={{ fontFamily: '"Inter",sans-serif' }}
-                  >
-                    Arya
-                  </p>
-                  <p
-                    className="  text-[17px] text-white text-opacity-65"
-                    style={{ fontFamily: '"Inter",sans-serif' }}
-                  >
-                    S3 E1 Part1: Kahani Abhi Khatam Nahi Hui Hai
-                  </p>
-                </div>
-              </div>
-              <div className="flex justify-end items-center cursor-pointer m-5 mr-10 w-1/2 cursor-pointer transform transition-transform duration-500 hover:scale-105">
-                <svg
-                  className="h-7 w-7 text-white mr-2"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M5 7.766c0-1.554 1.696-2.515 3.029-1.715l7.056 4.234c1.295.777 1.295 2.653 0 3.43L8.03 17.949c-1.333.8-3.029-.16-3.029-1.715V7.766zM14.056 12L7 7.766v8.468L14.056 12zM18 6a1 1 0 0 1 1 1v10a1 1 0 1 1-2 0V7a1 1 0 0 1 1-1z"
-                    fill="#fff"
-                  />
-                </svg>
-                <p
-                  className="font-bold text-[17px] text-white"
-                  style={{ fontFamily: '"Inter",sans-serif' }}
-                >
-                  Next Episode
-                </p>
-              </div>
-            </div>
-          </div>
-          <div
+          <TopOptions
+            optionsUpper={optionsUpper}
+            handleMouseOut={handleMouseOut}
+            handleMouseOver={handleMouseOver}
+          />
+
+          {/*<BottomOptions
+           //  handleMouseOut={handleMouseOut}
+           // handleMouseOver={handleMouseOver}
+            //optionsBottom={optionsBottom}
+            mute={mute}
+           // toggleMute={toggleMute}
+            paused={paused}
+            //togglePause={togglePause}
+            //toggleFullScreen={toggleFullScreen}
+            //volume={volume}
+            //changeVolume={changeVolume}
+          />*/}
+
+          {/*<input
+                id="range"
+                type="range"
+                className="block w-full h-1 py-2 mt-2 text-gray-700 bg-red bg-opacity-40 border border-gray-300 rounded-md"
+              />*/}
+
+          {/*<div
             className="absolute bottom-0 left-0 w-[100%] z-3 flex flex-col pt-4 bg-gradient-to-b from-transparent to-black transition-opacity duration-300"
             onMouseOver={handleMouseOver}
             onMouseOut={handleMouseOut}
-            //ref={optionsBottom}
+            ref={optionsBottom}
           >
-            <div className="flex justify-between items-center " ref={optionsBottom}>
+            <div
+              className="flex justify-between items-center "
+              //ref={optionsBottom}
+            >
               <div>
                 <p
                   className="text-white ml-10"
@@ -463,11 +447,6 @@ export default function WatchVideo() {
                 //value={volume}
                 className="w-[100%] h-1 bg-white bg-opacity-40 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 m-3"
               />
-              {/*<input
-                id="range"
-                type="range"
-                className="block w-full h-1 py-2 mt-2 text-gray-700 bg-red bg-opacity-40 border border-gray-300 rounded-md"
-              />*/}
 
               <div>
                 <p
@@ -481,38 +460,36 @@ export default function WatchVideo() {
             <div className="flex justify-between">
               <div className="flex items-center cursor-pointer m-5 ml-10 w-1/3">
                 {paused ? (
-                  <svg
-                    className="h-8 w-8 text-white mr-5"
-                    viewBox="0 0 24 24"
-                    fill="white"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    onClick={() => {
-                      setPaused(false);
-                    }}
-                  >
-                    {" "}
-                    <polygon points="5 3 19 12 5 21 5 3" />
-                  </svg>
+                  <>
+                    <svg
+                      className="h-10 w-10 text-white mr-5 rounded-lg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      onClick={() => {
+                        setPaused(false);
+                      }}
+                    >
+                      <path d="M10 6v12l10-6z" fill="#fff" />
+                    </svg>
+                  </>
                 ) : (
-                  <svg
-                    className="h-8 w-8 text-white mr-5"
-                    viewBox="0 0 24 24"
-                    fill="white"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    onClick={() => {
-                      setPaused(true);
-                    }}
-                  >
-                    {" "}
-                    <rect x="6" y="4" width="4" height="16" />
-                    <rect x="14" y="4" width="4" height="16" />
-                  </svg>
+                  <>
+                    <svg
+                      className="h-10 w-10 text-white mr-5"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      onClick={() => {
+                        setPaused(true);
+                      }}
+                    >
+                      <path
+                        d="M9 6a1 1 0 0 1 1 1v10a1 1 0 1 1-2 0V7a1 1 0 0 1 1-1zm6 0a1 1 0 0 1 1 1v10a1 1 0 1 1-2 0V7a1 1 0 0 1 1-1z"
+                        fill="#fff"
+                      />
+                    </svg>
+                  </>
                 )}
                 <div className="flex items-center">
                   {mute ? (
@@ -642,7 +619,7 @@ export default function WatchVideo() {
                 </svg>
               </div>
             </div>
-          </div>
+          </div>*/}
         </>
       ) : null}
     </div>
