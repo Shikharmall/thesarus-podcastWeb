@@ -200,18 +200,31 @@ export default function WatchVideo() {
       />
 
       <div
-        className="absolute top-0 left-0 w-[100vw] h-[100vh]"
+        className="absolute top-0 left-0 w-[100vw] h-[100vh] flex"
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
-        onClick={() => {
-          setPaused(!paused);
-        }}
+        //onClick={() => {
+        //  setPaused(!paused);
+        //}}
         //onMouseOut={() => {
         //  setTimeout(() => {
         //    handleMouseOut();
         //  }, 5000);
         //}}
-      ></div>
+      >
+        <div
+          className="h-[100vh] w-1/3" //bg-red-500
+        ></div>
+        <div
+          className="h-[100vh] w-1/3" //bg-green-500
+          onClick={() => {
+            setPaused(!paused);
+          }}
+        ></div>
+        <div
+          className="h-[100vh] w-1/3" //bg-blue-500
+        ></div>
+      </div>
 
       {clicked && (
         <AllSeasonEpisodesList

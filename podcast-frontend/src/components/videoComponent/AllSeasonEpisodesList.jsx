@@ -43,7 +43,7 @@ export default function AllSeasonEpisodesList({
           </p>
         </div>
 
-        <div className="flex m-10 mx-20">
+        <div className="flex m-2 mx-20 md:m-4 lg:m-8 xl:m-10">
           <div className="w-1/5">
             {seasons.map((item, index) => (
               <div
@@ -76,7 +76,7 @@ export default function AllSeasonEpisodesList({
           {/* scrollbar scrollbar-thumb-red-500 scrollbar-track-gray-200 */}
 
           <div
-            className="w-4/5 h-[500px] overflow-y-scroll "
+            className="w-4/5 h-[400px] overflow-y-scroll md:h-[430px] lg:h-[450px] xl:h-[520px]"
             id="custom-scrollbar"
           >
             {arry.map((item, index) => (
