@@ -49,10 +49,33 @@ export default function BottomOptions({
       </div>
 
       <div className="flex justify-between">
-        <div className="flex items-center cursor-pointer m-5 ml-10 w-1/3">
+        <div className="flex items-center m-5 ml-10 w-1/3">
+          {/*<svg
+            className="h-12 w-12 text-white hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-1 cursor-pointer"
+            fill="#fff"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20.67,9.69,14,5.84a2.67,2.67,0,0,0-4,2.31h0L6,5.84A2.67,2.67,0,0,0,2,8.15v7.7a2.63,2.63,0,0,0,1.33,2.3,2.61,2.61,0,0,0,1.34.37A2.69,2.69,0,0,0,6,18.16l4-2.31h0a2.65,2.65,0,0,0,1.33,2.31,2.66,2.66,0,0,0,2.67,0l6.67-3.85a2.67,2.67,0,0,0,0-4.62ZM10,13.54,5,16.42a.67.67,0,0,1-1-.57V8.15a.67.67,0,0,1,1-.57l5,2.88Zm9.67-1L13,16.43a.69.69,0,0,1-.67,0,.66.66,0,0,1-.33-.58V8.15a.66.66,0,0,1,.33-.58.78.78,0,0,1,.34-.09.63.63,0,0,1,.33.09l6.67,3.85a.67.67,0,0,1,0,1.16Z"
+              transform="rotate(180 12 12)"
+            />
+          </svg>*/}
+
+          <svg
+            fill="#fff"
+            className="h-12 w-12 text-white hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-2 cursor-pointer"
+            viewBox="0 0 32 32"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            transform="rotate(180)"
+          >
+            <path d="M28.801 15.040l-12.001-10c-0.215-0.18-0.495-0.29-0.8-0.29-0.69 0-1.25 0.559-1.25 1.25 0 0 0 0 0 0v0 7.332l-9.95-8.292c-0.215-0.18-0.495-0.29-0.8-0.29-0.69 0-1.25 0.559-1.25 1.25 0 0 0 0 0 0v0 20c0 0.498 0.291 0.928 0.712 1.13l0.008 0.003c0.155 0.074 0.337 0.117 0.529 0.117 0.305 0 0.585-0.109 0.803-0.291l-0.002 0.002 9.95-8.293v7.332c0 0.498 0.291 0.928 0.712 1.13l0.008 0.003c0.155 0.074 0.337 0.117 0.529 0.117 0.305 0 0.585-0.109 0.803-0.291l-0.002 0.002 12.001-10.001c0.275-0.231 0.449-0.575 0.449-0.96s-0.174-0.729-0.447-0.958l-0.002-0.002zM5.25 23.332v-14.663l8.798 7.331zM17.25 23.332v-14.663l8.797 7.331z"></path>
+          </svg>
+
           {paused ? (
             <svg
-              className="h-12 w-12 text-white mr-5 hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-1"
+              className="h-12 w-12 text-white hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-1 cursor-pointer"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +87,7 @@ export default function BottomOptions({
             </svg>
           ) : (
             <svg
-              className="h-12 w-12 text-white mr-5 hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-1"
+              className="h-12 w-12 text-white hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-1 cursor-pointer"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -78,10 +101,30 @@ export default function BottomOptions({
               />
             </svg>
           )}
+
+          {/*<svg
+            className="h-12 w-12 text-white mr-5 hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-1 cursor-pointer"
+            fill="#fff"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M20.67,9.69,14,5.84a2.67,2.67,0,0,0-4,2.31h0L6,5.84A2.67,2.67,0,0,0,2,8.15v7.7a2.63,2.63,0,0,0,1.33,2.3,2.61,2.61,0,0,0,1.34.37A2.69,2.69,0,0,0,6,18.16l4-2.31h0a2.65,2.65,0,0,0,1.33,2.31,2.66,2.66,0,0,0,2.67,0l6.67-3.85a2.67,2.67,0,0,0,0-4.62ZM10,13.54,5,16.42a.67.67,0,0,1-1-.57V8.15a.67.67,0,0,1,1-.57l5,2.88Zm9.67-1L13,16.43a.69.69,0,0,1-.67,0,.66.66,0,0,1-.33-.58V8.15a.66.66,0,0,1,.33-.58.78.78,0,0,1,.34-.09.63.63,0,0,1,.33.09l6.67,3.85a.67.67,0,0,1,0,1.16Z" />
+          </svg>*/}
+
+          <svg
+            fill="#fff"
+            className="h-12 w-12 text-white mr-5 hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-2 cursor-pointer"
+            viewBox="0 0 32 32"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M28.801 15.040l-12.001-10c-0.215-0.18-0.495-0.29-0.8-0.29-0.69 0-1.25 0.559-1.25 1.25 0 0 0 0 0 0v0 7.332l-9.95-8.292c-0.215-0.18-0.495-0.29-0.8-0.29-0.69 0-1.25 0.559-1.25 1.25 0 0 0 0 0 0v0 20c0 0.498 0.291 0.928 0.712 1.13l0.008 0.003c0.155 0.074 0.337 0.117 0.529 0.117 0.305 0 0.585-0.109 0.803-0.291l-0.002 0.002 9.95-8.293v7.332c0 0.498 0.291 0.928 0.712 1.13l0.008 0.003c0.155 0.074 0.337 0.117 0.529 0.117 0.305 0 0.585-0.109 0.803-0.291l-0.002 0.002 12.001-10.001c0.275-0.231 0.449-0.575 0.449-0.96s-0.174-0.729-0.447-0.958l-0.002-0.002zM5.25 23.332v-14.663l8.798 7.331zM17.25 23.332v-14.663l8.797 7.331z"></path>
+          </svg>
+
           <div className="flex items-center">
             {mute ? (
               <svg
-                className="h-12 w-12 text-white m-1 hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-1"
+                className="h-12 w-12 text-white m-1 hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-1 cursor-pointer"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -106,7 +149,7 @@ export default function BottomOptions({
               </svg>
             ) : (
               <svg
-                className="h-12 w-12 text-white m-1 hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-1"
+                className="h-12 w-12 text-white m-1 hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-1 cursor-pointer"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -140,33 +183,35 @@ export default function BottomOptions({
             />
           </div>
         </div>
-        <div
-          className="flex justify-center items-center cursor-pointer m-3 transform transition-transform duration-500 hover:scale-105 text-gray-200 hover:text-white w-1/3"
-          onClick={() => {
-            setPauseFunc();
-            toggleClick();
-          }}
-        >
-          <p className="m-1 font-sans font-semibold text-[18px]">Episodes</p>
-          <svg
-            width="20px"
-            height="20px"
-            className="m-1"
-            viewBox="0 0 48 48"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+        <div className="flex justify-center items-center m-3 transform transition-transform duration-500 hover:scale-105 text-gray-200 hover:text-white w-1/3">
+          <div
+            className="flex justify-center items-center cursor-pointer"
+            onClick={() => {
+              setPauseFunc();
+              toggleClick();
+            }}
           >
-            <rect width="48" height="48" fill="white" fillOpacity="0.01" />
-            <path
-              d="M13 30L25 18L37 30"
-              stroke="currentColor"
-              strokeWidth="6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+            <p className="m-1 font-sans font-semibold text-[18px]">Episodes</p>
+            <svg
+              width="20px"
+              height="20px"
+              className="m-1"
+              viewBox="0 0 48 48"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="48" height="48" fill="white" fillOpacity="0.01" />
+              <path
+                d="M13 30L25 18L37 30"
+                stroke="currentColor"
+                strokeWidth="6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
         </div>
-        <div className="flex justify-end items-center cursor-pointer m-5 mr-10 w-1/3">
+        <div className="flex justify-end items-center m-5 mr-10 w-1/3">
           <svg
             width="30px"
             height="30px"
