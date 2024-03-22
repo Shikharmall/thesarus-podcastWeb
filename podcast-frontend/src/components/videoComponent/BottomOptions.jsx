@@ -18,6 +18,7 @@ export default function BottomOptions({
   setFullScreen,
   setMinimiseScreen,
 }) {
+  const [progress,setProgress] = useState("0");
   return (
     <div
       className="absolute bottom-0 left-0 w-[100%] z-3 flex flex-col pt-4 bg-gradient-to-b from-transparent to-black transition-opacity duration-300"
@@ -38,9 +39,12 @@ export default function BottomOptions({
           type="range"
           id="volumeRange"
           className="w-[100%] cursor-pointer m-3"
-          value={volume}
+          value={progress}
           style={{
-            background: `linear-gradient(to right, #095ae5 0%, #095ae5 ${volume}%, rgba(255, 255, 255, 0.25) ${volume}%, rgba(255, 255, 255, 0.25) 100%)`,
+            background: `linear-gradient(to right, #095ae5 0%, #095ae5 ${progress}%, rgba(255, 255, 255, 0.25) ${progress}%, rgba(255, 255, 255, 0.25) 100%)`,
+          }}
+          onChange={(e) => {
+            setProgress(e.target.value);
           }}
         />
         {/*<input

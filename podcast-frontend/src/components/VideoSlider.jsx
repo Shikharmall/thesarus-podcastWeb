@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Video1 from "C:/Users/Lenovo/Downloads/BigBuckBunny.mp4";
+import Video1 from "../../../../videos/BigBuckBunny.mp4";
 import Video2 from "../../../../videos/avatar1.mp4";
 import Video3 from "../../../../videos/avatar2.mp4";
 import Video4 from "../../../../videos/avatar3.mp4";

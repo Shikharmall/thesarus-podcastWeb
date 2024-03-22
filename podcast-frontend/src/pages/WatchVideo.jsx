@@ -24,22 +24,20 @@ export default function WatchVideo() {
   let optionsUpper = useRef(null);
   let optionsBottom = useRef(null);
 
-  const playerRef = useRef(null);
-
   //const [progress, setProgress] = useState(null);
-  const [mute, setMute] = useState(false);
-
+  
   /*const format = (seconds) => {
     let mins = parseInt(seconds / 60)
-      .toString()
-      .padStart(2, "0");
+    .toString()
+    .padStart(2, "0");
     let secs = (Math.trunc(seconds) % 60).toString().padStart(2, "0");
     return `${mins}:${secs}`;
   };*/
-
+  
+  const [mute, setMute] = useState(true);
   const [clicked, setClicked] = useState(false);
   const [paused, setPaused] = useState(false);
-  const [volume, setVolume] = useState(50);
+  const [volume, setVolume] = useState(0);
   const [controls, setControls] = useState(false);
 
   const handleMouseOver = () => {
@@ -192,6 +190,7 @@ export default function WatchVideo() {
       <ReactPlayer
         onContextMenu={handleContextMenu}
         url={Video1}
+        //playing={!paused}
         playing={!paused}
         muted={mute}
         //controls={true}
@@ -211,9 +210,11 @@ export default function WatchVideo() {
         //    setControls(false);
         //  }, 10000);
         //}}
-        //onMouseOver={handleMouseOver}
-        //onMouseOut={handleMouseOut}
-        //pip
+
+        onProgress={(x) => {
+          console.log(x);
+          //setProgress(x);
+        }}
       />
 
       <div

@@ -1,23 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import GooglePlayBadge from "../images/google-play-badge.png"
 
 export default function Footer() {
   return (
     <footer className="ml-[10%] flex pt-2 py-4 mr-4 justify-between">
       <div className="m-[10px]">
-        <h3
-          className="text-[#e1e1e1] text-md"
-          style={{ fontFamily: '"Inter",sans-serif' }}
-        >
-          Company
-        </h3>
+        <h3 className="text-[#e1e1e1] text-md font-bold">Company</h3>
         <br />
 
         <Link to={``}>
           <p
             style={{
               color: "rgb(113, 113, 113)",
-              fontFamily: "Inter, sans-serif",
               fontWeight: "bold",
             }}
             className="text-sm"
@@ -26,16 +21,13 @@ export default function Footer() {
           </p>
         </Link>
 
-       
-
         <Link to={``}>
           <p
             style={{
               color: "rgb(113, 113, 113)",
-              fontFamily: "Inter, sans-serif",
               fontWeight: "bold",
             }}
-            className="text-sm mt-3"
+            className="text-md mt-3 font-bold"
           >
             Careers
           </p>
@@ -44,22 +36,15 @@ export default function Footer() {
         <p
           style={{
             color: "rgb(113, 113, 113)",
-            fontFamily: "Inter, sans-serif",
-            fontWeight: "bold",
           }}
-          className="text-sm mt-10"
+          className="text-sm mt-10 font-roboto font-bold"
         >
           © {new Date().getFullYear()} The SARUS. All Rights Reserved.{" "}
         </p>
       </div>
 
       <div className="m-[10px]">
-        <h3
-          className="text-[#e1e1e1] text-md"
-          style={{ fontFamily: '"Inter",sans-serif' }}
-        >
-          View Website in
-        </h3>
+        <h3 className="text-[#e1e1e1] text-md font-bold">View Website in</h3>
 
         <br />
 
@@ -67,23 +52,33 @@ export default function Footer() {
           <p
             style={{
               color: "rgb(113, 113, 113)",
-              fontFamily: "Inter, sans-serif",
               fontWeight: "bold",
             }}
-            className="text-sm"
+            className="text-md font-bold flex items-center"
           >
-            ✔ &nbsp; English
+            <svg
+              width ="20px"
+              height="20px"
+              className="mr-1"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4.89163 13.2687L9.16582 17.5427L18.7085 8"
+                stroke="rgb(113, 113, 113)"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+             English
           </p>
         </Link>
       </div>
 
       <div className="m-[10px]">
-        <h3
-          className="text-[#e1e1e1] text-md"
-          style={{ fontFamily: '"Inter",sans-serif' }}
-        >
-          Need help?
-        </h3>
+        <h3 className="text-[#e1e1e1] text-md font-bold">Need help?</h3>
 
         <br />
 
@@ -91,10 +86,9 @@ export default function Footer() {
           <p
             style={{
               color: "rgb(113, 113, 113)",
-              fontFamily: "Inter, sans-serif",
               fontWeight: "bold",
             }}
-            className="text-sm"
+            className="text-sm font-bold"
           >
             Visit Help Center
           </p>
@@ -104,10 +98,9 @@ export default function Footer() {
           <p
             style={{
               color: "rgb(113, 113, 113)",
-              fontFamily: "Inter, sans-serif",
               fontWeight: "bold",
             }}
-            className="text-sm mt-3"
+            className="text-sm mt-3 font-bold"
           >
             Share Feedback
           </p>
@@ -115,12 +108,7 @@ export default function Footer() {
       </div>
 
       <div className="m-[10px]">
-        <h3
-          className="text-[#e1e1e1] text-md"
-          style={{ fontFamily: '"Inter",sans-serif' }}
-        >
-          Connect With Us
-        </h3>
+        <h3 className="text-[#e1e1e1] text-md font-bold">Connect With Us</h3>
         <br />
 
         <div className="flex justify-evenly">
@@ -143,8 +131,7 @@ export default function Footer() {
               />
             </svg>
           </Link>
-          <br />
-          <Link to={``}>
+          <Link to={`https://www.linkedin.com/company/the-sarus/about/?viewAsMember=true`}>
             <svg
               width="30px"
               viewBox="-2 -2 24 24"
@@ -171,6 +158,10 @@ export default function Footer() {
               <circle cx={15.156} cy={4.858} r={1.237} />
             </svg>
           </Link>
+        </div>
+
+        <div className='mt-2'>
+          <img src={GooglePlayBadge} alt="google-play-badge" className="h-14" />
         </div>
       </div>
     </footer>

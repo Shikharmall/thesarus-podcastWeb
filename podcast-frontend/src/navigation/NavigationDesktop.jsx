@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ForgotPassword from "../pages/ForgotPassword";
 import WatchVideo from "../pages/WatchVideo";
+import PodcastDescription from "../pages/PodcastDescription";
 
 function NavigationDesktop() {
   const location = useLocation();
@@ -21,6 +22,7 @@ function NavigationDesktop() {
       <Route path="/register" element={<Register />} />
       <Route path="/forgotpassword" element={<ForgotPassword />} />
       <Route path="/watch" element={<WatchVideo />} />
+      <Route path="/podcastdescription" element={<PodcastDescription />} />
       {/*<Route exact path="/leaderboard" element={<Leaderboard />} />
       <Route exact path="/userdetails" element={<UserDetails />} />
       <Route
