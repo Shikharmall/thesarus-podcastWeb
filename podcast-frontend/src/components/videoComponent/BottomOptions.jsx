@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+import "../../css/CustomRange.css";
 
 export default function BottomOptions({
   handleMouseOut,
@@ -17,6 +18,7 @@ export default function BottomOptions({
   setFullScreen,
   setMinimiseScreen,
 }) {
+  console.log(volume);
   return (
     <div
       className="absolute bottom-0 left-0 w-[100%] z-3 flex flex-col pt-4 bg-gradient-to-b from-transparent to-black transition-opacity duration-300"
@@ -147,7 +149,8 @@ export default function BottomOptions({
                 />
               </svg>
             )}
-            <input
+
+            {/*<input
               id="default-range"
               type="range"
               value={volume}
@@ -161,9 +164,30 @@ export default function BottomOptions({
                 }
                 changeVolume(e.target.value);
               }}
+            />*/}
+
+            <input
+              type="range"
+              id="volumeRange"
+              value={volume}
+              //className="w-full h-1 bg-white bg-opacity-20 cursor-pointer"
+              //class="w-full h-1 bg-white bg-opacity-20 cursor-pointer"
+              style={{
+                background: `linear-gradient(to right, #095ae5 0%, #095ae5 ${volume}%, rgba(255, 255, 255, 0.25) ${volume}%, rgba(255, 255, 255, 0.25) 100%)`,
+              }}
+              onChange={(e) => {
+                if (e.target.value === "0") {
+                  setMuteFunc();
+                }
+                if (e.target.value !== "0") {
+                  setUnMuteFunc();
+                }
+                changeVolume(e.target.value);
+              }}
             />
           </div>
         </div>
+
         <div className="flex justify-center items-center m-3 transform transition-transform duration-500 hover:scale-105 text-gray-200 hover:text-white w-1/3">
           <div
             className="flex justify-center items-center cursor-pointer"
@@ -192,6 +216,7 @@ export default function BottomOptions({
             </svg>
           </div>
         </div>
+
         <div className="flex justify-end items-center m-5 mr-10 w-1/3">
           {isFullScreen ? (
             <svg
