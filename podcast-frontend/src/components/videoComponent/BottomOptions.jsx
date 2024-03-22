@@ -18,7 +18,6 @@ export default function BottomOptions({
   setFullScreen,
   setMinimiseScreen,
 }) {
-  console.log(volume);
   return (
     <div
       className="absolute bottom-0 left-0 w-[100%] z-3 flex flex-col pt-4 bg-gradient-to-b from-transparent to-black transition-opacity duration-300"
@@ -36,10 +35,13 @@ export default function BottomOptions({
           <p className="text-white ml-10 font-roboto">00:07</p>
         </div>
         <input
-          id="default-range"
           type="range"
-          //value={volume}
-          className="w-[100%] h-1 bg-white bg-opacity-40 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 m-3"
+          id="volumeRange"
+          className="w-[100%] cursor-pointer m-3"
+          value={volume}
+          style={{
+            background: `linear-gradient(to right, #095ae5 0%, #095ae5 ${volume}%, rgba(255, 255, 255, 0.25) ${volume}%, rgba(255, 255, 255, 0.25) 100%)`,
+          }}
         />
         {/*<input
                 id="range"
@@ -170,8 +172,7 @@ export default function BottomOptions({
               type="range"
               id="volumeRange"
               value={volume}
-              //className="w-full h-1 bg-white bg-opacity-20 cursor-pointer"
-              //class="w-full h-1 bg-white bg-opacity-20 cursor-pointer"
+              className="cursor-pointer"
               style={{
                 background: `linear-gradient(to right, #095ae5 0%, #095ae5 ${volume}%, rgba(255, 255, 255, 0.25) ${volume}%, rgba(255, 255, 255, 0.25) 100%)`,
               }}
