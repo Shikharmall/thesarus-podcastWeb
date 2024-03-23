@@ -1,15 +1,20 @@
 import gsap from "gsap";
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function SideNav() {
+  const location = useLocation();
+
+  const { pathname } = location;
+
+  //console.log(pathname);
+
   const [isHover, setIsHover] = useState(false);
   const textRef1 = useRef(null);
   const textRef2 = useRef(null);
   const textRef3 = useRef(null);
   const textRef4 = useRef(null);
   const textRef5 = useRef(null);
-  const textRef6 = useRef(null);
   useEffect(() => {
     //TweenMax.to
     const box1 = textRef1.current;
@@ -52,6 +57,7 @@ export default function SideNav() {
       //tl.to(box, { duration: 1, x: -100, opacity: 0, ease: 'power4.in' });
     };
   }, [isHover]);
+
   return (
     <>
       <div className="fixed top-0 bottom-0 left-0 flex flex-col p-2 z-10">
@@ -69,9 +75,11 @@ export default function SideNav() {
 
         <div className="flex flex-col items-center flex-1">
           <div className="w-[35px] m-[20px]">
-            <Link to={`login`} class="relative group">
+            <Link to={`/login`} class="relative">
               <svg
-                class="w-6 h-6 fill-current text-white group-hover:text-gray-800 transition duration-300"
+                className={`w-6 h-6 fill-current transition duration-300 ${
+                  pathname === "/login" ? "text-white" : "text-gray-500"
+                }`}
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
                 onMouseOver={() => {
@@ -97,7 +105,11 @@ export default function SideNav() {
                     setIsHover(false);
                   }}
                 >
-                  <p className="text-gray-500 text-roboto text-[20px] font-semibold">
+                  <p
+                    className={`text-roboto text-[20px] font-semibold ${
+                      pathname === "/login" ? "text-white" : "text-gray-500"
+                    }`}
+                  >
                     My Space
                   </p>
                 </div>
@@ -112,9 +124,11 @@ export default function SideNav() {
           </div>
 
           <div className="w-[35px] m-[20px]">
-            <Link class="relative group inline-block" to={`/`}>
+            <Link class="relative" to={`/`}>
               <svg
-                class="w-6 h-6 fill-current text-white group-hover:text-gray-800 transition duration-300"
+                className={`w-6 h-6 fill-current transition duration-300 ${
+                  pathname === "/" ? "text-white" : "text-gray-800"
+                }`}
                 viewBox="0 0 15 15"
                 xmlns="http://www.w3.org/2000/svg"
                 onMouseOver={() => {
@@ -140,7 +154,11 @@ export default function SideNav() {
                     setIsHover(false);
                   }}
                 >
-                  <p className="text-gray-500 text-roboto text-[20px] font-semibold">
+                  <p
+                    className={`text-roboto text-[20px] font-semibold ${
+                      pathname === "/" ? "text-white" : "text-gray-500"
+                    }`}
+                  >
                     Home
                   </p>
                 </div>
@@ -149,9 +167,11 @@ export default function SideNav() {
           </div>
 
           <div className="w-[35px] m-[20px]">
-            <Link class="relative group inline-block" to={`/search`}>
+            <Link class="relative" to={`/search`}>
               <svg
-                class="w-6 h-6 fill-current text-white group-hover:text-gray-800 transition duration-300"
+                class={`w-6 h-6 fill-current transition duration-300 ${
+                  pathname === "/search" ? "text-white" : "text-gray-500"
+                }`}
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
                 onMouseOver={() => {
@@ -177,7 +197,11 @@ export default function SideNav() {
                     setIsHover(false);
                   }}
                 >
-                  <p className="text-gray-500 text-roboto text-[20px] font-semibold">
+                  <p
+                    className={`text-roboto text-[20px] font-semibold ${
+                      pathname === "/search" ? "text-white" : "text-gray-500"
+                    }`}
+                  >
                     Search
                   </p>
                 </div>
@@ -186,9 +210,11 @@ export default function SideNav() {
           </div>
 
           <div className="w-[35px] m-[20px]">
-            <Link className="relative group inline-block" to={`/new`}>
+            <Link className="relative" to={`/new`}>
               <svg
-                className="w-6 h-6 fill-current text-white group-hover:text-gray-800 transition duration-300"
+                class={`w-6 h-6 fill-current transition duration-300 ${
+                  pathname === "/new" ? "text-white" : "text-gray-500"
+                }`}
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="white"
@@ -216,7 +242,11 @@ export default function SideNav() {
                     setIsHover(false);
                   }}
                 >
-                  <p className="text-gray-500 text-roboto text-[20px] font-semibold">
+                  <p
+                    className={`text-roboto text-[20px] font-semibold ${
+                      pathname === "/new" ? "text-white" : "text-gray-500"
+                    }`}
+                  >
                     New
                   </p>
                 </div>
@@ -225,9 +255,11 @@ export default function SideNav() {
           </div>
 
           <div className="w-[35px] m-[20px]">
-            <Link class="relative group" to={`/downloads`}>
+            <Link class="relative" to={`/downloads`}>
               <svg
-                class="w-6 h-6 fill-current text-white group-hover:text-gray-800 transition duration-300"
+                class={`w-6 h-6 fill-current transition duration-300 ${
+                  pathname === "/downloads" ? "text-white" : "text-gray-500"
+                }`}
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
                 onMouseOver={() => {
@@ -256,8 +288,12 @@ export default function SideNav() {
                     setIsHover(false);
                   }}
                 >
-                  <p className="text-gray-500 text-roboto text-[20px] font-semibold">
-                    Channels
+                  <p
+                    className={`text-roboto text-[20px] font-semibold ${
+                      pathname === "/downloads" ? "text-white" : "text-gray-500"
+                    }`}
+                  >
+                    Downloads
                   </p>
                 </div>
               ) : null}
@@ -270,7 +306,7 @@ export default function SideNav() {
         //className={`fixed top-0 left-0 h-[100vh] w-[70vw] bg-[#0f1014]  ${ /* bg-opacity-90 */
         //  isHover ? "block transition-all duration-300 ease-in-out" : "hidden"
         //}`}
-        className={`fixed top-0 left-0 h-[100vh] w-[70vw] bg-[#0f1014] z-8  ${
+        className={`fixed top-0 left-0 h-[100vh] w-[20vw] bg-[#0f1014] z-8  ${
           /* bg-opacity-90 */
           isHover ? "block" : "hidden"
         }`}
