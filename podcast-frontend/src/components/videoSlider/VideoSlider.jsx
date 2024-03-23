@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import Video1 from "../../../../videos/BigBuckBunny.mp4";
-import Video2 from "../../../../videos/avatar1.mp4";
-import Video3 from "../../../../videos/avatar2.mp4";
-import Video4 from "../../../../videos/avatar3.mp4";
+import Video1 from "../../../../../videos/BigBuckBunny.mp4";
+import Video2 from "../../../../../videos/avatar1.mp4";
+import Video3 from "../../../../../videos/avatar2.mp4";
+import Video4 from "../../../../../videos/avatar3.mp4";
 
 import VideoSliderItem from "./VideoSliderItem";
-import Poster1 from "../images/avatarposter1.png";
-import Poster2 from "../images/avatarposter2.png";
-import Poster3 from "../images/avatarposter3.png";
-import Poster4 from "../images/avatarposter4.png";
+import Poster1 from "../../images/avatarposter1.png";
+import Poster2 from "../../images/avatarposter2.png";
+import Poster3 from "../../images/avatarposter3.png";
+import Poster4 from "../../images/avatarposter4.png";
 
 export default function VideoSlider() {
   const [videoURL, setVideoURL] = useState(Video1);

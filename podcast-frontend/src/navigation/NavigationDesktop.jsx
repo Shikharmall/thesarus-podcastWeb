@@ -6,6 +6,9 @@ import Register from "../pages/Register";
 import ForgotPassword from "../pages/ForgotPassword";
 import WatchVideo from "../pages/WatchVideo";
 import PodcastDescription from "../pages/PodcastDescription";
+import Downloads from "../pages/Downloads";
+import New from "../pages/New";
+import Search from "../pages/Search";
 
 function NavigationDesktop() {
   const location = useLocation();
@@ -23,6 +26,9 @@ function NavigationDesktop() {
       <Route path="/forgotpassword" element={<ForgotPassword />} />
       <Route path="/watch" element={<WatchVideo />} />
       <Route path="/podcastdescription" element={<PodcastDescription />} />
+      <Route path="/downloads" element={<Downloads />} />
+      <Route path="/new" element={<New />} />
+      <Route path="/search" element={<Search />} />
       {/*<Route exact path="/leaderboard" element={<Leaderboard />} />
       <Route exact path="/userdetails" element={<UserDetails />} />
       <Route

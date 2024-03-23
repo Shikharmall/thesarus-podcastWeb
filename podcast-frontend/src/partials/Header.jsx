@@ -1,6 +1,7 @@
 import React from "react";
 import HeadImg from "../images/headimage.jpg";
 import Logo from "../images/thesaruslogo.jpg";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -22,19 +23,14 @@ export default function Header() {
               alt="logo"
               className="rounded-md w-[50px] m-[2px]"
             />
-            <h1
-              className="text-white m-[2px]"
-              style={{ fontFamily: '"Inter",sans-serif' }}
-            >
-              The SARUS
-            </h1>
+            <h1 className="text-white m-[2px] font-roboto">The SARUS</h1>
           </div>
           <br />
           <div>
             <h4
+              className="font-roboto"
               style={{
                 color: "rgb(188, 188, 188)",
-                fontFamily: '"Inter",sans-serif',
               }}
             >
               Your one-stop destination for Sports,Comedy, Drama, Thrillers
@@ -43,11 +39,11 @@ export default function Header() {
           </div>
           <br /> <br />
           <div>
-            <a href="search">
-              <button className="text-white bg-gray-800 border-none p-4 text-lg rounded-md font-inter w-48 cursor-pointer">
+            <Link to={``}>
+              <button className="text-white bg-gray-800 border-none p-4 text-lg rounded-md font-inter w-48 cursor-pointer font-roboto">
                 Explore
               </button>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

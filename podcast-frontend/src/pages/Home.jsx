@@ -2,7 +2,7 @@ import React from "react";
 import SideNav from "../partials/SideNav";
 import Header from "../partials/Header";
 import Footer from "../partials/Footer";
-import VideoSlider from "../components/VideoSlider";
+import VideoSlider from "../components/videoSlider/VideoSlider";
 
 export default function Home() {
   return (
