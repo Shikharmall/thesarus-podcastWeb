@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Video1 from "../../../../../videos/BigBuckBunny.mp4";
-import Video2 from "../../../../../videos/avatar1.mp4";
-import Video3 from "../../../../../videos/avatar2.mp4";
-import Video4 from "../../../../../videos/avatar3.mp4";
+import Video2 from "../../../../../videos/BigBuckBunny.mp4";
+import Video3 from "../../../../../videos/BigBuckBunny.mp4";
+import Video4 from "../../../../../videos/BigBuckBunny.mp4";
 
 import VideoSliderItem from "./VideoSliderItem";
 import Poster1 from "../../images/avatarposter1.png";
@@ -15,14 +15,14 @@ export default function VideoSlider() {
   const [isMute, setIsMute] = useState(true);
 
   return (
-    <div className="relative w-[100%] h-[100vh]">
+    <div className="relative w-[100%] h-[100%]">
       <VideoSliderItem videoURL={videoURL} isMute={isMute} />
       {isMute ? (
         <svg
           style={{
             position: "absolute",
-            bottom: 20,
-            right: 20,
+            bottom: 150,
+            right:  55,
             cursor: "pointer",
           }}
           width="20px"
@@ -48,8 +48,8 @@ export default function VideoSlider() {
         <svg
           style={{
             position: "absolute",
-            bottom: 20,
-            right: 20,
+            bottom: 150,
+            right:  55,
             cursor: "pointer",
           }}
           width="20px"
@@ -171,7 +171,7 @@ export default function VideoSlider() {
         </div>
       </div>*/}
 
-      <div className="absolute right-20 bottom-20 flex">
+      <div className="absolute right-10 bottom-10 flex">
         <div className="flex items-center">
           <svg
             width="25px"
@@ -264,7 +264,8 @@ export default function VideoSlider() {
 
       <div className="midcontentheading1">
         <img src="image/avatarlogo.png" alt="logo" />
-  </div>*/}
+      </div>*/}
+
     </div>
   );
 }

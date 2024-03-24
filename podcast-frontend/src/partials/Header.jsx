@@ -19,8 +19,16 @@ export default function Header() {
         <div className="flex items-center">
           <img src={Logo} alt="logo" className="rounded-md w-[50px] m-[2px]" />
           <div>
-            <h1 className="text-white m-[2px] font-roboto"> <span className='bg-[#ffcc75] text-[#804800] px-1 py-[2px] rounded'>Ad</span> The SARUS</h1>
-            <p className="text-gray-500 m-[2px] font-roboto text-md">Streaming for you</p>
+            <h1 className="text-white m-[2px] font-roboto">
+              {" "}
+              <span className="bg-[#ffcc75] text-[#804800] px-1 py-[2px] rounded font-semibold">
+                Ad
+              </span>{" "}
+              The SARUS
+            </h1>
+            <p className="text-gray-500 m-[2px] font-roboto text-md">
+              Streaming for you
+            </p>
           </div>
         </div>
         <br />
