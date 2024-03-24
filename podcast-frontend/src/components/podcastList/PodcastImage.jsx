@@ -6,7 +6,7 @@ import imgLogo1 from "../../images/mainLogo1.png";
 export default function PodcastImage() {
   const [isHover, setIsHover] = useState(false);
   return (
-    <Link
+    <Link to={`podcastdescription`}
       className="bg-red-500 w-[172px] h-[229px] m-1 rounded relative"
       onMouseOver={() => {
         setIsHover(true);

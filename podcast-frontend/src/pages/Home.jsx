@@ -12,7 +12,9 @@ export default function Home() {
         <SideNav />
         <Header />
         <VideoSlider />
-        <PodcastList />
+        <PodcastList podcastHeading={`Latest Podcast`}/>
+        <PodcastList podcastHeading={`Famous Podcast`}/>
+        <PodcastList podcastHeading={`Old Podcast`}/>
         <Footer />
       </div>
     </>
