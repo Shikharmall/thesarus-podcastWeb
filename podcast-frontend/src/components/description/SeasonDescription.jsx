@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Img from "../../images/avatarposter1.png";
 import { Link } from "react-router-dom";
 
+import "../../css/ProgressRange.css";
+
 export default function SeasonDescription() {
   const [isActive, setIsActive] = useState(1);
   const [seasons, setSeasons] = useState([1, 1, 1]);
@@ -10,7 +12,7 @@ export default function SeasonDescription() {
   return (
     <>
       <div
-        style={{ position: "sticky", top: 0 }}
+        //style={{ position: "sticky", top: 0 }}
         className="ml-[10%] border-b border-[#fff] border-opacity-10 py-8 flex"
       >
         <h1
@@ -54,6 +56,7 @@ export default function SeasonDescription() {
           Season 4
         </h1>
       </div>
+
       <div className="w-4/5 ml-[10%]">
         {arry.map((item, index) => (
           <Link
@@ -84,6 +87,14 @@ export default function SeasonDescription() {
                   id="a"
                 />
               </svg>
+              <input
+                type="range"
+                id="volumeRange"
+                className="w-[220px] absolute left-0 bottom-0"
+                style={{
+                  background: `linear-gradient(to right, #095ae5 0%, #095ae5 50%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 100%)`,
+                }}
+              />
             </div>
             <div className="m-3 ml-0 w-3/4">
               <p className="text-white text-[20px] font-[600] m-1 font-roboto">

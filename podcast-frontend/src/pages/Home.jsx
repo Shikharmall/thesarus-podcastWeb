@@ -3,7 +3,7 @@ import SideNav from "../partials/SideNav";
 import Header from "../partials/Header";
 import Footer from "../partials/Footer";
 import VideoSlider from "../components/videoSlider/VideoSlider";
-import PodcastList from "../components/podcastList/podcastList";
+import PodcastList from "../components/podcastList/PodcastList";
 
 export default function Home() {
   return (

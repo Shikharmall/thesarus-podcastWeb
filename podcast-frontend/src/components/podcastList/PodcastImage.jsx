@@ -1,10 +1,57 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import img1 from "../../images/logo2.png";
 import imgLogo1 from "../../images/mainLogo1.png";
 
 export default function PodcastImage() {
   const [isHover, setIsHover] = useState(false);
+
+  //const [isDragging, setIsDragging] = useState(false);
+  //const [activeTab, setActiveTab] = useState(0);
+
+  const tabNames = [
+    "Coding",
+    "JavaScript",
+    "Podcasts",
+    "Databases",
+    "Web Development",
+    "Coding",
+    "JavaScript",
+    "Podcasts",
+    "Databases",
+    "Web Development",
+    "Coding",
+    "JavaScript",
+    "Podcasts",
+    "Databases",
+    "Web Development",
+    "Coding",
+    "JavaScript",
+    "Podcasts",
+    "Databases",
+    "Web Development",
+    "Coding",
+    "JavaScript",
+    "Podcasts",
+    "Databases",
+    "Web Development",
+    "Coding",
+    "JavaScript",
+    "Podcasts",
+    "Databases",
+    "Web Development",
+    "Coding",
+    "JavaScript",
+    "Podcasts",
+    "Databases",
+    "Web Development",
+    "Coding",
+    "JavaScript",
+    "Podcasts",
+    "Databases",
+    "Web Development",
+  ];
+
   return (
     <Link
       to={`podcastdescription`}
@@ -16,7 +63,7 @@ export default function PodcastImage() {
         setIsHover(false);
       }}
     >
-      <img src={img1} alt="poster-image" />
+      <img src={img1} alt="poster-image" className='rounded-md'/>
       {isHover ? (
         <div className="absolute top-0 left-0 w-[336px] h-[385px] bg-[#1f2026] z-10 overflow-hidden rounded">
           <img
