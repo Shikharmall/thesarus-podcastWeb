@@ -127,7 +127,7 @@ export default function SideNav() {
             <Link class="relative" to={`/`}>
               <svg
                 className={`w-6 h-6 fill-current transition duration-300 ${
-                  pathname === "/" ? "text-white" : "text-gray-800"
+                  pathname === "/" ? "text-white" : "text-gray-500"
                 }`}
                 viewBox="0 0 15 15"
                 xmlns="http://www.w3.org/2000/svg"

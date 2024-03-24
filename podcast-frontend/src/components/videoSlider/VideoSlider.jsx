@@ -15,7 +15,7 @@ export default function VideoSlider() {
   const [isMute, setIsMute] = useState(true);
 
   return (
-    <div className="relative">
+    <div className="relative w-[100%] h-[100vh]">
       <VideoSliderItem videoURL={videoURL} isMute={isMute} />
       {isMute ? (
         <svg
