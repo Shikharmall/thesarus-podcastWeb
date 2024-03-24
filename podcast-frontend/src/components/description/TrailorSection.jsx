@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReactPlayer from "react-player";
 import Video from "../../../../../videos/BigBuckBunny.mp4";
+import SeasonDescription from "./SeasonDescription";
 
 export default function TrailorSection() {
   const [showTrailor, setShowTrailor] = useState(false);
@@ -22,11 +23,9 @@ export default function TrailorSection() {
                 "linear-gradient(to right, transparent 2%, #16181f)",
             }}
           />
-          <div className="absolute top-0 left-0 bg-red-500 w-[100vw]">
-            <h1>hello</h1>
-          </div>
         </>
       )}
+      <SeasonDescription />
     </div>
   );
 }

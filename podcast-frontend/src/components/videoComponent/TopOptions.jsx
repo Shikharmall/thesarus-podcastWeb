@@ -44,19 +44,21 @@ export default function TopOptions({
     >
       <div className="flex justify-between">
         <div className="flex items-center cursor-pointer m-5 ml-10 w-1/2">
-          <svg
-            className="h-6 w-6 text-white mr-10"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M10 19l-7-7m0 0l7-7m-7 7h18"
-            />
-          </svg>
+          <Link to={`/podcastdescription`}>
+            <svg
+              className="h-6 w-6 text-white mr-10"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              />
+            </svg>
+          </Link>
           <div className="flex flex-col">
             <p className="font-semibold text-[20px] text-white font-roboto">
               Arya

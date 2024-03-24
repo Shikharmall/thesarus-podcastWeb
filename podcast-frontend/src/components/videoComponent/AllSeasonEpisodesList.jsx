@@ -6,9 +6,11 @@ export default function AllSeasonEpisodesList({
   setPlayFunc,
   toggleClick,
 }) {
+  
   const [seasons, setSeasons] = useState([1, 1, 1]);
   const [arry, setArry] = useState([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
   const [isActive, setIsActive] = useState(0);
+
   return (
     <div
       className="absolute top-0 left-0 w-[100vw] h-[100vh] bg-opacity-90 bg-black z-15 p-10 overflow-hidden"
