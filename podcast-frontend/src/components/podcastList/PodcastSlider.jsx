@@ -1,10 +1,10 @@
 import React from "react";
 import PodcastImage from "./podcastImage";
+import '../../css/CustomScrollbarPodcastList.css';
 
 export default function PodcastSlider() {
   return (
-    <div className="flex">
-       <PodcastImage />
+    <div className="flex" >  {/* overflow-x-scroll" id="custom-scrollbar" */}
        <PodcastImage />
        <PodcastImage />
        <PodcastImage />

@@ -1,0 +1,18 @@
+#custom-scrollbar::-webkit-scrollbar {
+    width: 1px; /* Width of the scrollbar */
+  }
+  
+  #custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #333; /* Color of the thumb */
+    border-radius: 10px; /* Radius of the thumb */
+  }
+  
+  #custom-scrollbar::-webkit-scrollbar-track {
+    display: none;
+    background-color: #eee; /* Color of the track */
+  }
+  
+  #custom-scrollbar::-webkit-scrollbar-corner {
+    background-color: #eee; /* Color of the corner */
+  }
+  

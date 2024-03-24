@@ -6,8 +6,9 @@ import imgLogo1 from "../../images/mainLogo1.png";
 export default function PodcastImage() {
   const [isHover, setIsHover] = useState(false);
   return (
-    <Link to={`podcastdescription`}
-      className="bg-red-500 w-[172px] h-[229px] m-1 rounded relative"
+    <Link
+      to={`podcastdescription`}
+      className="bg-gray-500 w-[172px] h-[229px] m-1 rounded relative min-w-[172px]"
       onMouseOver={() => {
         setIsHover(true);
       }}
@@ -41,7 +42,7 @@ export default function PodcastImage() {
             </svg>
             <p className="font-semibold">Watch Now</p>
           </div>
-          <div className='flex justify-center text-gray-200 font-bold'>
+          <div className="flex justify-center text-gray-200 font-bold">
             <p>2024 · 1 Season · 7 Languages</p>
           </div>
           <div className="m-2">
