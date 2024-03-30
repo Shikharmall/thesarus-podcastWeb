@@ -25,7 +25,7 @@ export default function WatchVideo() {
   let optionsBottom = useRef(null);
 
   //const [progress, setProgress] = useState(null);
-  
+
   /*const format = (seconds) => {
     let mins = parseInt(seconds / 60)
     .toString()
@@ -33,7 +33,7 @@ export default function WatchVideo() {
     let secs = (Math.trunc(seconds) % 60).toString().padStart(2, "0");
     return `${mins}:${secs}`;
   };*/
-  
+
   const [mute, setMute] = useState(true);
   const [clicked, setClicked] = useState(false);
   const [paused, setPaused] = useState(false);
@@ -182,6 +182,23 @@ export default function WatchVideo() {
     setVolume(val);
   };
 
+  const handleKeyPress = (event) => {
+    // Check if the pressed key is the Enter key (key code 13)
+    if (event.keyCode === 13) {
+      console.log("Enter key pressed!");
+      // Add your desired functionality here
+    }
+  };
+
+  useEffect(() => {
+    // Add event listener when component mounts
+    document.addEventListener("keypress", handleKeyPress);
+    // Remove event listener when component unmounts
+    return () => {
+      document.removeEventListener("keypress", handleKeyPress);
+    };
+  }, []);
+
   return (
     <div
       className="w-screen h-screen bg-black relative overflow-hidden"
@@ -197,7 +214,6 @@ export default function WatchVideo() {
         width={`100%`}
         height={`100%`}
         volume={volume / 100}
-
         //onProgress={(x) => {
         //  //console.log(x);
         //  setProgress(x);
@@ -234,11 +250,25 @@ export default function WatchVideo() {
           className="h-[100vh] w-1/3" //bg-red-500
         ></div>
         <div
-          className="h-[100vh] w-1/3" //bg-green-500
+          className="h-[100vh] w-1/3 flex justify-center items-center" //bg-green-500
           onClick={() => {
             setPaused(!paused);
           }}
-        ></div>
+        >
+          {paused ? (
+            <svg
+              className="h-20 w-20 text-white bg-gray-500 bg-opacity-25 hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-1 cursor-pointer"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              onClick={() => {
+                setPlayFunc();
+              }}
+            >
+              <path d="M8 6v12l10-6z" fill="#fff" />
+            </svg>
+          ) : null}
+        </div>
         <div
           className="h-[100vh] w-1/3" //bg-blue-500
         ></div>
@@ -249,6 +279,7 @@ export default function WatchVideo() {
           container={container}
           setPlayFunc={setPlayFunc}
           toggleClick={toggleClick}
+          isFullScreen={isFullScreen}
         />
       )}
 

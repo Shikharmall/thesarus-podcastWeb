@@ -1,7 +1,10 @@
-#volumeRange {
+#volumeRange1 {
     -webkit-appearance: none;
     width: 220px;
     height: 5px;
+    border-radius: 0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     /*height: 5px;
     border-radius: 5px;
     outline: none;
@@ -10,7 +13,7 @@
     transition: opacity 0.2s;*/
   }
   
-  #volumeRange::-webkit-slider-thumb {
+  #volumeRange1::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     display: none;

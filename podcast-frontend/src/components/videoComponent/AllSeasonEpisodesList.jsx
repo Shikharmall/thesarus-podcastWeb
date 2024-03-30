@@ -5,8 +5,8 @@ export default function AllSeasonEpisodesList({
   container,
   setPlayFunc,
   toggleClick,
+  isFullScreen,
 }) {
-  
   const [seasons, setSeasons] = useState([1, 1, 1]);
   const [arry, setArry] = useState([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
   const [isActive, setIsActive] = useState(0);
@@ -78,7 +78,11 @@ export default function AllSeasonEpisodesList({
           {/* scrollbar scrollbar-thumb-red-500 scrollbar-track-gray-200 */}
 
           <div
-            className="w-4/5 h-[400px] overflow-y-scroll md:h-[430px] lg:h-[450px] xl:h-[520px]"
+            className={`w-4/5 overflow-y-scroll  ${
+              isFullScreen
+                ? "h-[450px]  md:h-[530px] lg:h-[600px] xl:h-[680px]"
+                : "h-[400px]  md:h-[430px] lg:h-[450px] xl:h-[520px]"
+            }`}
             id="custom-scrollbar"
           >
             {arry.map((item, index) => (

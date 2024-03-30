@@ -18,7 +18,7 @@ export default function BottomOptions({
   setFullScreen,
   setMinimiseScreen,
 }) {
-  const [progress,setProgress] = useState("0");
+  const [progress, setProgress] = useState("0");
   return (
     <div
       className="absolute bottom-0 left-0 w-[100%] z-3 flex flex-col pt-4 bg-gradient-to-b from-transparent to-black transition-opacity duration-300"
@@ -60,16 +60,17 @@ export default function BottomOptions({
 
       <div className="flex justify-between">
         <div className="flex items-center m-5 ml-10 w-1/3">
-          <svg
-            fill="#fff"
-            className="h-12 w-12 text-white hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-2 cursor-pointer"
-            viewBox="0 0 32 32"
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            transform="rotate(180)"
-          >
-            <path d="M28.801 15.040l-12.001-10c-0.215-0.18-0.495-0.29-0.8-0.29-0.69 0-1.25 0.559-1.25 1.25 0 0 0 0 0 0v0 7.332l-9.95-8.292c-0.215-0.18-0.495-0.29-0.8-0.29-0.69 0-1.25 0.559-1.25 1.25 0 0 0 0 0 0v0 20c0 0.498 0.291 0.928 0.712 1.13l0.008 0.003c0.155 0.074 0.337 0.117 0.529 0.117 0.305 0 0.585-0.109 0.803-0.291l-0.002 0.002 9.95-8.293v7.332c0 0.498 0.291 0.928 0.712 1.13l0.008 0.003c0.155 0.074 0.337 0.117 0.529 0.117 0.305 0 0.585-0.109 0.803-0.291l-0.002 0.002 12.001-10.001c0.275-0.231 0.449-0.575 0.449-0.96s-0.174-0.729-0.447-0.958l-0.002-0.002zM5.25 23.332v-14.663l8.798 7.331zM17.25 23.332v-14.663l8.797 7.331z"></path>
-          </svg>
+          <div className="rounded-full hover:bg-gray-500  hover:bg-opacity-25">
+            <svg
+              fill="#fff"
+              className="h-12 w-12 text-white p-3 cursor-pointer"
+              viewBox="0 0 512 512"
+              xmlns="http://www.w3.org/2000/svg"
+              transform="rotate(180)"
+            >
+              <path d="M500.5 231.4l-192-160C287.9 54.3 256 68.6 256 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2zm-256 0l-192-160C31.9 54.3 0 68.6 0 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2z" />
+            </svg>
+          </div>
 
           {paused ? (
             <svg
@@ -100,44 +101,68 @@ export default function BottomOptions({
             </svg>
           )}
 
-          <svg
-            fill="#fff"
-            className="h-12 w-12 text-white mr-5 hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-2 cursor-pointer"
-            viewBox="0 0 32 32"
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M28.801 15.040l-12.001-10c-0.215-0.18-0.495-0.29-0.8-0.29-0.69 0-1.25 0.559-1.25 1.25 0 0 0 0 0 0v0 7.332l-9.95-8.292c-0.215-0.18-0.495-0.29-0.8-0.29-0.69 0-1.25 0.559-1.25 1.25 0 0 0 0 0 0v0 20c0 0.498 0.291 0.928 0.712 1.13l0.008 0.003c0.155 0.074 0.337 0.117 0.529 0.117 0.305 0 0.585-0.109 0.803-0.291l-0.002 0.002 9.95-8.293v7.332c0 0.498 0.291 0.928 0.712 1.13l0.008 0.003c0.155 0.074 0.337 0.117 0.529 0.117 0.305 0 0.585-0.109 0.803-0.291l-0.002 0.002 12.001-10.001c0.275-0.231 0.449-0.575 0.449-0.96s-0.174-0.729-0.447-0.958l-0.002-0.002zM5.25 23.332v-14.663l8.798 7.331zM17.25 23.332v-14.663l8.797 7.331z"></path>
-          </svg>
+          <div className="rounded-full hover:bg-gray-500  hover:bg-opacity-25 mr-3">
+            <svg
+              fill="#fff"
+              className="h-12 w-12 text-white p-3 cursor-pointer"
+              viewBox="0 0 512 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M500.5 231.4l-192-160C287.9 54.3 256 68.6 256 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2zm-256 0l-192-160C31.9 54.3 0 68.6 0 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2z" />
+            </svg>
+          </div>
 
           <div className="flex items-center">
             {mute ? (
-              <svg
-                className="h-12 w-12 text-white m-1 hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-1 cursor-pointer"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                onClick={() => {
-                  setUnMuteFunc();
-                  changeVolume("50");
-                }}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
-                  clipRule="evenodd"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
-                />
-              </svg>
+              <>
+                {/*<svg
+                  className="h-12 w-12 text-white m-1 hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-1 cursor-pointer"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  onClick={() => {
+                    setUnMuteFunc();
+                    changeVolume("50");
+                  }}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                    clipRule="evenodd"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
+                  />
+                </svg>*/}
+                <svg
+                  className="h-12 w-12 text-white m-1 hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-1 cursor-pointer"
+                  viewBox="0 0 24 24"
+                  fill="white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  onClick={() => {
+                    setUnMuteFunc();
+                    changeVolume("50");
+                  }}
+                >
+                  <path d="M12.43 4.1a1 1 0 00-1 .12L6.65 8H3a1 1 0 00-1 1v6a1 1 0 001 1h3.65l4.73 3.78A1 1 0 0012 20a.91.91 0 00.43-.1A1 1 0 0013 19V5a1 1 0 00-.57-.9zM11 16.92l-3.38-2.7A1 1 0 007 14H4v-4h3a1 1 0 00.62-.22L11 7.08zm8.66-10.58a1 1 0 00-1.42 1.42 6 6 0 01-.38 8.84 1 1 0 00.64 1.76 1 1 0 00.64-.23 8 8 0 00.52-11.79zm-2.83 2.83a1 1 0 10-1.42 1.42A2 2 0 0116 12a2 2 0 01-.71 1.53 1 1 0 00-.13 1.41 1 1 0 001.41.12A4 4 0 0018 12a4.06 4.06 0 00-1.17-2.83z" />
+                  <path
+                    d="M21 18.63L3 5.37"
+                    fill="none"
+                    stroke="#ffffff"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                  />
+                </svg>
+              </>
             ) : (
-              <svg
+              <>
+                {/*<svg
                 className="h-12 w-12 text-white m-1 hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-1 cursor-pointer"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -153,7 +178,20 @@ export default function BottomOptions({
                   strokeWidth="2"
                   d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
                 />
-              </svg>
+              </svg>*/}
+                <svg
+                  className="h-12 w-12 text-white m-1 hover:bg-gray-500 rounded-full hover:bg-opacity-25 p-1 cursor-pointer"
+                  viewBox="0 0 24 24"
+                  fill="white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  onClick={() => {
+                    setMuteFunc();
+                    changeVolume("0");
+                  }}
+                >
+                  <path d="M12.43 4.1a1 1 0 00-1 .12L6.65 8H3a1 1 0 00-1 1v6a1 1 0 001 1h3.65l4.73 3.78A1 1 0 0012 20a.91.91 0 00.43-.1A1 1 0 0013 19V5a1 1 0 00-.57-.9zM11 16.92l-3.38-2.7A1 1 0 007 14H4v-4h3a1 1 0 00.62-.22L11 7.08zm8.66-10.58a1 1 0 00-1.42 1.42 6 6 0 01-.38 8.84 1 1 0 00.64 1.76 1 1 0 00.64-.23 8 8 0 00.52-11.79zm-2.83 2.83a1 1 0 10-1.42 1.42A2 2 0 0116 12a2 2 0 01-.71 1.53 1 1 0 00-.13 1.41 1 1 0 001.41.12A4 4 0 0018 12a4.06 4.06 0 00-1.17-2.83z" />
+                </svg>
+              </>
             )}
 
             {/*<input
@@ -233,9 +271,9 @@ export default function BottomOptions({
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               stroke="#ffffff"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               onClick={setMinimiseScreen}
             >
               <path d="M4 12 L12 12 12 4 M20 4 L20 12 28 12 M4 20 L12 20 12 28 M28 20 L20 20 20 28" />
@@ -246,6 +284,9 @@ export default function BottomOptions({
               height="30px"
               viewBox="0 0 24 24"
               fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               className="cursor-pointer transform transition-transform duration-500 hover:scale-105"
               xmlns="http://www.w3.org/2000/svg"
               onClick={setFullScreen}

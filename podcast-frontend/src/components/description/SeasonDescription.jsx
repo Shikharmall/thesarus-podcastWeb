@@ -89,7 +89,7 @@ export default function SeasonDescription() {
               </svg>
               <input
                 type="range"
-                id="volumeRange"
+                id="volumeRange1"
                 className="w-[220px] absolute left-0 bottom-0"
                 style={{
                   background: `linear-gradient(to right, #095ae5 0%, #095ae5 50%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 100%)`,
