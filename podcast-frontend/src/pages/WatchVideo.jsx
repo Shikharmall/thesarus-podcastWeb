@@ -1,16 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import Img from "../images/avatarposter1.png";
-//import Video1 from "C:/Usezrs/Lenovo/Downloads/BigBuckBunny.mp4";
 import Video1 from "../../../../videos/BigBuckBunny.mp4";
 import Video2 from "../../../../videos/avatar2.mp4";
 //import { VideoSeekSlider } from "react-video-seek-slider";
-
-//import { TweenMax, Power3 } from "gsap/gsap-core";
-//import { TweenMax, Power3 } from "gsap";
-
 import "../css/CustomScrollbar.css";
-
-//import gsap from "gsap";
 
 import gsap from "gsap";
 
@@ -173,10 +166,12 @@ export default function WatchVideo() {
 
   const setMuteFunc = () => {
     setMute(true);
+    setVolume("0");
   };
 
   const setUnMuteFunc = () => {
     setMute(false);
+    setVolume("50");
   };
 
   const toggleClick = () => {
@@ -187,38 +182,42 @@ export default function WatchVideo() {
     setVolume(val);
   };
 
-  const handleKeyPress = (event) => {
-    // Check if the pressed key is the Enter key (key code 13)
-    if (event.keyCode === 13) {
-      console.log("Enter key pressed!");
-      // Add your desired functionality here
-    }
-  };
-
   useEffect(() => {
-    // Add event listener when component mounts
-    document.addEventListener("keypress", handleKeyPress);
-    // Remove event listener when component unmounts
+    const handleKeyPress = (event) => {
+      if (event.key === "m") {
+        //setMute((prevMute) => !prevMute);
+        //setVolume(prevVol => "50");
+        mute ? setUnMuteFunc() : setMuteFunc();
+      }
+
+      if (event.key === "k") {
+        setPaused((prevPause) => !prevPause);
+      }
+
+      if (event.key === "f") {
+        // Handle the enter key press event
+        //console.log('Enter key pressed');
+        isFullScreen ? setMinimiseScreen() : setFullScreen();
+      }
+
+
+    };
+
+    // Attach event listener to the window object
+    window.addEventListener("keypress", handleKeyPress);
+
+    // Clean up the event listener when the component unmounts
     return () => {
-      document.removeEventListener("keypress", handleKeyPress);
+      window.removeEventListener("keypress", handleKeyPress);
     };
   }, []);
-
-  /*const handleKeyPress = (event) => {
-    if (event.key === 'm') { // Press 'm' to mute/unmute
-      event.preventDefault();
-      const player = playerRef.current.getInternalPlayer();
-      if (player) {
-        player.muted = !player.muted;
-      }
-    }
-  };*/
 
   return (
     <div
       className="w-screen h-screen bg-black relative overflow-hidden"
       ref={fullScreenRef}
       //onKeyDown={handleKeyPress}
+      //onKeyPress={handleKeyPress}
     >
       <ReactPlayer
         onContextMenu={handleContextMenu}
@@ -247,9 +246,7 @@ export default function WatchVideo() {
           //console.log(x);
           setProgress(x?.playedSeconds);
         }}
-
         onDuration={handleDuration}
-        
       />
 
       <div
