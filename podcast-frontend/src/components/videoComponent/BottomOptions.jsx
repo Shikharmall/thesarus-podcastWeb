@@ -17,8 +17,16 @@ export default function BottomOptions({
   isFullScreen,
   setFullScreen,
   setMinimiseScreen,
+  duration,
+  progress
 }) {
-  const [progress, setProgress] = useState("0");
+
+  const formatDuration = (duration) => {
+    const minutes = Math.floor(duration / 60);
+    const seconds = Math.floor(duration % 60);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  };
+
   return (
     <div
       className="absolute bottom-0 left-0 w-[100%] z-3 flex flex-col pt-4 bg-gradient-to-b from-transparent to-black transition-opacity duration-300"
@@ -33,7 +41,7 @@ export default function BottomOptions({
     >
       <div className="flex justify-between items-center">
         <div>
-          <p className="text-white ml-10 font-roboto">00:07</p>
+          <p className="text-white ml-10 font-roboto">{formatDuration(progress)}</p>
         </div>
         <input
           type="range"
@@ -43,9 +51,9 @@ export default function BottomOptions({
           style={{
             background: `linear-gradient(to right, #095ae5 0%, #095ae5 ${progress}%, rgba(255, 255, 255, 0.25) ${progress}%, rgba(255, 255, 255, 0.25) 100%)`,
           }}
-          onChange={(e) => {
-            setProgress(e.target.value);
-          }}
+          //onChange={(e) => {
+          //  setProgress(e.target.value);
+          //}}
         />
         {/*<input
                 id="range"
@@ -54,7 +62,7 @@ export default function BottomOptions({
               />*/}
 
         <div>
-          <p className="text-white mr-10 font-roboto">00:07</p>
+          <p className="text-white mr-10 font-roboto">{formatDuration(duration)}</p>
         </div>
       </div>
 

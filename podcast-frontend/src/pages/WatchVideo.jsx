@@ -24,7 +24,7 @@ export default function WatchVideo() {
   let optionsUpper = useRef(null);
   let optionsBottom = useRef(null);
 
-  //const [progress, setProgress] = useState(null);
+  const [progress, setProgress] = useState(null);
 
   /*const format = (seconds) => {
     let mins = parseInt(seconds / 60)
@@ -39,6 +39,11 @@ export default function WatchVideo() {
   const [paused, setPaused] = useState(false);
   const [volume, setVolume] = useState(0);
   const [controls, setControls] = useState(false);
+  const [duration, setDuration] = useState(0);
+
+  const handleDuration = (duration) => {
+    setDuration(duration);
+  };
 
   const handleMouseOver = () => {
     setControls(true);
@@ -199,10 +204,21 @@ export default function WatchVideo() {
     };
   }, []);
 
+  /*const handleKeyPress = (event) => {
+    if (event.key === 'm') { // Press 'm' to mute/unmute
+      event.preventDefault();
+      const player = playerRef.current.getInternalPlayer();
+      if (player) {
+        player.muted = !player.muted;
+      }
+    }
+  };*/
+
   return (
     <div
       className="w-screen h-screen bg-black relative overflow-hidden"
       ref={fullScreenRef}
+      //onKeyDown={handleKeyPress}
     >
       <ReactPlayer
         onContextMenu={handleContextMenu}
@@ -228,9 +244,12 @@ export default function WatchVideo() {
         //}}
 
         onProgress={(x) => {
-          console.log(x);
-          //setProgress(x);
+          //console.log(x);
+          setProgress(x?.playedSeconds);
         }}
+
+        onDuration={handleDuration}
+        
       />
 
       <div
@@ -307,6 +326,8 @@ export default function WatchVideo() {
             isFullScreen={isFullScreen}
             setFullScreen={setFullScreen}
             setMinimiseScreen={setMinimiseScreen}
+            duration={duration}
+            progress={progress}
           />
         </>
       ) : null}
