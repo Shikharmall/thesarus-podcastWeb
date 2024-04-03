@@ -5,56 +5,31 @@ import { Link } from "react-router-dom";
 import "../../css/ProgressRange.css";
 
 export default function SeasonDescription() {
-  const [isActive, setIsActive] = useState(1);
-  const [seasons, setSeasons] = useState([1, 1, 1]);
+  const [isActive, setIsActive] = useState(0);
+  const [seasons, setSeasons] = useState([1, 1, 1, 1]);
   const [arry, setArry] = useState([1, 1, 1, 1, 1]);
   const [isActive1, setIsActive1] = useState(0);
   return (
     <>
-      <div
-        //style={{ position: "sticky", top: 0 }}
-        className="ml-[10%] border-b border-[#fff] border-opacity-10 py-8 flex"
+      <div //className="sticky top-0 z-10"
+      //style={{ position: "sticky", top: 0 }}
       >
-        <h1
-          className={` text-2xl cursor-pointer font-roboto px-4 ${
-            isActive === 1 ? "text-white" : "text-gray-500"
-          } `}
-          onClick={() => {
-            setIsActive(1);
-          }}
-        >
-          Season 1
-        </h1>
-        <h1
-          className={` text-2xl cursor-pointer font-roboto px-4 ${
-            isActive === 2 ? "text-white" : "text-gray-500"
-          }`}
-          onClick={() => {
-            setIsActive(2);
-          }}
-        >
-          Season 2
-        </h1>
-        <h1
-          className={` text-2xl cursor-pointer font-roboto px-4 ${
-            isActive === 3 ? "text-white" : "text-gray-500"
-          }`}
-          onClick={() => {
-            setIsActive(3);
-          }}
-        >
-          Season 3
-        </h1>
-        <h1
-          className={` text-2xl cursor-pointer font-roboto px-4 ${
-            isActive === 4 ? "text-white" : "text-gray-500"
-          }`}
-          onClick={() => {
-            setIsActive(4);
-          }}
-        >
-          Season 4
-        </h1>
+        <div className="ml-[10%] border-b-2 border-[#fff] border-opacity-10 py-8 flex ">
+          {seasons &&
+            seasons.map((_, index) => (
+              <h1
+                key={index}
+                className={`text-[23px] cursor-pointer font-roboto px-4 font-[500] ${
+                  isActive === index ? "text-white" : "text-gray-400"
+                } `}
+                onClick={() => {
+                  setIsActive(index);
+                }}
+              >
+                Season {index + 1}
+              </h1>
+            ))}
+        </div>
       </div>
 
       <div className="w-4/5 ml-[10%]">
@@ -90,7 +65,7 @@ export default function SeasonDescription() {
               <input
                 type="range"
                 id="volumeRange1"
-                className="w-[220px] absolute left-0 bottom-0"
+                className="w-[100%] absolute left-0 bottom-0"
                 style={{
                   background: `linear-gradient(to right, #095ae5 0%, #095ae5 50%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 100%)`,
                 }}
