@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Img from "../../images/avatarposter1.png";
 import { Link } from "react-router-dom";
 
-import "../../css/ProgressRange.css";
+import "../../css/HistoryProgressRange.css";
 
 export default function SeasonDescription() {
   const [isActive, setIsActive] = useState(0);
@@ -48,7 +48,7 @@ export default function SeasonDescription() {
               <img
                 src={Img}
                 alt="poster"
-                className="w-[220px] h-[123.75px] rounded-md"
+                className="w-[220px] min-w-[200px] h-[123.75px] rounded-md"
               />
               <svg
                 className="h-8 w-8 absolute left-2 bottom-2"
@@ -65,7 +65,7 @@ export default function SeasonDescription() {
               <input
                 type="range"
                 id="volumeRange1"
-                className="w-[100%] absolute left-0 bottom-0"
+                className="w-[220px] min-w-[200px] absolute left-0 bottom-0"
                 style={{
                   background: `linear-gradient(to right, #095ae5 0%, #095ae5 50%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 100%)`,
                 }}
@@ -76,7 +76,7 @@ export default function SeasonDescription() {
                 Mother's Day
               </p>
               <p className="text-white text-[16px] font-[600] m-1 roboto">
-                S1 E{index + 1} · 27 Apr 2023 · 30m
+                S{isActive + 1} E{index + 1} · 27 Apr 2023 · 30m
               </p>
               <p className="text-white text-opacity-60 text-[16px] font-[400] m-1 roboto">
                 Three frustrated husbands are in the police station for a
