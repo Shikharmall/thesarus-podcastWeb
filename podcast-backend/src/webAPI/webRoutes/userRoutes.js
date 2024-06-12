@@ -1,9 +1,17 @@
 var express = require("express");
 var user_route = express();
 
-//const auth = require('../middleware/auth');
-
-const userController = require("../webControllers/userControllers");
+const {
+  registerUser,
+  verifyMail,
+  changePassword,
+  editUser,
+  logout,
+  loginUser,
+  changeProfileImage,
+  changeCoverImage,
+  forgotPasswordSendEmail,
+} = require("../webControllers/userControllers");
 //const channelController = require('../controllers/channelControllers');
 //const channelAPIController = require('../controllers/channelAPIControllers');
 
@@ -19,6 +27,7 @@ user_route.use(bodyParser.urlencoded({ extended: true }));
 //}
 
 const multer = require("multer");
+const { isLogin } = require("../webMiddlewares/webAuth");
 
 //const path = require("path");
 
@@ -43,25 +52,24 @@ const uploader = multer({
 
 user_route.use(express.static("public"));
 
-user_route.post("/registerUser", userController.registerUser);
-user_route.post("/verifymail", userController.verifyMail);
-user_route.post("/loginUser", userController.loginUser);
-user_route.post("/logout", userController.logout);
-user_route.post(
-  "/forgotPasswordSendEmail",
-  userController.forgotPasswordSendEmail
-);
-user_route.patch("/changePassword", userController.changePassword);
-user_route.patch("/editUser", userController.editUser);
+user_route.post("/registerUser", registerUser);
+user_route.post("/verifymail", verifyMail);
+user_route.post("/loginUser", loginUser);
+user_route.post("/logout", isLogin, logout);
+user_route.post("/forgotPasswordSendEmail", forgotPasswordSendEmail);
+user_route.patch("/changePassword", changePassword);
+user_route.patch("/editUser", isLogin, editUser);
 user_route.patch(
   "/changeProfileImage",
+  isLogin,
   uploader.single("image"),
-  userController.changeProfileImage
+  changeProfileImage
 );
 user_route.patch(
   "/changeCoverImage",
+  isLogin,
   uploader.single("image"),
-  userController.changeCoverImage
+  changeCoverImage
 );
 
 /*

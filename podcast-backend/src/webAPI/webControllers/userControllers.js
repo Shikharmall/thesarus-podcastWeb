@@ -7,7 +7,7 @@ const {
   sendVerifyMail,
   sendforgotpasswordMail,
 } = require("../../utils/sendEmail");
-const { generateToken } = require("../../utils/generateToken");
+const { generateToken } = require("../../utils/jwtTokenManagement");
 
 //const subscriberModel = require("../models/subscriberModel");
 
@@ -410,6 +410,8 @@ const getUsers = async (req, res) => {
     });
   }
 };
+
+/*-------------------------change user profile pic----------------------- */
 
 const changeProfileImage = async (req, res) => {
   try {

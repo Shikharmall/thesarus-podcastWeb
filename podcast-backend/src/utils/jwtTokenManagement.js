@@ -9,7 +9,17 @@ const generateToken = async (userId) => {
     console.log(error);
   }
 };
+const verifyToken = async (token) => {
+  return jwt.verify(token, config.jwtSecret, (err, decoded) => {
+    if (err) {
+      return false;
+    } else {
+      return decoded;
+    }
+  });
+};
 
 module.exports = {
   generateToken,
+  verifyToken,
 };
