@@ -3,41 +3,36 @@ var user_route = express();
 
 //const auth = require('../middleware/auth');
 
-const userController = require("../androidControllers/userControllers");
+const userController = require("../webControllers/userControllers");
 //const channelController = require('../controllers/channelControllers');
 //const channelAPIController = require('../controllers/channelAPIControllers');
 
-const config = require("../androidConfig/config");
-
 const cookieParser = require("cookie-parser");
 user_route.use(cookieParser());
-
-user_route.set("view engine", "ejs");
-user_route.set("views", "./views");
 
 const bodyParser = require("body-parser");
 user_route.use(bodyParser.json());
 user_route.use(bodyParser.urlencoded({ extended: true }));
 
-function randomnumber() {
-  return Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
-}
+//function randomnumber() {
+//  return Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
+//}
 
 const multer = require("multer");
 
-const path = require("path");
+//const path = require("path");
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, "../../public/userData"));
-  },
-  filename: function (req, file, cb) {
-    const name = Date.now() + "-" + randomnumber() + ".png";
-    cb(null, name);
-  },
-});
+///const storage = multer.diskStorage({
+///  destination: function (req, file, cb) {
+///    cb(null, path.join(__dirname, "../../public/userData"));
+///  },
+///  filename: function (req, file, cb) {
+///    const name = Date.now() + "-" + randomnumber() + ".png";
+///    cb(null, name);
+///  },
+///});
 
-const upload = multer({ storage: storage });
+//const upload = multer({ storage: storage });
 
 const uploader = multer({
   storage: multer.diskStorage({}),
@@ -48,32 +43,23 @@ const uploader = multer({
 
 user_route.use(express.static("public"));
 
-// register user route
-
 user_route.post("/registerUser", userController.registerUser);
-
-// check user route
-
+user_route.post("/verifymail", userController.verifyMail);
 user_route.post("/loginUser", userController.loginUser);
-
-// edit user route  (name,description,channelName)
-
-user_route.put("/editUser", userController.editUser);
-
-// change user profile image
-
-user_route.put(
+user_route.post("/logout", userController.logout);
+user_route.post(
+  "/forgotPasswordSendEmail",
+  userController.forgotPasswordSendEmail
+);
+user_route.patch("/changePassword", userController.changePassword);
+user_route.patch("/editUser", userController.editUser);
+user_route.patch(
   "/changeProfileImage",
-  //auth.islogout,
   uploader.single("image"),
   userController.changeProfileImage
 );
-
-// change user cover image
-
-user_route.put(
+user_route.patch(
   "/changeCoverImage",
-  //auth.islogout,
   uploader.single("image"),
   userController.changeCoverImage
 );
