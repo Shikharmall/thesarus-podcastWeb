@@ -1,20 +1,28 @@
 import React, { useState } from "react";
 import Img from "../../images/avatarposter1.png";
 import { Link } from "react-router-dom";
+import Episode1 from "../../images/episode1.png";
+import Episode2 from "../../images/episode2.png";
+import Episode3 from "../../images/episode3.png";
+import Episode4 from "../../images/episode4.png";
+import Episode5 from "../../images/episode5.png";
 
 import "../../css/HistoryProgressRange.css";
 
 export default function SeasonDescription() {
+  const episodes = [Episode1, Episode2, Episode3, Episode4, Episode5];
+
   const [isActive, setIsActive] = useState(0);
   const [seasons, setSeasons] = useState([1, 1, 1, 1]);
   const [arry, setArry] = useState([1, 1, 1, 1, 1]);
   const [isActive1, setIsActive1] = useState(0);
   return (
     <>
-      <div //className="sticky top-0 z-10"
-      //style={{ position: "sticky", top: 0 }}
+      <div 
+        className="sticky top-0  bg-[#0f1014]"
+        //style={{ position: "sticky", top: 0 }} z-10
       >
-        <div className="ml-[10%] border-b-2 border-[#fff] border-opacity-10 py-8 flex ">
+        <div className="ml-[10%] border-b-2 border-[#fff] border-opacity-10 py-8 flex">
           {seasons &&
             seasons.map((_, index) => (
               <h1
@@ -46,7 +54,7 @@ export default function SeasonDescription() {
           >
             <div className="m-3 mr-0 w-1/4 relative m-6">
               <img
-                src={Img}
+                src={episodes[index]}
                 alt="poster"
                 className="w-[220px] min-w-[200px] h-[123.75px] rounded-md"
               />
@@ -65,7 +73,7 @@ export default function SeasonDescription() {
               <input
                 type="range"
                 id="volumeRange1"
-                className="w-[220px] min-w-[200px] absolute left-0 bottom-0"
+                className="w-[220px] min-w-[200px] absolute left-0 bottom-0 bg-opacity-25" 
                 style={{
                   background: `linear-gradient(to right, #095ae5 0%, #095ae5 50%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 100%)`,
                 }}

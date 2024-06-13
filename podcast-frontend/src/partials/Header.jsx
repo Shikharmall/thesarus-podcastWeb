@@ -13,7 +13,11 @@ export default function Header() {
             "linear-gradient(to left, transparent 0.5%, #16181f)",
         }}
       >
-        <img src={HeadImg} alt="head image" className="h-[100%]" />
+        <img
+          src={`https://res.cloudinary.com/drb1ds8e3/image/upload/v1718183762/blt6r9w70kgepnaxeaoq.jpg`}
+          alt="head image"
+          className="h-[100%]"
+        />
       </div>
       <div className="m-[2px] self-center">
         <div className="flex items-center">

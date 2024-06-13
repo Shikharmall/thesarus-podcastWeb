@@ -1,8 +1,46 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Poster from "../images/avatarpostercrop.png";
+import { userRegisterAPI } from "../api/userAPI/userAPI";
 
 export default function Register() {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "+91-",
+    email: "",
+    password: "",
+    repassword: "",
+  });
+
+  const onChangeHandler = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const [loader, setLoader] = useState(false);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setLoader(true);
+    userRegisterAPI(formData).then((res) => {
+      if (res.status === 201) {
+        setLoader(false);
+        navigate("/login");
+      } else {
+        setLoader(false);
+        //if (res?.response?.status === 400) {
+        //  res?.response?.data?.errors?.map((value, index) => toast(value.msg));
+        //} else {
+        //  console.log(res?.response?.data?.message);
+        //}
+        console.log(res?.response?.data?.message);
+      }
+    });
+  };
+
   return (
     <div className="bg-[#0f1014] w-[100vw] h-[100vh] flex justify-center items-center">
       <div className="w-[700px] h-[450px] bg-[#16181f] rounded-3xl flex overflow-hidden">
@@ -50,10 +88,13 @@ export default function Register() {
               <input
                 type="phone"
                 id="phone"
-                value="+91-"
+                //value="+91-"
                 name="phone"
+                placeholder="Enter phone"
                 className="px-4 py-2 text-lg rounded-md m-2 bg-[#16181f] border-none text-white"
                 style={{ border: "1px solid rgb(177, 177, 177)" }}
+                onChange={onChangeHandler}
+                value={formData.phone}
               />
             </div>
 
@@ -64,6 +105,8 @@ export default function Register() {
                 name="name"
                 className="px-4 py-2 text-lg rounded-md m-2 bg-[#16181f] border-none text-white"
                 style={{ border: "1px solid rgb(177, 177, 177)" }}
+                onChange={onChangeHandler}
+                value={formData.name}
               />
             </div>
 
@@ -74,6 +117,8 @@ export default function Register() {
                 name="email"
                 className="px-4 py-2 text-lg rounded-md m-2 bg-[#16181f] border-none text-white"
                 style={{ border: "1px solid rgb(177, 177, 177)" }}
+                onChange={onChangeHandler}
+                value={formData.email}
               />
             </div>
 
@@ -81,9 +126,11 @@ export default function Register() {
               <input
                 type="password"
                 placeholder="Enter Password"
-                name="pass"
+                name="password"
                 className="px-4 py-2 text-lg rounded-md m-2 bg-[#16181f] border-none text-white"
                 style={{ border: "1px solid rgb(177, 177, 177)" }}
+                onChange={onChangeHandler}
+                value={formData.password}
               />
             </div>
 
@@ -91,9 +138,11 @@ export default function Register() {
               <input
                 type="password"
                 placeholder="Re-Enter Password"
-                name="repass"
+                name="repassword"
                 className="px-4 py-2 text-lg rounded-md m-2 bg-[#16181f] border-none text-white"
                 style={{ border: "1px solid rgb(177, 177, 177)" }}
+                onChange={onChangeHandler}
+                value={formData.repassword}
               />
             </div>
 
@@ -103,6 +152,7 @@ export default function Register() {
                 value="Submit"
                 className="px-4 py-2 text-lg rounded-md m-2 bg-[#16181f] border-none text-white cursor-pointer hover:bg-[#414141]"
                 style={{ border: "1px solid rgb(177, 177, 177)" }}
+                onClick={submitHandler}
               />
             </div>
 

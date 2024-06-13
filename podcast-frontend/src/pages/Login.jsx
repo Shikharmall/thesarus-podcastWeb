@@ -1,8 +1,50 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Poster from "../images/avatarpostercrop.png";
+import { userLoginAPI } from "../api/userAPI/userAPI";
 
 export default function Login() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const isLogin = localStorage.getItem("isLogin");
+
+    if (isLogin) {
+      navigate("/user");
+    }
+  }, []);
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [loader, setLoader] = useState(false);
+  const onChangeHandler = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const submitHandler = (e) => {
+    setLoader(true);
+    e.preventDefault();
+    userLoginAPI(formData).then((res) => {
+      if (res.status === 200) {
+        setLoader(false);
+
+        console.log(res);
+        localStorage.setItem("userId", res?.data?.data?.userId);
+        localStorage.setItem("isLogin", true);
+        navigate("/");
+      } else {
+        setLoader(false);
+        //toast(res?.response?.data?.message);
+      }
+    });
+  };
+
   return (
     <div className="bg-[#0f1014] w-[100vw] h-[100vh] flex justify-center items-center">
       <div className="w-[700px] h-[450px] bg-[#16181f] rounded-3xl flex overflow-hidden">
@@ -56,6 +98,9 @@ export default function Login() {
                 name="email"
                 className="px-4 py-2 text-lg rounded-md m-2 bg-[#16181f] border-none text-white"
                 style={{ border: "1px solid rgb(177, 177, 177)" }}
+                onChange={(e) => {
+                  onChangeHandler(e);
+                }}
               />
             </div>
 
@@ -64,14 +109,19 @@ export default function Login() {
                 type="password"
                 id="password"
                 placeholder="Enter your password"
-                name="pass"
+                name="password"
                 //autoComplete="current-password"
                 className="px-4 py-2 text-lg rounded-md m-2 bg-[#16181f] border-none text-white"
                 style={{ border: "1px solid rgb(177, 177, 177)" }}
+                onChange={(e) => {
+                  onChangeHandler(e);
+                }}
               />
             </div>
 
-            <Link to={`/forgotpassword`} className="m-2 text-[#b1b1b1] text-sm">Forgot password?</Link>
+            <Link to={`/forgotpassword`} className="m-2 text-[#b1b1b1] text-sm">
+              Forgot password?
+            </Link>
 
             <br />
 
@@ -81,6 +131,9 @@ export default function Login() {
                 value="Login"
                 className="px-4 py-2 text-lg rounded-md m-2 bg-[#16181f] border-none text-white cursor-pointer hover:bg-[#414141]"
                 style={{ border: "1px solid rgb(177, 177, 177)" }}
+                onClick={(e) => {
+                  submitHandler(e);
+                }}
               />
             </div>
 

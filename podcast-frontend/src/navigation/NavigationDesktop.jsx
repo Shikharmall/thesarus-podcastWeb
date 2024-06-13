@@ -10,6 +10,8 @@ import Downloads from "../pages/Downloads";
 import New from "../pages/New";
 import Search from "../pages/Search";
 import DraggableSliderTabs from "../pages/DraggableSliderTabs";
+import Testing from "../pages/Testing";
+import User from "../pages/User";
 
 function NavigationDesktop() {
   const location = useLocation();
@@ -31,6 +33,8 @@ function NavigationDesktop() {
       <Route path="/new" element={<New />} />
       <Route path="/search" element={<Search />} />
       <Route path="/drage" element={<DraggableSliderTabs />} />
+      <Route path="/testing" element={<Testing />} />
+      <Route path="/user" element={<User />} />
       {/*<Route exact path="/leaderboard" element={<Leaderboard />} />
       <Route exact path="/userdetails" element={<UserDetails />} />
       <Route

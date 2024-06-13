@@ -163,7 +163,7 @@ const DraggableSliderTabs = () => {
 
       <ul className="tabs-box flex overflow-x-hidden">
         {/* Render all tabs dynamically */}
-        {tabNames.map((tabName, index) => (
+        {tabNames.map((_, index) => (
           <>
             {/*<li
             key={index}
@@ -174,6 +174,7 @@ const DraggableSliderTabs = () => {
             {tabName}
           </li>*/}
             <Link
+              key={index}
               //to={`podcastdescription`}
               className="bg-gray-500 w-[172px] h-[229px] m-1 rounded relative min-w-[172px]"
               //onMouseOver={() => {
@@ -183,6 +184,7 @@ const DraggableSliderTabs = () => {
               //  setIsHover(false);
               //}}
             >
+              <div className="w-[172px] h-[229px] absolute top-0 left-0"></div>
               <img src={img1} alt="poster-image" className="rounded" />
               {/*{false ? (
                 <div className="absolute top-0 left-0 w-[336px] h-[385px] bg-[#1f2026] z-10 overflow-hidden rounded">
@@ -227,7 +229,7 @@ const DraggableSliderTabs = () => {
       </ul>
 
       <div
-        className="icon absolute top-0 h-full flex items-center"
+        className="icon absolute top-0 h-full flex items-center bg-red-500"
         style={{
           right: 0,
           justifyContent: "flex-end",

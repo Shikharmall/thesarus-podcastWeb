@@ -27,6 +27,17 @@ const port = process.env.PORT || 5174;
 var express = require("express");
 var app = express();
 
+const cors = require("cors");
+
+let allowedOrigins = ["http://localhost:5173"];
+
+app.use(
+  cors({
+    credentials: true,
+    origin: allowedOrigins,
+  })
+);
+
 //const androidUserRoute = require("./androidAPI/androidRoutes/userRoutes");
 //const androidPodcastRoute = require("./androidAPI/androidRoutes/podcastRoutes");
 //const androidEpisodeRoute = require("./androidAPI/androidRoutes/episodeRoutes");

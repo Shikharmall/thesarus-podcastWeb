@@ -6,7 +6,7 @@ import TrailorSection from "../components/description/TrailorSection";
 export default function PodcastDescription() {
   return (
     <>
-      <div className="bg-[#0f1014] overflow-hidden">
+      <div className="bg-[#0f1014] overflow-hidden">  {/* overflow-hidden */}
         <SideNav />
         <TrailorSection />
         <Footer />
