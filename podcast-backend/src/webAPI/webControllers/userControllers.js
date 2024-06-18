@@ -25,8 +25,6 @@ const registerUser = async (req, res) => {
 
     const spassword = await securePassword(password);
 
-    console.log(spassword);
-
     if (spassword) {
       const user = new User({
         name: name,

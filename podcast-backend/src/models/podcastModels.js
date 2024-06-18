@@ -20,6 +20,11 @@ const podcastSchema = new mongoose.Schema(
       required: true,
       default: true,
     },
+    podcastLive: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
     totalSeasons: {
       type: Number,
       required: true,

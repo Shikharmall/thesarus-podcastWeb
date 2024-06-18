@@ -26,9 +26,3 @@ In this , user can signin to the platform and can also get password from forgot 
 ## Rest Page
 
 We have various pages where user can check hosted podcast of other users and host their podcast. User can create there podcast series wise or playlist type.
-
-
-
-
-
-

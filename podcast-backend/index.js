@@ -51,7 +51,7 @@ const webUserRoute = require("./src/webAPI/webRoutes/userRoutes");
 
 app.use("/api/v1/web/user/", webUserRoute);
 //app.use("/api/v1/web/podcast/", webPodcastRoute);
-//app.use("/api/v1/web/podcast", webEpisodeRoute);
+//app.use("/api/v1/web/episode/", webEpisodeRoute);
 
 app.listen(port, () => {
   console.log("Running at port: " + port);

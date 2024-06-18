@@ -1,77 +1,54 @@
-const Channel = require('../models/channelModel');
-const User = require('../models/userModel');
-const jwt = require('jsonwebtoken');
-const config = require('../config/config');
-const cookies = require('cookie');
+//const Channel = require("../models/channelModel");
+//const User = require("../models/userModel");
+//const jwt = require("jsonwebtoken");
+//const config = require("../config/config");
+//const cookies = require("cookie");
 
+const Podcast = require("../../models/podcastModels");
+const getTokenFromCookie = require("../../utils/getTokenFromCookie");
+const { verifyToken } = require("../../utils/jwtTokenManagement");
 
-/* create channel */
+/*-------------------------create podcast----------------------- */
 
-const createchannel = async(req,res)=>{
-    try {
+const createPodcast = async (req, res) => {
+  try {
+    const token = getTokenFromCookie(req);
+    const decodedUser = verifyToken(token);
+    const userId = decodedUser.id;
 
-        res.render('createchannel');
+    const { podcastName, description, isSeasonWise, podcastLive } = req.body;
 
-    } catch (error) {
-        console.log(error.message);
-    }
-}
+    const podcast = new Podcast({
+      podcastName: podcastName,
+      description: description,
+      isSeasonWise: isSeasonWise,
+      podcastLive: podcastLive,
+      totalSeasons: 1,
+      totalEpisodes: 0,
+      ownerId: userId,
+      //frontimage: req.file.filename,
+      //coverimage: "defaultpodcastcoverimage.png",
+      //titleimage: "defaulttitleimage.png",
+      /*image2:req.files.image[1].filename,
+      //image3:req.files.image[2].filename,*/
+      //language: req.body.language,
+      //age: req.body.age,
+      //season: 1,
+    });
 
-/* create channel */
+    //const files = req.files;
+    //console.log(req.files.file[0].filename);
 
+    const podcastData = await podcast.save();
 
+    return res.status(201).json({ status: "success", data: podcastData });
+  } catch (error) {
+    //console.log(error);
+    return res.status(500).json({ status: "failed", message: error.message });
+  }
+};
 
-
-
-/* insert channel */ 
-
-const insertChannel = async(req,res)=>{
-    try {
-
-        const token = req.cookies.userid;
-        const verifyUser = jwt.verify(token, config.jwtSecret);
-        const userid = verifyUser.user_id;
-
-        const channel = new Channel({
-            user_id:userid,
-            type:req.body.channeltype,
-            name:req.body.channelname,
-            description:req.body.description,
-            frontimage:req.file.filename,
-            coverimage:"defaultpodcastcoverimage.png",
-            titleimage:"defaulttitleimage.png",
-            live:"1",
-            /*image2:req.files.image[1].filename,
-            image3:req.files.image[2].filename,*/
-            language:req.body.language,
-            age:req.body.age,
-            season: 1
-        });
-
-        //const files = req.files;
-        //console.log(req.files.file[0].filename);
-
-        const channelData = await channel.save();
-
-        if(channelData){
-
-            const userData = await User.findById({ _id: userid });
-
-            const channelData = await Channel.find({ user_id: userid }).sort({createdAt:-1});
-            const channelCount = await Channel.find({ user_id: userid }).countDocuments();
-
-
-            res.render('user',{ user:userData , flag:"1" , channelData:channelData ,channelCount:channelCount});
-
-        }
-       
-    } catch (error) {
-       console.log(error);
-    }
-}
-
-/* insert channel */ 
-
+/* insert channel */
 
 /* make live */
 
@@ -107,75 +84,63 @@ const insertChannel = async(req,res)=>{
 
 /* make live */
 
+/* podcast */
+
+/*
+
+const podcast = async (req, res) => {
+  try {
+    var search = "";
+    if (req.query.search) {
+      search = req.query.search;
+    }
+
+    const channelData = await Channel.find({
+      $or: [{ name: { $regex: ".*" + search + ".*", $options: "i" } }],
+    }).sort({ _id: -1 });
+    const channelCount = await Channel.find({
+      $or: [{ name: { $regex: ".*" + search + ".*", $options: "i" } }],
+    }).countDocuments();
+
+    res.render("search", {
+      channelData: channelData,
+      channelCount: channelCount,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};*/
 
 /* podcast */
 
-const podcast = async(req,res)=>{
-    try {
-
-        var search = '';
-        if(req.query.search){
-            search = req.query.search;
-        }
-
-        const channelData =  await Channel.find({
-            $or:[
-                { name:{ $regex: '.*'+search+'.*' , $options:'i'} }
-            ]
-        }).sort({_id:-1});
-        const channelCount = await Channel.find({
-            $or:[
-                { name:{ $regex: '.*'+search+'.*', $options:'i'} }
-            ]
-        }).countDocuments();
-
-        res.render('search',{channelData:channelData ,channelCount:channelCount});
-        
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-/* podcast */
-
-
-
-
-/* channel */
-const channel = async(req,res)=>{
-    try {
-
-        var search = '';
-        if(req.query.search){
-            search = req.query.search;
-        }
-
-        const userData =  await User.find({
-            $or:[
-                { name:{ $regex: '.*'+search+'.*' , $options:'i'} }
-            ]
-        }).sort({_id:-1});
-
-        const userCount = await User.find({
-            $or:[
-                { name:{ $regex: '.*'+search+'.*', $options:'i'} }
-            ]
-        }).countDocuments();
-
-        res.render('channel',{userData:userData ,userCount:userCount});
-        
-    } catch (error) {
-        console.log(error);
-    }
-}
 /* channel */
 
+/*
+const channel = async (req, res) => {
+  try {
+    var search = "";
+    if (req.query.search) {
+      search = req.query.search;
+    }
 
+    const userData = await User.find({
+      $or: [{ name: { $regex: ".*" + search + ".*", $options: "i" } }],
+    }).sort({ _id: -1 });
 
+    const userCount = await User.find({
+      $or: [{ name: { $regex: ".*" + search + ".*", $options: "i" } }],
+    }).countDocuments();
 
-module.exports={
-    createchannel,
-    insertChannel,
-    podcast,
-    channel
-}
+    res.render("channel", { userData: userData, userCount: userCount });
+  } catch (error) {
+    console.log(error);
+  }
+};*/
+/* channel */
+
+module.exports = {
+  createPodcast,
+  //insertChannel,
+  //podcast,
+  //channel,
+};
