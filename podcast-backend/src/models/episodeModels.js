@@ -38,12 +38,20 @@ const channelSchema = new mongoose.Schema(
       required: true,
       min: 1,
     },
+    languages: {
+      type: [String],
+      required: true,
+    },
     liveDate: {
       type: Date,
-      required: true,
+      //required: true,
     },
     episodeLink: {
       type: String,
+      required: true,
+    },
+    episodeLive: {
+      type: Boolean,
       required: true,
     },
   },

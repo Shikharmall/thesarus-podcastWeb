@@ -1,14 +1,8 @@
-//const Channel = require("../models/channelModel");
-//const User = require("../models/userModel");
-//const jwt = require("jsonwebtoken");
-//const config = require("../config/config");
-//const cookies = require("cookie");
-
 const Podcast = require("../../models/podcastModels");
 const getTokenFromCookie = require("../../utils/getTokenFromCookie");
 const { verifyToken } = require("../../utils/jwtTokenManagement");
 
-/*-------------------------create podcast----------------------- */
+/*-------------------------create podcast-----------------------*/
 
 const createPodcast = async (req, res) => {
   try {
@@ -16,7 +10,8 @@ const createPodcast = async (req, res) => {
     const decodedUser = verifyToken(token);
     const userId = decodedUser.id;
 
-    const { podcastName, description, isSeasonWise, podcastLive } = req.body;
+    const { podcastName, description, isSeasonWise, podcastLive, ageCategory } =
+      req.body;
 
     const podcast = new Podcast({
       podcastName: podcastName,
@@ -26,14 +21,14 @@ const createPodcast = async (req, res) => {
       totalSeasons: 1,
       totalEpisodes: 0,
       ownerId: userId,
+      frontImage: "N/A",
+      genres: ["Action", "Thrillers"],
+      ageCategory: ageCategory,
       //frontimage: req.file.filename,
       //coverimage: "defaultpodcastcoverimage.png",
       //titleimage: "defaulttitleimage.png",
       /*image2:req.files.image[1].filename,
       //image3:req.files.image[2].filename,*/
-      //language: req.body.language,
-      //age: req.body.age,
-      //season: 1,
     });
 
     //const files = req.files;
@@ -48,99 +43,93 @@ const createPodcast = async (req, res) => {
   }
 };
 
-/* insert channel */
+/*-------------------------toggle podcast live-----------------------*/
 
-/* make live */
-
-/*const makelive = async(req,res)=>{
-    try {
-
-        const channelid = req.query.channelid;
-        //console.log(channelid);
-
-        const channelData =  await Channel.findById({_id:channelid});
-
-        if(channelData.live == "0"){
-
-            const channelUpdate = await Channel.findByIdAndUpdate({_id:channelid},{$set:{live:"1"}});
-            if(channelUpdate){
-
-                res.render('openedlist' , { flag:1 , channelData:channelData});
-            }
-        }
-        else{
-            const channelUpdate = await Channel.findByIdAndUpdate({_id:channelid},{$set:{live:"0"}});
-            if(channelUpdate){
-
-                res.render('openedlist' , { flag:1 , channelData:channelData});
-            }
-        }
-
-        
-    } catch (error) {
-        console.log(error);
-    }
-}*/
-
-/* make live */
-
-/* podcast */
-
-/*
-
-const podcast = async (req, res) => {
+const togglePodcastLive = async (req, res) => {
   try {
-    var search = "";
-    if (req.query.search) {
-      search = req.query.search;
+    const { podcastId } = req.query;
+
+    const podcastData = await Podcast.findById({ _id: podcastId });
+
+    if (!podcastData) {
+      return res
+        .status(500)
+        .json({ status: "failed", message: "podcast not found" });
     }
 
-    const channelData = await Channel.find({
-      $or: [{ name: { $regex: ".*" + search + ".*", $options: "i" } }],
-    }).sort({ _id: -1 });
-    const channelCount = await Channel.find({
-      $or: [{ name: { $regex: ".*" + search + ".*", $options: "i" } }],
-    }).countDocuments();
+    let liveToggled;
 
-    res.render("search", {
-      channelData: channelData,
-      channelCount: channelCount,
-    });
+    if (podcastData.podcastLive) {
+      liveToggled = await Podcast.findByIdAndUpdate(
+        { _id: podcastId },
+        {
+          $set: {
+            podcastLive: false,
+          },
+        },
+        { new: true }
+      );
+    } else {
+      liveToggled = await Podcast.findByIdAndUpdate(
+        { _id: podcastId },
+        {
+          $set: {
+            podcastLive: true,
+          },
+        },
+        { new: true }
+      );
+    }
+
+    return res.status(201).json({ status: "success", data: liveToggled });
   } catch (error) {
-    console.log(error);
+    //console.log(error);
+    return res.status(500).json({ status: "failed", message: error.message });
   }
-};*/
+};
 
-/* podcast */
+/*-------------------------get podcast-----------------------*/
 
-/* channel */
-
-/*
-const channel = async (req, res) => {
+const getPodcast = async (req, res) => {
   try {
-    var search = "";
-    if (req.query.search) {
-      search = req.query.search;
-    }
+    const { podcastId } = req.query;
 
-    const userData = await User.find({
-      $or: [{ name: { $regex: ".*" + search + ".*", $options: "i" } }],
-    }).sort({ _id: -1 });
+    const podcastData = await Podcast.findById({ _id: podcastId });
 
-    const userCount = await User.find({
-      $or: [{ name: { $regex: ".*" + search + ".*", $options: "i" } }],
-    }).countDocuments();
-
-    res.render("channel", { userData: userData, userCount: userCount });
+    return res.status(201).json({ status: "success", data: podcastData });
   } catch (error) {
-    console.log(error);
+    //console.log(error);
+    return res.status(500).json({ status: "failed", message: error.message });
   }
-};*/
-/* channel */
+};
+
+/*-------------------------get podcasts (searching and pagination included)-----------------------*/
+
+const getPodcasts = async (req, res) => {
+  try {
+    const { search, limit, skip } = req.query;
+    //let search1 = "";
+    //if (search) {
+    //  search1 = search;
+    //}
+
+    const podcastData = await Podcast.find({
+      $or: [{ podcastName: { $regex: ".*" + search + ".*", $options: "i" } }],
+    })
+      .sort({ _id: -1 })
+      .limit(limit)
+      .skip(skip);
+
+    return res.status(201).json({ status: "success", data: podcastData });
+  } catch (error) {
+    //console.log(error);
+    return res.status(500).json({ status: "failed", message: error.message });
+  }
+};
 
 module.exports = {
   createPodcast,
-  //insertChannel,
-  //podcast,
-  //channel,
+  togglePodcastLive,
+  getPodcast,
+  getPodcasts,
 };

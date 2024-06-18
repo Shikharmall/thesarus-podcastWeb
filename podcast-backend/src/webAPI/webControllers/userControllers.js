@@ -11,7 +11,7 @@ const { generateToken } = require("../../utils/jwtTokenManagement");
 
 //const subscriberModel = require("../models/subscriberModel");
 
-/*-------------------------register user----------------------- */
+/*-------------------------register user-----------------------*/
 
 const registerUser = async (req, res) => {
   try {
@@ -59,7 +59,7 @@ const registerUser = async (req, res) => {
   }
 };
 
-/*-------------------------verify email----------------------- */
+/*-------------------------verify email-----------------------*/
 
 const verifyMail = async (req, res) => {
   try {
@@ -85,7 +85,7 @@ const verifyMail = async (req, res) => {
   }
 };
 
-/*-------------------------login user----------------------- */
+/*-------------------------login user-----------------------*/
 
 const loginUser = async (req, res) => {
   try {
@@ -138,7 +138,7 @@ const loginUser = async (req, res) => {
   }
 };
 
-/*-------------------------logout user----------------------- */
+/*-------------------------logout user-----------------------*/
 
 const logout = async (req, res) => {
   return res.clearCookie("access_token").status(200).json({
@@ -147,7 +147,7 @@ const logout = async (req, res) => {
   });
 };
 
-/*-------------------------send forgot password mail----------------------- */
+/*-------------------------send forgot password mail-----------------------*/
 
 const forgotPasswordSendEmail = async (req, res) => {
   try {
@@ -190,7 +190,7 @@ const forgotPasswordSendEmail = async (req, res) => {
   }
 };
 
-/*-------------------------change password----------------------- */
+/*-------------------------change password-----------------------*/
 
 const changePassword = async (req, res) => {
   try {
@@ -219,7 +219,7 @@ const changePassword = async (req, res) => {
   }
 };
 
-/*-------------------------edit user----------------------- */
+/*-------------------------edit user-----------------------*/
 
 const editUser = async (req, res) => {
   try {
@@ -316,27 +316,16 @@ const unsubscribe = async (req, res) => {
   }
 };
 
+/*-------------------------get user details-----------------------*/
+
 const getUser = async (req, res) => {
   try {
-    const { id } = req.query;
+    const { userId } = req.query;
     //const token = req.cookies.userid;
     //const verifyUser = jwt.verify(token, config.jwtSecret);
     //const userid = verifyUser.user_id;
 
-    const userData = await User.findById({ _id: id });
-
-    //const channelData = await Channel.find({ id }).sort({
-    //  createdAt: -1,
-    //});
-    //const channelCount = await Channel.find({
-    //  user_id: id,
-    //}).countDocuments();
-
-    //res.render("user", {
-    //  user: userData,
-    //  channelData: channelData,
-    //  channelCount: channelCount,
-    //});
+    const userData = await User.findById({ _id: userId });
 
     return res.status(200).json({ status: "success", data: userData });
   } catch (error) {
@@ -344,6 +333,8 @@ const getUser = async (req, res) => {
     return res.status(500).json({ status: "failed", message: error.message });
   }
 };
+
+/*-------------------------get users details-----------------------*/
 
 const getUsers = async (req, res) => {
   try {
@@ -409,7 +400,7 @@ const getUsers = async (req, res) => {
   }
 };
 
-/*-------------------------change user profile pic----------------------- */
+/*-------------------------change user profile pic-----------------------*/
 
 const changeProfileImage = async (req, res) => {
   try {

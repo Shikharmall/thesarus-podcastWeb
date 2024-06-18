@@ -28,10 +28,6 @@ const seasonSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    language: {
-      type: [String],
-      required: true,
-    },
     ageGroup: {
       type: String,
       required: true,
@@ -45,6 +41,10 @@ const seasonSchema = new mongoose.Schema(
       type: Number,
       required: true,
       min: 0,
+    },
+    trailorLink: {
+      type: String,
+      required: true,
     },
     isPaid: {
       type: Boolean,

@@ -1,7 +1,12 @@
 var express = require("express");
 var podcast_route = express();
 
-const { createPodcast } = require("../webControllers/podcastControllers");
+const {
+  createPodcast,
+  togglePodcastLive,
+  getPodcast,
+  getPodcasts,
+} = require("../webControllers/podcastControllers");
 //const channelController = require('../controllers/channelControllers');
 //const channelAPIController = require('../controllers/channelAPIControllers');
 
@@ -43,6 +48,9 @@ const uploader = multer({
 podcast_route.use(express.static("public"));
 
 podcast_route.post("/createPodcast", isLogin, createPodcast);
+podcast_route.patch("/togglePodcastLive", isLogin, togglePodcastLive);
+podcast_route.get("/getPodcast", isLogin, getPodcast);
+podcast_route.get("/getPodcasts", isLogin, getPodcasts);
 
 //podcast_route.post("/verifymail", verifyMail);
 //podcast_route.post("/loginUser", loginUser);

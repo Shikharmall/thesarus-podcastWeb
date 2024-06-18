@@ -1,41 +1,40 @@
-const Episode = require("../../models/episodeModels");
+const Season = require("../../models/seasonModels");
 const getTokenFromCookie = require("../../utils/getTokenFromCookie");
 const { verifyToken } = require("../../utils/jwtTokenManagement");
 
 /*-------------------------create episode-----------------------*/
 
-const createEpisode = async (req, res) => {
+const createSeason = async (req, res) => {
   try {
     const token = getTokenFromCookie(req);
     const decodedUser = verifyToken(token);
     const userId = decodedUser.id;
 
     const {
-      episodeName,
-      seasonId,
+      seasonName,
       podcastId,
+      seasonId,
       description,
       episodeLive,
       episodeNumber,
       liveDate,
-      episodeLink,
-      isPaid,
+      traliorLink,
+      seasonNumber,
     } = req.body;
 
-    const episode = new Episode({
-      episodeName: episodeName,
+    const season = new Season({
+      seasonName: seasonName,
       description: description,
       episodeLive: episodeLive,
       episodeNumber: episodeNumber,
       ownerId: userId,
       frontImage: "N/A",
       coverImage: "N/A",
-      languages: ["Hindi", "English"],
       seasonId: seasonId,
       podcastId: podcastId,
       liveDate: liveDate,
-      trailorLink: trailorLink,
-      isPaid: isPaid,
+      trailorLink: traliorLink,
+      seasonNumber: seasonNumber,
       //frontimage: req.file.filename,
       //coverimage: "defaultpodcastcoverimage.png",
       //titleimage: "defaulttitleimage.png",
@@ -43,9 +42,9 @@ const createEpisode = async (req, res) => {
       //image3:req.files.image[2].filename,*/
     });
 
-    const episodeData = await episode.save();
+    const seasonData = await season.save();
 
-    return res.status(201).json({ status: "success", data: episodeData });
+    return res.status(201).json({ status: "success", data: seasonData });
   } catch (error) {
     //console.log(error);
     return res.status(500).json({ status: "failed", message: error.message });
@@ -54,7 +53,7 @@ const createEpisode = async (req, res) => {
 
 /*-------------------------create bulk episode-----------------------*/
 
-const createBulkEpisode = async (req, res) => {
+const createBulkSeason = async (req, res) => {
   try {
     const token = getTokenFromCookie(req);
     const decodedUser = verifyToken(token);
@@ -102,13 +101,13 @@ const createBulkEpisode = async (req, res) => {
 
 /*-------------------------toggle episode live-----------------------*/
 
-const toggleEpisodeLive = async (req, res) => {
+const toggleSeasonLive = async (req, res) => {
   try {
-    const { episodeId } = req.query;
+    const { seasonId } = req.query;
 
-    const episodeData = await Episode.findById({ _id: episodeId });
+    const seasonData = await Season.findById({ _id: seasonId });
 
-    if (!episodeData) {
+    if (!seasonData) {
       return res
         .status(500)
         .json({ status: "failed", message: "episode not found" });
@@ -116,22 +115,22 @@ const toggleEpisodeLive = async (req, res) => {
 
     let liveToggled;
 
-    if (episodeData.episodeLive) {
-      liveToggled = await Episode.findByIdAndUpdate(
-        { _id: episodeId },
+    if (seasonData.seasonLive) {
+      liveToggled = await Season.findByIdAndUpdate(
+        { _id: seasonId },
         {
           $set: {
-            episodeLive: false,
+            seasonLive: false,
           },
         },
         { new: true }
       );
     } else {
-      liveToggled = await Episode.findByIdAndUpdate(
-        { _id: episodeId },
+      liveToggled = await Season.findByIdAndUpdate(
+        { _id: seasonId },
         {
           $set: {
-            episodeLive: true,
+            seasonLive: true,
           },
         },
         { new: true }
@@ -147,13 +146,13 @@ const toggleEpisodeLive = async (req, res) => {
 
 /*-------------------------get episodes-----------------------*/
 
-const getEpisode = async (req, res) => {
+const getSeason = async (req, res) => {
   try {
-    const { episodeId } = req.query;
+    const { seasonId } = req.query;
 
-    const episodeData = await Episode.findById({ _id: episodeId });
+    const seasonData = await Season.findById({ _id: seasonId });
 
-    return res.status(201).json({ status: "success", data: episodeData });
+    return res.status(201).json({ status: "success", data: seasonData });
   } catch (error) {
     //console.log(error);
     return res.status(500).json({ status: "failed", message: error.message });
@@ -162,7 +161,7 @@ const getEpisode = async (req, res) => {
 
 /*-------------------------get episodes (searching and pagination included)-----------------------*/
 
-const getEpisodes = async (req, res) => {
+const getSeasons = async (req, res) => {
   try {
     const { search, limit, skip } = req.query;
     //let search1 = "";
@@ -170,14 +169,14 @@ const getEpisodes = async (req, res) => {
     //  search1 = search;
     //}
 
-    const episodeData = await Episode.find({
+    const seasonData = await Season.find({
       $or: [{ episodeName: { $regex: ".*" + search + ".*", $options: "i" } }],
     })
       .sort({ _id: -1 })
       .limit(limit)
       .skip(skip);
 
-    return res.status(201).json({ status: "success", data: episodeData });
+    return res.status(201).json({ status: "success", data: seasonData });
   } catch (error) {
     //console.log(error);
     return res.status(500).json({ status: "failed", message: error.message });
@@ -185,8 +184,8 @@ const getEpisodes = async (req, res) => {
 };
 
 module.exports = {
-  createEpisode,
-  toggleEpisodeLive,
-  getEpisode,
-  getEpisodes,
+  createSeason,
+  toggleSeasonLive,
+  getSeason,
+  getSeasons,
 };

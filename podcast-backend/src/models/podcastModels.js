@@ -35,6 +35,18 @@ const podcastSchema = new mongoose.Schema(
       required: true,
       min: 0,
     },
+    frontImage: {
+      type: String,
+      required: true,
+    },
+    genres: {
+      type: [String],
+      required: true,
+    },
+    ageCategory: {
+      type: String,
+      required: true,
+    },
   },
 
   { timestamps: true }
