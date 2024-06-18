@@ -51,6 +51,14 @@ const seasonSchema = new mongoose.Schema(
       required: true,
       default: false,
     },
+    seasonLive: {
+      type: Boolean,
+      required: true,
+    },
+    liveDate: {
+      type: Date,
+      //required: true,
+    },
   },
 
   { timestamps: true }

@@ -42,10 +42,6 @@ const channelSchema = new mongoose.Schema(
       type: [String],
       required: true,
     },
-    liveDate: {
-      type: Date,
-      //required: true,
-    },
     episodeLink: {
       type: String,
       required: true,
@@ -53,6 +49,15 @@ const channelSchema = new mongoose.Schema(
     episodeLive: {
       type: Boolean,
       required: true,
+    },
+    liveDate: {
+      type: Date,
+      //required: true,
+    },
+    isPaid: {
+      type: Boolean,
+      required: true,
+      default: false,
     },
   },
 
