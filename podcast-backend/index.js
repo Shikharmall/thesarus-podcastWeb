@@ -40,18 +40,22 @@ app.use(
 
 //const androidUserRoute = require("./androidAPI/androidRoutes/userRoutes");
 //const androidPodcastRoute = require("./androidAPI/androidRoutes/podcastRoutes");
+//const androidSeasonRoute = require("./androidAPI/androidRoutes/seasonRoutes");
 //const androidEpisodeRoute = require("./androidAPI/androidRoutes/episodeRoutes");
 //app.use("/api/v1/andriod/user/", androidUserRoute);
 //app.use("/api/v1/android/podcast/", androidPodcastRoute);
+//app.use("/api/v1/android/season/", androidSeasonRoute);
 //app.use("/api/v1/andriod/podcast", androidEpisodeRoute);
 
 const webUserRoute = require("./src/webAPI/webRoutes/userRoutes");
-//const webPodcastRoute = require("./src/webAPI/webRoutes/podcastRoutes");
-//const webEpisodeRoute = require("./src/webAPI/webRoutes/episodeRoutes");
+const webPodcastRoute = require("./src/webAPI/webRoutes/podcastRoutes");
+const webSeasonRoute = require("./src/webAPI/webRoutes/seasonRoutes");
+const webEpisodeRoute = require("./src/webAPI/webRoutes/episodeRoutes");
 
 app.use("/api/v1/web/user/", webUserRoute);
-//app.use("/api/v1/web/podcast/", webPodcastRoute);
-//app.use("/api/v1/web/episode/", webEpisodeRoute);
+app.use("/api/v1/web/podcast/", webPodcastRoute);
+app.use("/api/v1/web/season/", webSeasonRoute);
+app.use("/api/v1/web/episode/", webEpisodeRoute);
 
 app.listen(port, () => {
   console.log("Running at port: " + port);

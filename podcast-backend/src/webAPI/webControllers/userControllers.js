@@ -1,6 +1,4 @@
 const User = require("../../models/userModels");
-//const Channel = require("../models/channelModel");
-//const Subscriber = require("../models/subscriberModel");
 const UploadImage = require("../../utils/uploadImage");
 const { securePassword, checkPassword } = require("../../utils/securePassword");
 const {
@@ -8,8 +6,6 @@ const {
   sendforgotpasswordMail,
 } = require("../../utils/sendEmail");
 const { generateToken } = require("../../utils/jwtTokenManagement");
-
-//const subscriberModel = require("../models/subscriberModel");
 
 /*-------------------------register user-----------------------*/
 

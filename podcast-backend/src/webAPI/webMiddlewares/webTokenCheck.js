@@ -53,8 +53,6 @@ const isLogout = async (req, res, next) => {
   }
 };
 
-/* checking whether if user is login */
-
 module.exports = {
   isLogout,
   isLogin,
