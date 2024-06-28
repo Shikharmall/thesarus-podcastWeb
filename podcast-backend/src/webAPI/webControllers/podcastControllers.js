@@ -1,6 +1,7 @@
 const Podcast = require("../../models/podcastModels");
 const getTokenFromCookie = require("../../utils/getTokenFromCookie");
 const { verifyToken } = require("../../utils/jwtTokenManagement");
+const { uploadImage } = require("../../utils/uploadImage");
 
 /*-------------------------create podcast-----------------------*/
 
@@ -10,8 +11,14 @@ const createPodcast = async (req, res) => {
     const decodedUser = verifyToken(token);
     const userId = decodedUser.id;
 
-    const { podcastName, description, isSeasonWise, podcastLive, ageCategory } =
-      req.body;
+    const {
+      podcastName,
+      description,
+      isSeasonWise,
+      podcastLive,
+      genres,
+      ageCategory,
+    } = req.body;
 
     const podcast = new Podcast({
       podcastName: podcastName,
@@ -22,7 +29,7 @@ const createPodcast = async (req, res) => {
       totalEpisodes: 0,
       ownerId: userId,
       frontImage: "N/A",
-      genres: ["Action", "Thrillers"],
+      genres: genres,
       ageCategory: ageCategory,
       //frontimage: req.file.filename,
       //coverimage: "defaultpodcastcoverimage.png",
@@ -37,6 +44,44 @@ const createPodcast = async (req, res) => {
     const podcastData = await podcast.save();
 
     return res.status(201).json({ status: "success", data: podcastData });
+  } catch (error) {
+    //console.log(error);
+    return res.status(500).json({ status: "failed", message: error.message });
+  }
+};
+
+/*-------------------------add podcast front image-----------------------*/
+
+const addPodcastFrontImage = async (req, res) => {
+  try {
+    const { podcastId } = req.body;
+
+    const podcastData = await Podcast.findById({ _id: podcastId });
+
+    if (!podcastData) {
+      return res
+        .status(500)
+        .json({ status: "failed", message: "podcast not found" });
+    }
+
+    const uploadedImage = await uploadImage.uploadImage(req.file.path);
+
+    if (uploadedImage) {
+      const changedFrontImage = await Podcast.updateOne(
+        { _id: podcastId },
+        { $set: { frontImage: uploadedImage.secure_url } },
+        { new: true }
+      );
+
+      return res
+        .status(201)
+        .json({ status: "success", data: changedFrontImage });
+    } else {
+      return res.status(500).json({
+        status: "failed",
+        message: "podcast front image not uploaded on cloudinary.",
+      });
+    }
   } catch (error) {
     //console.log(error);
     return res.status(500).json({ status: "failed", message: error.message });
@@ -127,9 +172,39 @@ const getPodcasts = async (req, res) => {
   }
 };
 
+/*-------------------------edit podcast-----------------------*/
+
+const editPodcast = async (req, res) => {
+  try {
+    const { podcastId, podcastName, description, genres, ageCategory } =
+      req.body;
+
+    const podcastData = await Podcast.findById({ _id: podcastId });
+
+    if (!podcastData) {
+      return res
+        .status(500)
+        .json({ status: "failed", message: "podcast not found" });
+    }
+
+    const editPodcastData = await Podcast.updateOne(
+      { _id: podcastId },
+      { $set: { podcastName, description, genres, ageCategory } },
+      { new: true }
+    );
+
+    return res.status(201).json({ status: "success", data: editPodcastData });
+  } catch (error) {
+    //console.log(error);
+    return res.status(500).json({ status: "failed", message: error.message });
+  }
+};
+
 module.exports = {
   createPodcast,
+  addPodcastFrontImage,
   togglePodcastLive,
   getPodcast,
   getPodcasts,
+  editPodcast,
 };

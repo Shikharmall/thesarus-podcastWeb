@@ -28,10 +28,6 @@ const seasonSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    ageGroup: {
-      type: String,
-      required: true,
-    },
     seasonNumber: {
       type: Number,
       required: true,

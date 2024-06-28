@@ -6,6 +6,8 @@ const {
   togglePodcastLive,
   getPodcast,
   getPodcasts,
+  addPodcastFrontImage,
+  editPodcast,
 } = require("../webControllers/podcastControllers");
 //const channelController = require('../controllers/channelControllers');
 //const channelAPIController = require('../controllers/channelAPIControllers');
@@ -49,8 +51,15 @@ podcast_route.use(express.static("public"));
 
 podcast_route.post("/createPodcast", isLogin, createPodcast);
 podcast_route.patch("/togglePodcastLive", isLogin, togglePodcastLive);
-podcast_route.get("/getPodcast", isLogin, getPodcast);
-podcast_route.get("/getPodcasts", isLogin, getPodcasts);
+podcast_route.get("/getPodcast", getPodcast);
+podcast_route.get("/getPodcasts", getPodcasts);
+podcast_route.patch(
+  "/addPodcastFrontImage",
+  isLogin,
+  uploader.single("image"),
+  addPodcastFrontImage
+);
+podcast_route.patch("/editPodcast", isLogin, editPodcast);
 
 //podcast_route.post("/verifymail", verifyMail);
 //podcast_route.post("/loginUser", loginUser);

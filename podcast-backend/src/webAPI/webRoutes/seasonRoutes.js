@@ -6,6 +6,7 @@ const {
   getSeason,
   toggleSeasonLive,
   getSeasons,
+  editSeason,
 } = require("../webControllers/seasonControllers");
 
 const cookieParser = require("cookie-parser");
@@ -49,6 +50,13 @@ season_route.post("/createSeason", isLogin, createSeason);
 season_route.patch("/toggleSeasonLive", isLogin, toggleSeasonLive);
 season_route.get("/getSeason", isLogin, getSeason);
 season_route.get("/getSeasons", isLogin, getSeasons);
+//season_route.patch(
+//  "/addSeasonFrontImage",
+//  isLogin,
+//  uploader.single("image"),
+//  addPodcastFrontImage
+//);
+season_route.patch("/editSeason", isLogin, editSeason);
 
 //season_route.post("/verifymail", verifyMail);
 //season_route.post("/loginUser", loginUser);
