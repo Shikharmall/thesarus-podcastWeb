@@ -1,18 +1,21 @@
 const Season = require("../../models/seasonModels");
 const getTokenFromCookie = require("../../utils/getTokenFromCookie");
 const { verifyToken } = require("../../utils/jwtTokenManagement");
+const { uploadImage, uploadVideo } = require("../../utils/uploadContent");
 
 /*-------------------------create season-----------------------*/
 
 const createSeason = async (req, res) => {
   try {
     const token = getTokenFromCookie(req);
-    const decodedUser = verifyToken(token);
-    const userId = decodedUser.id;
+    const decodedUser = await verifyToken(token);
+    const userId = decodedUser.userId;
 
-    const { podcastId, description, isPaid, seasonLive, liveDate } = req.body;
+    const { podcastId, description, seasonLive } = req.body;
 
-    const seasonCount = await Season.find().countDocuments();
+    const seasonCount = await Season.find({
+      podcastId: podcastId,
+    }).countDocuments();
 
     const season = new Season({
       podcastId: podcastId,
@@ -24,9 +27,7 @@ const createSeason = async (req, res) => {
       seasonNumber: seasonCount + 1,
       totalEpisode: 0,
       trailorLink: "N/A",
-      isPaid: isPaid,
       seasonLive: seasonLive,
-      liveDate: liveDate,
       //frontimage: req.file.filename,
       //coverimage: "defaultpodcastcoverimage.png",
       //titleimage: "defaulttitleimage.png",
@@ -37,6 +38,120 @@ const createSeason = async (req, res) => {
     const seasonData = await season.save();
 
     return res.status(201).json({ status: "success", data: seasonData });
+  } catch (error) {
+    //console.log(error);
+    return res.status(500).json({ status: "failed", message: error.message });
+  }
+};
+
+/*-------------------------add season front image-----------------------*/
+
+const addSeasonFrontImage = async (req, res) => {
+  try {
+    const { seasonId } = req.body;
+
+    const seasonData = await Season.findById({ _id: seasonId });
+
+    if (!seasonData) {
+      return res
+        .status(500)
+        .json({ status: "failed", message: "season not found" });
+    }
+
+    const uploadedImage = await uploadImage(req.file.path);
+
+    if (uploadedImage) {
+      const changedFrontImage = await Season.updateOne(
+        { _id: seasonId },
+        { $set: { frontImage: uploadedImage.secure_url } },
+        { new: true }
+      );
+
+      return res
+        .status(201)
+        .json({ status: "success", data: changedFrontImage });
+    } else {
+      return res.status(500).json({
+        status: "failed",
+        message: "season front image not uploaded on cloudinary.",
+      });
+    }
+  } catch (error) {
+    //console.log(error);
+    return res.status(500).json({ status: "failed", message: error.message });
+  }
+};
+
+/*-------------------------add season cover image-----------------------*/
+
+const addSeasonCoverImage = async (req, res) => {
+  try {
+    const { seasonId } = req.body;
+
+    const seasonData = await Season.findById({ _id: seasonId });
+
+    if (!seasonData) {
+      return res
+        .status(500)
+        .json({ status: "failed", message: "season not found" });
+    }
+
+    const uploadedImage = await uploadImage(req.file.path);
+
+    if (uploadedImage) {
+      const changedCoverImage = await Season.updateOne(
+        { _id: seasonId },
+        { $set: { coverImage: uploadedImage.secure_url } },
+        { new: true }
+      );
+
+      return res
+        .status(201)
+        .json({ status: "success", data: changedCoverImage });
+    } else {
+      return res.status(500).json({
+        status: "failed",
+        message: "season front image not uploaded on cloudinary.",
+      });
+    }
+  } catch (error) {
+    //console.log(error);
+    return res.status(500).json({ status: "failed", message: error.message });
+  }
+};
+
+/*-------------------------add season title image-----------------------*/
+
+const addSeasonTitleImage = async (req, res) => {
+  try {
+    const { seasonId } = req.body;
+
+    const seasonData = await Season.findById({ _id: seasonId });
+
+    if (!seasonData) {
+      return res
+        .status(500)
+        .json({ status: "failed", message: "season not found" });
+    }
+
+    const uploadedImage = await uploadImage(req.file.path);
+
+    if (uploadedImage) {
+      const changedTitleImage = await Season.updateOne(
+        { _id: seasonId },
+        { $set: { titleImage: uploadedImage.secure_url } },
+        { new: true }
+      );
+
+      return res
+        .status(201)
+        .json({ status: "success", data: changedTitleImage });
+    } else {
+      return res.status(500).json({
+        status: "failed",
+        message: "season front image not uploaded on cloudinary.",
+      });
+    }
   } catch (error) {
     //console.log(error);
     return res.status(500).json({ status: "failed", message: error.message });
@@ -92,11 +207,11 @@ const toggleSeasonLive = async (req, res) => {
 
 const getSeason = async (req, res) => {
   try {
-    const { seasonId } = req.query;
+    const { seasonId, project } = req.body;
 
-    const seasonData = await Season.findById({ _id: seasonId });
+    const seasonData = await Season.findById({ _id: seasonId }).select(project);
 
-    return res.status(201).json({ status: "success", data: seasonData });
+    return res.status(200).json({ status: "success", data: seasonData });
   } catch (error) {
     //console.log(error);
     return res.status(500).json({ status: "failed", message: error.message });
@@ -107,20 +222,21 @@ const getSeason = async (req, res) => {
 
 const getSeasons = async (req, res) => {
   try {
-    const { search, limit, skip } = req.query;
+    const { search, limit, skip, project } = req.body;
     //let search1 = "";
     //if (search) {
     //  search1 = search;
     //}
 
     const seasonData = await Season.find({
-      $or: [{ episodeName: { $regex: ".*" + search + ".*", $options: "i" } }],
+      //$or: [{ episodeName: { $regex: ".*" + search + ".*", $options: "i" } }],
     })
       .sort({ _id: -1 })
       .limit(limit)
-      .skip(skip);
+      .skip(skip)
+      .select(project);
 
-    return res.status(201).json({ status: "success", data: seasonData });
+    return res.status(200).json({ status: "success", data: seasonData });
   } catch (error) {
     //console.log(error);
     return res.status(500).json({ status: "failed", message: error.message });
@@ -131,7 +247,7 @@ const getSeasons = async (req, res) => {
 
 const editSeason = async (req, res) => {
   try {
-    const { seasonId, description, isPaid, liveDate } = req.body;
+    const { seasonId, description } = req.body;
 
     const seasonData = await Season.findById({ _id: seasonId });
 
@@ -143,7 +259,7 @@ const editSeason = async (req, res) => {
 
     const editSeasonData = await Season.updateOne(
       { _id: seasonId },
-      { $set: { description, isPaid, liveDate } },
+      { $set: { description } },
       { new: true }
     );
 
@@ -154,10 +270,52 @@ const editSeason = async (req, res) => {
   }
 };
 
+/*-------------------------add season trailor video-----------------------*/
+
+const addTailor = async (req, res) => {
+  try {
+    const { seasonId } = req.body;
+
+    const seasonData = await Season.findById({ _id: seasonId });
+
+    if (!seasonData) {
+      return res
+        .status(500)
+        .json({ status: "failed", message: "season not found" });
+    }
+
+    const uploadedTrailorVideo = await uploadVideo(req.file.path);
+
+    if (uploadedTrailorVideo) {
+      const updateTrailorVideo = await Season.updateOne(
+        { _id: seasonId },
+        { $set: { trailorLink: uploadedTrailorVideo.secure_url } },
+        { new: true }
+      );
+
+      return res
+        .status(201)
+        .json({ status: "success", data: updateTrailorVideo });
+    } else {
+      return res.status(500).json({
+        status: "failed",
+        message: "season trailor video not uploaded on cloudinary.",
+      });
+    }
+  } catch (error) {
+    //console.log(error);
+    return res.status(500).json({ status: "failed", message: error.message });
+  }
+};
+
 module.exports = {
   createSeason,
+  addSeasonFrontImage,
+  addSeasonCoverImage,
+  addSeasonTitleImage,
   toggleSeasonLive,
   getSeason,
   getSeasons,
-  editSeason
+  editSeason,
+  addTailor,
 };

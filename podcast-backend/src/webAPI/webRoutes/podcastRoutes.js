@@ -1,5 +1,5 @@
-var express = require("express");
-var podcast_route = express();
+const express = require("express");
+const podcast_route = express();
 
 const {
   createPodcast,

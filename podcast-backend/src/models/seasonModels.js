@@ -42,18 +42,9 @@ const seasonSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    isPaid: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
     seasonLive: {
       type: Boolean,
       required: true,
-    },
-    liveDate: {
-      type: Date,
-      //required: true,
     },
   },
 

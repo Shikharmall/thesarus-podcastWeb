@@ -1,5 +1,5 @@
 const User = require("../../models/userModels");
-const UploadImage = require("../../utils/uploadImage");
+const UploadImage = require("../../utils/uploadContent");
 const { securePassword, checkPassword } = require("../../utils/securePassword");
 const {
   sendVerifyMail,

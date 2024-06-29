@@ -1,5 +1,5 @@
-var express = require("express");
-var user_route = express();
+const express = require("express");
+const user_route = express();
 
 const {
   registerUser,

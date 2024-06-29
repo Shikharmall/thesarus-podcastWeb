@@ -1,7 +1,7 @@
 const Podcast = require("../../models/podcastModels");
 const getTokenFromCookie = require("../../utils/getTokenFromCookie");
 const { verifyToken } = require("../../utils/jwtTokenManagement");
-const { uploadImage } = require("../../utils/uploadImage");
+const { uploadImage } = require("../../utils/uploadContent");
 
 /*-------------------------create podcast-----------------------*/
 
