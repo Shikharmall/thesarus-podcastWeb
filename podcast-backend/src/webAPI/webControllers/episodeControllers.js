@@ -22,19 +22,22 @@ const createEpisode = async (req, res) => {
       isPaid,
     } = req.body;
 
+    const episodeCount = Episode.find().countDocuments();
+
     const episode = new Episode({
+      podcastId: podcastId,
+      seasonId: seasonId,
+      ownerId: userId,
       episodeName: episodeName,
       description: description,
-      episodeLive: episodeLive,
-      episodeNumber: episodeNumber,
+      episodeNumber: episodeCount + 1,
       ownerId: userId,
       frontImage: "N/A",
       coverImage: "N/A",
       languages: ["Hindi", "English"],
-      seasonId: seasonId,
-      podcastId: podcastId,
       liveDate: liveDate,
       trailorLink: trailorLink,
+      episodeLive: episodeLive,
       isPaid: isPaid,
       //frontimage: req.file.filename,
       //coverimage: "defaultpodcastcoverimage.png",

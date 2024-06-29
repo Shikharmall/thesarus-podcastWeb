@@ -1,14 +1,10 @@
 const mongoose = require("mongoose");
 
-const channelSchema = new mongoose.Schema(
+const episodeSchema = new mongoose.Schema(
   {
-    episodeName: {
-      type: String,
-      required: true,
-    },
-    ownerId: {
+    podcastId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Podcast",
       required: true,
     },
     seasonId: {
@@ -16,9 +12,13 @@ const channelSchema = new mongoose.Schema(
       ref: "Season",
       required: true,
     },
-    podcastId: {
+    ownerId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Podcast",
+      ref: "User",
+      required: true,
+    },
+    episodeName: {
+      type: String,
       required: true,
     },
     description: {
@@ -64,4 +64,4 @@ const channelSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Channel", channelSchema);
+module.exports = mongoose.model("Episode", episodeSchema);

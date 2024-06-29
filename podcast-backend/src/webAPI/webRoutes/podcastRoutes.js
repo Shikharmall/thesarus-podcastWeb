@@ -9,8 +9,6 @@ const {
   addPodcastFrontImage,
   editPodcast,
 } = require("../webControllers/podcastControllers");
-//const channelController = require('../controllers/channelControllers');
-//const channelAPIController = require('../controllers/channelAPIControllers');
 
 const cookieParser = require("cookie-parser");
 podcast_route.use(cookieParser());
@@ -19,15 +17,14 @@ const bodyParser = require("body-parser");
 podcast_route.use(bodyParser.json());
 podcast_route.use(bodyParser.urlencoded({ extended: true }));
 
-//function randomnumber() {
-//  return Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
-//}
 
 const multer = require("multer");
 const { isLogin } = require("../webMiddlewares/webAuth");
 
+//function randomnumber() {
+//  return Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
+//}
 //const path = require("path");
-
 ///const storage = multer.diskStorage({
 ///  destination: function (req, file, cb) {
 ///    cb(null, path.join(__dirname, "../../public/userData"));
@@ -37,15 +34,14 @@ const { isLogin } = require("../webMiddlewares/webAuth");
 ///    cb(null, name);
 ///  },
 ///});
-
 //const upload = multer({ storage: storage });
+//const upload1 = multer({ dest: '../public/users/' });
 
 const uploader = multer({
   storage: multer.diskStorage({}),
   limits: { fileSize: 500000 },
 });
 
-//const upload1 = multer({ dest: '../public/users/' });
 
 podcast_route.use(express.static("public"));
 

@@ -1,15 +1,13 @@
-const jwt = require("jsonwebtoken");
-const config = require("../../config/jsonConfig");
 const getTokenFromCookie = require("../../utils/getTokenFromCookie");
 const { verifyToken } = require("../../utils/jwtTokenManagement");
+const User = require("../../models/userModels");
 
 /*------------------------islogin and isVerified----------------------*/
 
 const isLogin = async (req, res, next) => {
   try {
     const token = getTokenFromCookie(req);
-
-    const decodedUser = verifyToken(token);
+    const decodedUser = await verifyToken(token);
 
     if (!decodedUser) {
       return res.status(401).json({
@@ -18,7 +16,7 @@ const isLogin = async (req, res, next) => {
       });
     }
 
-    const userData = await User.findById({ _id: decodedUser.id });
+    const userData = await User.findById({ _id: decodedUser.userId });
 
     if (!userData) {
       return res.status(401).json({
@@ -56,7 +54,7 @@ const isLogout = async (req, res, next) => {
     //  return res.status(401).json({ error: "user is logged in" });
     //}
 
-    const userData = await User.findById({ _id: decodedUser.id });
+    const userData = await User.findById({ _id: decodedUser.userId });
 
     if (userData) {
       return res.status(403).json({ error: "user is logged in" });

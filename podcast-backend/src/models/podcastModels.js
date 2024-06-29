@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 
 const podcastSchema = new mongoose.Schema(
   {
-    podcastName: {
-      type: String,
-      required: true,
-    },
     ownerId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+      required: true,
+    },
+    podcastName: {
+      type: String,
       required: true,
     },
     description: {

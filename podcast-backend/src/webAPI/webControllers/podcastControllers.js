@@ -8,8 +8,8 @@ const { uploadImage } = require("../../utils/uploadImage");
 const createPodcast = async (req, res) => {
   try {
     const token = getTokenFromCookie(req);
-    const decodedUser = verifyToken(token);
-    const userId = decodedUser.id;
+    const decodedUser = await verifyToken(token);
+    const userId = decodedUser.userId;
 
     const {
       podcastName,
@@ -25,7 +25,7 @@ const createPodcast = async (req, res) => {
       description: description,
       isSeasonWise: isSeasonWise,
       podcastLive: podcastLive,
-      totalSeasons: 1,
+      totalSeasons: 0,
       totalEpisodes: 0,
       ownerId: userId,
       frontImage: "N/A",
@@ -45,7 +45,7 @@ const createPodcast = async (req, res) => {
 
     return res.status(201).json({ status: "success", data: podcastData });
   } catch (error) {
-    //console.log(error);
+    console.log(error);
     return res.status(500).json({ status: "failed", message: error.message });
   }
 };
@@ -64,7 +64,7 @@ const addPodcastFrontImage = async (req, res) => {
         .json({ status: "failed", message: "podcast not found" });
     }
 
-    const uploadedImage = await uploadImage.uploadImage(req.file.path);
+    const uploadedImage = await uploadImage(req.file.path);
 
     if (uploadedImage) {
       const changedFrontImage = await Podcast.updateOne(
@@ -137,11 +137,13 @@ const togglePodcastLive = async (req, res) => {
 
 const getPodcast = async (req, res) => {
   try {
-    const { podcastId } = req.query;
+    const { podcastId, project } = req.body;
 
-    const podcastData = await Podcast.findById({ _id: podcastId });
+    const podcastData = await Podcast.findById({ _id: podcastId }).select(
+      project
+    );
 
-    return res.status(201).json({ status: "success", data: podcastData });
+    return res.status(200).json({ status: "success", data: podcastData });
   } catch (error) {
     //console.log(error);
     return res.status(500).json({ status: "failed", message: error.message });
@@ -152,20 +154,17 @@ const getPodcast = async (req, res) => {
 
 const getPodcasts = async (req, res) => {
   try {
-    const { search, limit, skip } = req.query;
-    //let search1 = "";
-    //if (search) {
-    //  search1 = search;
-    //}
+    const { search, limit, skip, project } = req.body;
 
     const podcastData = await Podcast.find({
       $or: [{ podcastName: { $regex: ".*" + search + ".*", $options: "i" } }],
     })
       .sort({ _id: -1 })
       .limit(limit)
-      .skip(skip);
+      .skip(skip)
+      .select(project);
 
-    return res.status(201).json({ status: "success", data: podcastData });
+    return res.status(200).json({ status: "success", data: podcastData });
   } catch (error) {
     //console.log(error);
     return res.status(500).json({ status: "failed", message: error.message });
