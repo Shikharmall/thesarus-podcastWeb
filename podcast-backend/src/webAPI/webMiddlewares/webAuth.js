@@ -1,6 +1,6 @@
 const getTokenFromCookie = require("../../utils/getTokenFromCookie");
 const { verifyToken } = require("../../utils/jwtTokenManagement");
-const User = require("../../models/userModels");
+const User = require("../../models/userModel");
 
 /*------------------------islogin and isVerified----------------------*/
 

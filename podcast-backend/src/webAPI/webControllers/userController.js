@@ -1,4 +1,4 @@
-const User = require("../../models/userModels");
+const User = require("../../models/userModel");
 const UploadImage = require("../../utils/uploadContent");
 const { securePassword, checkPassword } = require("../../utils/securePassword");
 const {

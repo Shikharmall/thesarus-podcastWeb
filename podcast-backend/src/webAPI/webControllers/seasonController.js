@@ -1,4 +1,4 @@
-const Season = require("../../models/seasonModels");
+const Season = require("../../models/seasonModel");
 const getTokenFromCookie = require("../../utils/getTokenFromCookie");
 const { verifyToken } = require("../../utils/jwtTokenManagement");
 const { uploadImage, uploadVideo } = require("../../utils/uploadContent");

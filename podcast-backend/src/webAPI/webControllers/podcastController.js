@@ -1,4 +1,4 @@
-const Podcast = require("../../models/podcastModels");
+const Podcast = require("../../models/podcastModel");
 const getTokenFromCookie = require("../../utils/getTokenFromCookie");
 const { verifyToken } = require("../../utils/jwtTokenManagement");
 const { uploadImage } = require("../../utils/uploadContent");

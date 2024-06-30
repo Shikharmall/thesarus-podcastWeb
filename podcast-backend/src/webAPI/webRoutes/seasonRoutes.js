@@ -11,7 +11,7 @@ const {
   addSeasonCoverImage,
   addSeasonTitleImage,
   addTailor,
-} = require("../webControllers/seasonControllers");
+} = require("../webControllers/seasonController");
 
 const cookieParser = require("cookie-parser");
 season_route.use(cookieParser());

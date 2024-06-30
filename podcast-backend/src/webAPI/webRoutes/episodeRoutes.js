@@ -6,7 +6,11 @@ const {
   toggleEpisodeLive,
   getEpisode,
   getEpisodes,
-} = require("../webControllers/episodeControllers");
+  editEpisode,
+  addEpisodeFrontImage,
+  addEpisodeCoverImage,
+  addVideo,
+} = require("../webControllers/episodeController");
 
 const cookieParser = require("cookie-parser");
 episode_route.use(cookieParser());
@@ -15,15 +19,13 @@ const bodyParser = require("body-parser");
 episode_route.use(bodyParser.json());
 episode_route.use(bodyParser.urlencoded({ extended: true }));
 
-//function randomnumber() {
-//  return Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
-//}
-
 const multer = require("multer");
 const { isLogin } = require("../webMiddlewares/webAuth");
 
+//function randomnumber() {
+//  return Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
+//}
 //const path = require("path");
-
 ///const storage = multer.diskStorage({
 ///  destination: function (req, file, cb) {
 ///    cb(null, path.join(__dirname, "../../public/userData"));
@@ -33,15 +35,18 @@ const { isLogin } = require("../webMiddlewares/webAuth");
 ///    cb(null, name);
 ///  },
 ///});
-
 //const upload = multer({ storage: storage });
+//const upload1 = multer({ dest: '../public/users/' });
 
 const uploader = multer({
   storage: multer.diskStorage({}),
   limits: { fileSize: 500000 },
 });
 
-//const upload1 = multer({ dest: '../public/users/' });
+const uploaderVideo = multer({
+  storage: multer.diskStorage({}),
+  limits: { fileSize: 500000 },
+});
 
 episode_route.use(express.static("public"));
 
@@ -49,6 +54,25 @@ episode_route.post("/createEpisode", isLogin, createEpisode);
 episode_route.patch("/toggleEpisodeLive", isLogin, toggleEpisodeLive);
 episode_route.get("/getEpisode", isLogin, getEpisode);
 episode_route.get("/getEpisodes", isLogin, getEpisodes);
+episode_route.patch(
+  "/addEpisodeFrontImage",
+  isLogin,
+  uploader.single("image"),
+  addEpisodeFrontImage
+);
+episode_route.patch(
+  "/addEpisodeCoverImage",
+  isLogin,
+  uploader.single("image"),
+  addEpisodeCoverImage
+);
+episode_route.patch("/editEpisode", isLogin, editEpisode);
+episode_route.patch(
+  "/addVideo",
+  isLogin,
+  uploaderVideo.single("video"),
+  addVideo
+);
 
 //episode_route.post("/verifymail", verifyMail);
 //episode_route.post("/loginUser", loginUser);
@@ -71,31 +95,9 @@ episode_route.get("/getEpisodes", isLogin, getEpisodes);
 
 /*
 
-// playpage
-
-    episode_route.get('/playpage', auth.islogout , userController.playpage);
-
-
-// search 
-
-    episode_route.get('/search',channelController.podcast);
-
-
-
-// channel 
-
-    episode_route.get('/channel',channelController.channel);
-
 // user page 
 
-    episode_route.get('/user', auth.islogout , userController.userpage);
-
     episode_route.get('/searchuser',  userController.searchuser);
-
-// login page 
-
-    episode_route.get('/login', auth.islogin , userController.loginpage);
-
 
 // register to podcast 
 
@@ -115,14 +117,6 @@ episode_route.get("/getEpisodes", isLogin, getEpisodes);
 
     episode_route.post('/unsubscribe', auth.islogout ,  userController.unsubscribe);
 
-
-// opened list page
-
-    episode_route.get('/openedlist' , userController.openedlist);
-    
-    episode_route.get('/openedlistlogin' , auth.islogout , userController.openedlistlogin);
-
-
 // forgot password
 
     episode_route.get('/forgotpassword',userController.loadforgotpassword);
@@ -132,26 +126,6 @@ episode_route.get("/getEpisodes", isLogin, getEpisodes);
     episode_route.get('/forgotpaswordedit',userController.forgotpaswordedit);
     
     episode_route.post('/changepassword',userController.changepassword);
-
-
-// check login 
-
-    episode_route.post('/checklogin',userController.checkUser);
-
-// channel 
-
-    episode_route.get('/createchannel', auth.islogout ,  channelController.createchannel);
-    
-    episode_route.post('/addchannel',auth.islogout , upload.single('file') , channelController.insertChannel);
-
-    //episode_route.get('/makelive', auth.islogout ,  channelController.makelive);
-    
-    //episode_route.get('/addepisode', auth.islogout , channelController.addepisode);
-
-
-// logout 
-
-    episode_route.get('/logout', auth.islogout , userController.logout);
 
 */
 

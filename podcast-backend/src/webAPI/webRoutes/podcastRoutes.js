@@ -8,7 +8,7 @@ const {
   getPodcasts,
   addPodcastFrontImage,
   editPodcast,
-} = require("../webControllers/podcastControllers");
+} = require("../webControllers/podcastController");
 
 const cookieParser = require("cookie-parser");
 podcast_route.use(cookieParser());
