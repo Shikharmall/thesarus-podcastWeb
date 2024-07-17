@@ -47,28 +47,14 @@ export const userLogoutAPI = async () => {
 
 export const userRegisterAPI = async (data) => {
   try {
-    const result = await axios.post(`${API_URL_BASE}/web/user/registerUser`, data, {
-      headers: {
-        "Content-Type": "application/json",
-        mode: "no-cors",
-      },
-      withCredentials: true,
-    });
-    return result;
-  } catch (error) {
-    return error;
-  }
-};
-
-/*
-// API for getting user details
-
-export const getUserDetailsAPI = async (user_id) => {
-  try {
-    let result = await axios(
-      `${API_URL_BASE}/getUserDetails?user_id=${user_id}`,
+    const result = await axios.post(
+      `${API_URL_BASE}/web/user/registerUser`,
+      data,
       {
-        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          mode: "no-cors",
+        },
         withCredentials: true,
       }
     );
@@ -78,6 +64,24 @@ export const getUserDetailsAPI = async (user_id) => {
   }
 };
 
+// API for getting user details
+
+export const getUserDetailsAPI = async (data) => {
+  try {
+    let result = await axios.post(
+      `${API_URL_BASE}/web/user/getMyDetails`,
+      data,
+      {
+        withCredentials: true,
+      }
+    );
+    return result;
+  } catch (error) {
+    return error;
+  }
+};
+
+/*
 // API for getting all users details
 
 export const getAllUsersDetailsAPI = async () => {

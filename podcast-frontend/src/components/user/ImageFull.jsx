@@ -35,7 +35,7 @@ const ImageFull = ({ show, onClose, image, type }) => {
           <img
             src={`${image}`}
             alt={`cover image`}
-            className="w-full h-auto rounded-lg object-cover"
+            className="w-full h-auto object-cover"
             onClick={(e) => e.stopPropagation()}
           />
         )}

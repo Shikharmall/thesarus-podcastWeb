@@ -11,7 +11,7 @@ const TopContent = ({ user, toggleProfileImage, toggleCoverImage }) => {
         <img
           src={`${user.coverimage}`}
           alt={`cover image`}
-          className="w-full h-full rounded-lg object-cover"
+          className="w-full h-full rounded-lg object-cover cursor-pointer"
           onClick={() => {
             toggleCoverImage();
           }}
@@ -85,7 +85,7 @@ const TopContent = ({ user, toggleProfileImage, toggleCoverImage }) => {
         <img
           src={`${user.profileimage}`}
           alt={user.profileimage}
-          className="w-full h-full rounded-full object-cover"
+          className="w-full h-full rounded-full object-cover cursor-pointer"
           onClick={() => {
             toggleProfileImage();
           }}
