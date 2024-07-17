@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const MidContent = ({
   user,
@@ -58,30 +59,20 @@ const MidContent = ({
 
       {tabChange ? (
         <>
-          <div className="mt-4">
+          <div className="flex justify-center items-center w-[100%] h-[300px]">
             {flag === "1" && (
-              <a href="createchannel">
-                <button className="bg-gray-900 text-white p-3 rounded-md">
-                  Create podcast
-                </button>
-              </a>
-            )}
-            {flag === "0" && (
-              <form
-                action={sub === "1" ? "/subscribe" : "/unsubscribe"}
-                method="post"
-              >
-                <input type="hidden" name="channeluser" value={user._id} />
-                <input
-                  type="submit"
-                  value={sub === "1" ? "Subscribe" : "Unsubscribe"}
-                  className="bg-gray-900 text-white p-3 rounded-md cursor-pointer"
-                />
-              </form>
+              <div className="flex flex-col">
+                <Link to="/createPodcast">
+                  <button className="bg-gray-900 text-white p-3 rounded-md">
+                    Create podcast
+                  </button>
+                </Link>
+                <p className="text-white mt-5">No podcast found.</p>
+              </div>
             )}
           </div>
 
-          <div className="mt-8">
+          {/*<div className="mt-8">
             {channelCount > 0 ? (
               <div>
                 {channelData.map((channel) => (
@@ -97,7 +88,7 @@ const MidContent = ({
             ) : (
               <p className="text-gray-400 text-center">No podcasts yet</p>
             )}
-          </div>
+          </div>*/}
         </>
       ) : (
         <>

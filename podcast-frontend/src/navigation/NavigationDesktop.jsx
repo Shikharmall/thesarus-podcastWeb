@@ -12,6 +12,7 @@ import Search from "../pages/Search";
 import DraggableSliderTabs from "../pages/DraggableSliderTabs";
 import Testing from "../pages/Testing";
 import User from "../pages/User";
+import CreatePodcast from "../pages/CreatePodcast";
 
 function NavigationDesktop() {
   const location = useLocation();
@@ -28,13 +29,17 @@ function NavigationDesktop() {
       <Route path="/register" element={<Register />} />
       <Route path="/forgotpassword" element={<ForgotPassword />} />
       <Route path="/watch" element={<WatchVideo />} />
-      <Route path="/podcastdescription/:podcastId" element={<PodcastDescription />} />
+      <Route
+        path="/podcastdescription/:podcastId"
+        element={<PodcastDescription />}
+      />
       <Route path="/downloads" element={<Downloads />} />
       <Route path="/new" element={<New />} />
       <Route path="/search" element={<Search />} />
       <Route path="/drage" element={<DraggableSliderTabs />} />
       <Route path="/testing" element={<Testing />} />
       <Route path="/user" element={<User />} />
+      <Route path="/createPodcast" element={<CreatePodcast />} />
       {/*<Route path="*" element={<NotFound />} />*/}
     </Routes>
   );
