@@ -27,20 +27,35 @@ export default function Login() {
     });
   };
 
+  const [error, setError] = useState({
+    isError: false,
+    message: "",
+  });
+
   const submitHandler = (e) => {
     setLoader(true);
+    setError({
+      ...error,
+      isError: false,
+      message: "",
+    });
     e.preventDefault();
+
     userLoginAPI(formData).then((res) => {
       if (res.status === 200) {
         setLoader(false);
 
-        console.log(res);
         localStorage.setItem("userId", res?.data?.data?.userId);
         localStorage.setItem("isLogin", true);
         navigate("/");
       } else {
         setLoader(false);
-        //toast(res?.response?.data?.message);
+
+        setError({
+          ...error,
+          isError: true,
+          message: res.response.data.message,
+        });
       }
     });
   };
@@ -49,7 +64,7 @@ export default function Login() {
     <div className="bg-[#0f1014] w-[100vw] h-[100vh] flex justify-center items-center">
       <div className="w-[700px] h-[450px] bg-[#16181f] rounded-3xl flex overflow-hidden">
         <div
-          className="w-[45%] h-[100%]"
+          className="w-[45%] h-[100%]" //
           style={{
             WebkitMaskImage:
               "linear-gradient(to left, transparent 2%, #16181f)",
@@ -58,7 +73,9 @@ export default function Login() {
           <img src={Poster} alt="poster" className="w-[100%] h-[100%]" />
         </div>
 
-        <div className="w-[55%] m-4">
+        <div
+          className="w-[55%] m-4" //
+        >
           <div className="flex justify-end">
             <Link to={`/`}>
               <svg
@@ -88,7 +105,9 @@ export default function Login() {
               Login to continue
             </h1>
 
-            <br />
+            {error.isError && (
+              <p className="text-red-500 m-2">{error.message}</p>
+            )}
 
             <div>
               <input

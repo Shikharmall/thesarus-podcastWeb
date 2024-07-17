@@ -4,7 +4,9 @@ const Overlay = ({ show, onClose }) => {
   if (!show) return null;
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
+    <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-100"
+     //style={{zIndex: 100}}
+    >
       <div className="bg-white p-4 rounded-lg relative">
         <button
           onClick={onClose}

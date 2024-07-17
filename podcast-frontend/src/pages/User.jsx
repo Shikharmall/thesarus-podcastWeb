@@ -7,9 +7,12 @@ import Footer from "../partials/Footer";
 import TopContent from "../components/user/TopContent";
 import MidContent from "../components/user/MidContent";
 import Overlay from "../components/user/Overlay";
+import ImageFull from "../components/user/ImageFull";
 
 export default function User() {
   const [overlayOpen, setOverlayOpen] = useState(false);
+  const [coverImageFull, setCoverImageFull] = useState(false);
+  const [profileImageFull, setProfileImageFull] = useState(false);
 
   const openOverlay = () => {
     setOverlayOpen(true);
@@ -19,12 +22,22 @@ export default function User() {
     setOverlayOpen(false);
   };
 
+  const toggleCoverImage = () => {
+    setCoverImageFull(!coverImageFull);
+  };
+
+  const toggleProfileImage = () => {
+    setProfileImageFull(!profileImageFull);
+  };
+
   const userData = {
     _id: "user-id",
     name: "User Name",
     subscribers: 123,
-    coverimage: "coverimage.jpg",
-    profileimage: "profileimage.jpg",
+    coverimage:
+      "https://pbs.twimg.com/profile_banners/1596428723150258177/1711056055/1500x500",
+    profileimage:
+      "https://pbs.twimg.com/profile_images/1596428809934635008/dmkOOF8z_400x400.png",
   };
 
   const channelData = [
@@ -48,7 +61,12 @@ export default function User() {
       <div className="bg-[#0f1014] pt-[3%]">
         <SideNav />
         <div className="md:ml-1/12 mt-20 md:mt-0">
-          <TopContent user={user} flag={flag} openOverlay={openOverlay} />
+          <TopContent
+            user={user}
+            flag={flag}
+            toggleProfileImage={toggleProfileImage}
+            toggleCoverImage={toggleCoverImage}
+          />
           <MidContent
             user={user}
             flag={flag}
@@ -58,6 +76,18 @@ export default function User() {
           />
         </div>
         <Overlay show={overlayOpen} onClose={closeOverlay} />
+        <ImageFull
+          show={coverImageFull}
+          onClose={toggleCoverImage}
+          image={user.coverimage}
+          type={`coverImage`}
+        />
+        <ImageFull
+          show={profileImageFull}
+          onClose={toggleProfileImage}
+          image={user.profileimage}
+          type={`profileImage`}
+        />
       </div>
     </>
   );
