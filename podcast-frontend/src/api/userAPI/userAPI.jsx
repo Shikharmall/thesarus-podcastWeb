@@ -59,7 +59,6 @@ export const userRegisterAPI = async (data) => {
   }
 };
 
-
 /*
 // API for getting user details
 

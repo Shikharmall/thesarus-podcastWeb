@@ -28,30 +28,14 @@ function NavigationDesktop() {
       <Route path="/register" element={<Register />} />
       <Route path="/forgotpassword" element={<ForgotPassword />} />
       <Route path="/watch" element={<WatchVideo />} />
-      <Route path="/podcastdescription" element={<PodcastDescription />} />
+      <Route path="/podcastdescription/:podcastId" element={<PodcastDescription />} />
       <Route path="/downloads" element={<Downloads />} />
       <Route path="/new" element={<New />} />
       <Route path="/search" element={<Search />} />
       <Route path="/drage" element={<DraggableSliderTabs />} />
       <Route path="/testing" element={<Testing />} />
       <Route path="/user" element={<User />} />
-      {/*<Route exact path="/leaderboard" element={<Leaderboard />} />
-      <Route exact path="/userdetails" element={<UserDetails />} />
-      <Route
-        exact
-        path="/publicUserdetails/:user_id"
-        element={<PublicUserDetails />}
-      />
-      <Route exact path="/game" element={<Modalpopup />} />
-      <Route exact path="/languagegame" element={<LanguageGame />} />
-      <Route exact path="/admin/allquestions" element={<AllQuestions />} />
-      <Route
-        exact
-        path="/admin/editquestion/:question_id"
-        element={<EditQuestion />}
-      />
-  <Route exact path="/admin/addquestions" element={<Admin />} />
-      <Route path="*" element={<NotFound />} />*/}
+      {/*<Route path="*" element={<NotFound />} />*/}
     </Routes>
   );
 }

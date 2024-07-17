@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import img1 from "../../images/logo2.png";
-import imgLogo1 from "../../images/mainLogo1.png";
+//import img1 from "../../images/logo2.png";
+//import imgLogo1 from "../../images/mainLogo1.png";
 
-export default function PodcastImage() {
+export default function PodcastImage({ podcastSeason, index }) {
   const [isHover, setIsHover] = useState(false);
 
   //const [isDragging, setIsDragging] = useState(false);
@@ -54,7 +54,7 @@ export default function PodcastImage() {
 
   return (
     <Link
-      to={`podcastdescription`}
+      to={`podcastdescription/${podcastSeason._id}`}
       className="bg-gray-500 w-[172px] h-[229px] m-1 rounded relative min-w-[172px]"
       onMouseOver={() => {
         setIsHover(true);
@@ -62,12 +62,17 @@ export default function PodcastImage() {
       onMouseOut={() => {
         setIsHover(false);
       }}
+      key={index}
     >
-      <img src={img1} alt="poster-image" className='rounded-md'/>
+      <img
+        src={podcastSeason?.frontImage}
+        alt="poster-image"
+        className="rounded-md"
+      />
       {isHover ? (
         <div className="absolute top-0 left-0 w-[336px] h-[385px] bg-[#1f2026] z-10 overflow-hidden rounded">
           <img
-            src={imgLogo1}
+            src={podcastSeason?.coverImage}
             alt="poster-image"
             style={{
               WebkitMaskImage:
@@ -94,9 +99,8 @@ export default function PodcastImage() {
           </div>
           <div className="m-2">
             <p className="font-roboto text-gray-500">
-              NEW EPISODE EVERY THURSDAY. When pirates hijack a ship off the
-              coast of Somalia, a high-stakes game is played with innocent lives
-              and a precious piece of cargo aboard.
+              {podcastSeason?.podcastId?.podcastName}.{" "}
+              {podcastSeason?.podcastId?.description}.
             </p>
           </div>
         </div>

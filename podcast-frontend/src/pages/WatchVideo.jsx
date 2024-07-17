@@ -199,8 +199,6 @@ export default function WatchVideo() {
         //console.log('Enter key pressed');
         isFullScreen ? setMinimiseScreen() : setFullScreen();
       }
-
-
     };
 
     // Attach event listener to the window object
@@ -325,6 +323,7 @@ export default function WatchVideo() {
             setMinimiseScreen={setMinimiseScreen}
             duration={duration}
             progress={progress}
+            setProgress={setProgress}
           />
         </>
       ) : null}

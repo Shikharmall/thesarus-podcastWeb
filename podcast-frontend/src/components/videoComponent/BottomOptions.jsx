@@ -18,13 +18,12 @@ export default function BottomOptions({
   setFullScreen,
   setMinimiseScreen,
   duration,
-  progress
+  progress,
 }) {
-
   const formatDuration = (duration) => {
     const minutes = Math.floor(duration / 60);
     const seconds = Math.floor(duration % 60);
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
   return (
@@ -41,28 +40,30 @@ export default function BottomOptions({
     >
       <div className="flex justify-between items-center">
         <div>
-          <p className="text-white ml-10 font-roboto">{formatDuration(progress)}</p>
+          <p className="text-white ml-10 font-roboto">
+            {formatDuration(progress)}
+          </p>
         </div>
+
         <input
           type="range"
           id="volumeRange"
           className="w-[100%] cursor-pointer m-3"
           value={progress}
+          max={duration}
           style={{
-            background: `linear-gradient(to right, #095ae5 0%, #095ae5 ${progress}%, rgba(255, 255, 255, 0.25) ${progress}%, rgba(255, 255, 255, 0.25) 100%)`,
+            background: `linear-gradient(to right, #095ae5 0%, #095ae5 ${
+              (progress / duration) * 100
+            }%, rgba(255, 255, 255, 0.25) ${
+              (progress / duration) * 100
+            }%, rgba(255, 255, 255, 0.25) 100%)`,
           }}
-          //onChange={(e) => {
-          //  setProgress(e.target.value);
-          //}}
         />
-        {/*<input
-                id="range"
-                type="range"
-                className="block w-full h-1 py-2 mt-2 text-gray-700 bg-red bg-opacity-40 border border-gray-300 rounded-md"
-              />*/}
 
         <div>
-          <p className="text-white mr-10 font-roboto">{formatDuration(duration)}</p>
+          <p className="text-white mr-10 font-roboto">
+            {formatDuration(duration)}
+          </p>
         </div>
       </div>
 
