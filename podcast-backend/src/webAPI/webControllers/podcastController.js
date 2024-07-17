@@ -155,6 +155,7 @@ const getPodcast = async (req, res) => {
 const getPodcasts = async (req, res) => {
   try {
     const { search, limit, skip, project } = req.body;
+    console.log(search,limit,skip,project);
 
     const podcastData = await Podcast.find({
       $or: [{ podcastName: { $regex: ".*" + search + ".*", $options: "i" } }],

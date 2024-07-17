@@ -59,6 +59,9 @@ const episodeSchema = new mongoose.Schema(
       required: true,
       default: false,
     },
+    cast: {
+      type: [String],
+    },
   },
 
   { timestamps: true }

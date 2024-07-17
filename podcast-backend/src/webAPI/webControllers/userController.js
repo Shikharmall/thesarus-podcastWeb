@@ -1,11 +1,11 @@
 const User = require("../../models/userModel");
-const UploadImage = require("../../utils/uploadContent");
 const { securePassword, checkPassword } = require("../../utils/securePassword");
 const {
   sendVerifyMail,
   sendforgotpasswordMail,
 } = require("../../utils/sendEmail");
 const { generateToken } = require("../../utils/jwtTokenManagement");
+const { uploadImage } = require("../../utils/uploadContent");
 
 /*-------------------------register user-----------------------*/
 
@@ -401,10 +401,7 @@ const getUsers = async (req, res) => {
 const changeProfileImage = async (req, res) => {
   try {
     const { id } = req.body;
-    //console.log(req.file.filename);
-    //console.log(req.file.path);
-
-    const uploadedImage = await UploadImage.uploadImage(req.file.path);
+    const uploadedImage = await uploadImage(req.file.path);
 
     if (uploadedImage) {
       const changedProfileImage = await User.updateOne(
@@ -422,21 +419,19 @@ const changeProfileImage = async (req, res) => {
         message: "profile image not uploaded on cloudinary.",
       });
     }
-
-    //console.log(uploadedImage);
   } catch (error) {
-    console.log(error.message);
+    //console.log(error.message);
     return res.status(500).json({ status: "failed", message: error.message });
   }
 };
 
+/*-------------------------change user cover pic-----------------------*/
+
 const changeCoverImage = async (req, res) => {
   try {
-    console.log(req.file);
 
     const { id } = req.body;
-
-    const uploadedImage = await UploadImage.uploadImage(req.file.path);
+    const uploadedImage = await uploadImage(req.file.path);
 
     if (uploadedImage) {
       const changedCoverImage = await User.updateOne(
@@ -461,7 +456,7 @@ const changeCoverImage = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error.message);
+    //console.log(error.message);
     return res.status(500).json({ status: "failed", message: error.message });
   }
 };

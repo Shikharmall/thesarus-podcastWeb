@@ -47,8 +47,8 @@ podcast_route.use(express.static("public"));
 
 podcast_route.post("/createPodcast", isLogin, createPodcast);
 podcast_route.patch("/togglePodcastLive", isLogin, togglePodcastLive);
-podcast_route.get("/getPodcast", getPodcast);
-podcast_route.get("/getPodcasts", getPodcasts);
+podcast_route.post("/getPodcast", getPodcast);
+podcast_route.post("/getPodcasts", getPodcasts);
 podcast_route.patch(
   "/addPodcastFrontImage",
   isLogin,

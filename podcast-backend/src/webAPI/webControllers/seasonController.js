@@ -223,10 +223,6 @@ const getSeason = async (req, res) => {
 const getSeasons = async (req, res) => {
   try {
     const { search, limit, skip, project } = req.body;
-    //let search1 = "";
-    //if (search) {
-    //  search1 = search;
-    //}
 
     const seasonData = await Season.find({
       //$or: [{ episodeName: { $regex: ".*" + search + ".*", $options: "i" } }],
@@ -234,7 +230,11 @@ const getSeasons = async (req, res) => {
       .sort({ _id: -1 })
       .limit(limit)
       .skip(skip)
-      .select(project);
+      .select(project)
+      .populate({
+        path: "podcastId",
+        select: project.podcast,
+      });
 
     return res.status(200).json({ status: "success", data: seasonData });
   } catch (error) {

@@ -23,25 +23,9 @@ season_route.use(bodyParser.urlencoded({ extended: true }));
 const multer = require("multer");
 const { isLogin } = require("../webMiddlewares/webAuth");
 
-//function randomnumber() {
-//  return Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
-//}
-//const path = require("path");
-///const storage = multer.diskStorage({
-///  destination: function (req, file, cb) {
-///    cb(null, path.join(__dirname, "../../public/userData"));
-///  },
-///  filename: function (req, file, cb) {
-///    const name = Date.now() + "-" + randomnumber() + ".png";
-///    cb(null, name);
-///  },
-///});
-//const upload = multer({ storage: storage });
-//const upload1 = multer({ dest: '../public/users/' });
-
 const uploader = multer({
   storage: multer.diskStorage({}),
-  limits: { fileSize: 500000 },
+  limits: { fileSize: 5000000 }, //upto 5mb image
 });
 
 const uploaderVideo = multer({
@@ -53,8 +37,8 @@ season_route.use(express.static("public"));
 
 season_route.post("/createSeason", isLogin, createSeason);
 season_route.patch("/toggleSeasonLive", isLogin, toggleSeasonLive);
-season_route.get("/getSeason", isLogin, getSeason);
-season_route.get("/getSeasons", isLogin, getSeasons);
+season_route.post("/getSeason", getSeason);
+season_route.post("/getSeasons", getSeasons);
 season_route.patch(
   "/addSeasonFrontImage",
   isLogin,
