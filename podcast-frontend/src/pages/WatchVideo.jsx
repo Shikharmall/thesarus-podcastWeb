@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import Img from "../images/avatarposter1.png";
 import Video1 from "../../../../videos/BigBuckBunny.mp4";
+import Img from "../images/avatarposter1.png";
 import Video2 from "../../../../videos/avatar2.mp4";
 //import { VideoSeekSlider } from "react-video-seek-slider";
 import "../css/CustomScrollbar.css";
@@ -11,8 +11,10 @@ import ReactPlayer from "react-player";
 import TopOptions from "../components/videoComponent/TopOptions";
 import BottomOptions from "../components/videoComponent/BottomOptions";
 import AllSeasonEpisodesList from "../components/videoComponent/AllSeasonEpisodesList";
+import { useParams } from "react-router-dom";
 
 export default function WatchVideo() {
+  const { podcastId } = useParams();
   let container = useRef(null);
   let optionsUpper = useRef(null);
   let optionsBottom = useRef(null);
@@ -303,6 +305,7 @@ export default function WatchVideo() {
             optionsUpper={optionsUpper}
             handleMouseOut={handleMouseOut}
             handleMouseOver={handleMouseOver}
+            podcastId={podcastId}
           />
 
           <BottomOptions

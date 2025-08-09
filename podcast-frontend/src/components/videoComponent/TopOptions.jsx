@@ -8,6 +8,7 @@ export default function TopOptions({
   handleMouseOut,
   handleMouseOver,
   optionsUpper,
+  podcastId,
 }) {
   const [showPopUp, setShowPopUp] = useState(false);
   let popUp = useRef(null);
@@ -44,7 +45,7 @@ export default function TopOptions({
     >
       <div className="flex justify-between">
         <div className="flex items-center cursor-pointer m-5 ml-10 w-1/2">
-          <Link to={`/podcastdescription`}>
+          <Link to={`/podcastdescription/${podcastId}`}>
             <svg
               className="h-6 w-6 text-white mr-10"
               fill="none"

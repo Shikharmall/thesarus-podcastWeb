@@ -28,7 +28,7 @@ function NavigationDesktop() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/forgotpassword" element={<ForgotPassword />} />
-      <Route path="/watch" element={<WatchVideo />} />
+      <Route path="/watch/:podcastId" element={<WatchVideo />} />
       <Route
         path="/podcastdescription/:podcastId"
         element={<PodcastDescription />}

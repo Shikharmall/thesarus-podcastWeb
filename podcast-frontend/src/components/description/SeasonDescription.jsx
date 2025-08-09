@@ -9,7 +9,7 @@ import Episode5 from "../../images/episode5.png";
 
 import "../../css/HistoryProgressRange.css";
 
-export default function SeasonDescription() {
+export default function SeasonDescription({ podcastId }) {
   const episodes = [Episode1, Episode2, Episode3, Episode4, Episode5];
 
   const [isActive, setIsActive] = useState(0);
@@ -18,7 +18,7 @@ export default function SeasonDescription() {
   const [isActive1, setIsActive1] = useState(0);
   return (
     <>
-      <div 
+      <div
         className="sticky top-0  bg-[#0f1014]"
         //style={{ position: "sticky", top: 0 }} z-10
       >
@@ -43,7 +43,7 @@ export default function SeasonDescription() {
       <div className="w-4/5 ml-[10%]">
         {arry.map((item, index) => (
           <Link
-            to={`/watch`}
+            to={`/watch/${podcastId}`}
             className={`m-3 flex items-center justify-center rounded-md cursor-pointer hover:bg-gray-500 hover:bg-opacity-10 ${
               index === isActive1 ? "bg-gray-500 bg-opacity-10" : ""
             }`}
@@ -73,7 +73,7 @@ export default function SeasonDescription() {
               <input
                 type="range"
                 id="volumeRange1"
-                className="w-[220px] min-w-[200px] absolute left-0 bottom-0 bg-opacity-25" 
+                className="w-[220px] min-w-[200px] absolute left-0 bottom-0 bg-opacity-25"
                 style={{
                   background: `linear-gradient(to right, #095ae5 0%, #095ae5 50%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 100%)`,
                 }}

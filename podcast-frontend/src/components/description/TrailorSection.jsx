@@ -6,7 +6,7 @@ import Image1 from "../../images/title.png";
 import SeasonDescription from "./SeasonDescription";
 import { Link } from "react-router-dom";
 
-export default function TrailorSection() {
+export default function TrailorSection({ podcastId }) {
   const [showTrailor, setShowTrailor] = useState(false);
 
   useEffect(() => {
@@ -87,7 +87,7 @@ export default function TrailorSection() {
             </p>
 
             <Link
-              to={`/watch`}
+              to={`/watch/${podcastId}`}
               className="bg-gray-500 bg-opacity-50 rounded-lg py-4 px-4 my-10 text-white w-full text-xl text-roboto text-bold flex justify-center items-center transform transition-transform duration-500 hover:scale-105"
             >
               <svg
@@ -107,7 +107,7 @@ export default function TrailorSection() {
           </div>
         </div>
       </div>
-      <SeasonDescription />
+      <SeasonDescription podcastId={podcastId}/>
     </div>
   );
 }

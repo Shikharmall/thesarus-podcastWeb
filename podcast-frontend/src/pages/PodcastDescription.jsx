@@ -26,7 +26,7 @@ export default function PodcastDescription() {
       <div className="bg-[#0f1014] overflow-hidden">
         {/* overflow-hidden */}
         <SideNav />
-        <TrailorSection />
+        <TrailorSection podcastId={podcastId} />
         <Footer />
       </div>
     </>
