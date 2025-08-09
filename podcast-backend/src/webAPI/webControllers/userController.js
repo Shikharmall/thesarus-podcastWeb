@@ -1,5 +1,6 @@
 const User = require("../../models/userModel");
 const { securePassword, checkPassword } = require("../../utils/securePassword");
+const { validationResult } = require("express-validator");
 const {
   sendVerifyMail,
   sendforgotpasswordMail,
@@ -11,11 +12,40 @@ const {
 const { uploadImage } = require("../../utils/uploadContent");
 const getTokenFromCookie = require("../../utils/getTokenFromCookie");
 
+/*-------------------------send Temp Email For Testing-----------------------*/
+
+const sendTempEmail = async (req, res) => {
+  try {
+    const sent = sendVerifyMail(
+      "Shikhar Vishen",
+      "shmall.21.2020@gmail.com",
+      "1234567890"
+    );
+
+    if (!sent) {
+      return res.status(500).json({
+        status: "failed",
+        message: "user registered but email not sent",
+      });
+    }
+    return res.status(201).json({ status: "success" });
+  } catch (error) {
+    //console.log(error.message);
+    return res.status(500).json({ status: "failed", message: error.message });
+  }
+};
+
 /*-------------------------register user-----------------------*/
 
 const registerUser = async (req, res) => {
   try {
     const { name, email, password, repassword, phone } = req.body;
+
+    // checking format of name , email and password
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ status: "failed", error: errors?.array() });
+    }
 
     if (password !== repassword) {
       return res
@@ -468,6 +498,7 @@ const changeCoverImage = async (req, res) => {
 
 module.exports = {
   registerUser,
+  sendTempEmail,
   verifyMail,
   loginUser,
   logout,

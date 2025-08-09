@@ -20,9 +20,7 @@ const sendVerifyMail = async (name, email, userId) => {
       html:
         `<p>Hi ` +
         name +
-        `, </p> <p> Please click on the given link <a href="http://127.0.0.1:${
-          process.env.PORT || 5174
-        }/verifymail?id=
+        `, </p> <p> Please click on the given link <a href="${process.env.FRONTEND_URL}/verifymail?id=
           ${userId} 
           "> Verify </a> to verify your email. </p>  <br> <h4>Thanks , Team The SARUS.</h4>`,
     };
@@ -59,9 +57,7 @@ const sendforgotpasswordMail = async (name, email, userId) => {
       html:
         `<p>Hi ` +
         name +
-        `, </p> <p> Please click on the given link <a href="http://127.0.0.1:${
-          process.env.PORT || 5174
-        }/forgotpaswordedit?id='+${userId}+'"> Change Password </a> to change your password. </p>  <br> <h4>Thanks , Team The SARUS.</h4>`,
+        `, </p> <p> Please click on the given link <a href="${process.env.FRONTEND_URL}/forgotpaswordedit?id='+${userId}+'"> Change Password </a> to change your password. </p>  <br> <h4>Thanks , Team The SARUS.</h4>`,
     };
 
     transporter.sendMail(mailOptions, function (error, info) {

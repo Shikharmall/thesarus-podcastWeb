@@ -12,7 +12,10 @@ const {
   changeCoverImage,
   forgotPasswordSendEmail,
   getMyDetails,
+  sendTempEmail,
 } = require("../webControllers/userController");
+
+const validateForm = require("../../validation/validation");
 
 const cookieParser = require("cookie-parser");
 user_route.use(cookieParser());
@@ -47,7 +50,8 @@ const uploader = multer({
 
 user_route.use(express.static("public"));
 
-user_route.post("/registerUser", registerUser);
+user_route.post("/registerUser", validateForm, registerUser);
+user_route.post("/sendTempEmail", sendTempEmail);
 user_route.post("/getMyDetails", getMyDetails);
 user_route.post("/verifymail", verifyMail);
 user_route.post("/loginUser", loginUser);
