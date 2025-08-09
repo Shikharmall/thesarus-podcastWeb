@@ -64,6 +64,26 @@ export const userRegisterAPI = async (data) => {
   }
 };
 
+/*--------------------api for user's email verify-----------------------*/
+
+export const emailVerifyAPI = async (userId) => {
+  try {
+    const result = await axios.post(
+      `${API_URL_BASE}/web/user/verifyMail?userId=${userId}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          mode: "no-cors",
+        },
+        withCredentials: true,
+      }
+    );
+    return result;
+  } catch (error) {
+    return error;
+  }
+};
+
 // API for getting user details
 
 export const getUserDetailsAPI = async (data) => {

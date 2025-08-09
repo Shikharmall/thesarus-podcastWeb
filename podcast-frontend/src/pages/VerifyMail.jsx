@@ -1,8 +1,36 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Poster from "../images/avatarpostercrop.png";
+import { emailVerifyAPI, userLoginAPI } from "../api/userAPI/userAPI";
 
-export default function VerifyEmail() {
+export default function VerifyMail() {
+  const navigate = useNavigate();
+  const { userId } = useParams();
+
+  //   useEffect(() => {
+  //     const isLogin = localStorage.getItem("isLogin");
+
+  //     if (isLogin) {
+  //       navigate("/user");
+  //     }
+  //   }, []);
+
+  const [loader, setLoader] = useState(false);
+
+  const submitHandler = (e) => {
+    setLoader(true);
+    e.preventDefault();
+
+    emailVerifyAPI(userId).then((res) => {
+      if (res.status === 201) {
+        setLoader(false);
+        navigate("/login");
+      } else {
+        setLoader(false);
+      }
+    });
+  };
+
   return (
     <div className="bg-[#0f1014] w-[100vw] h-[100vh] flex justify-center items-center">
       <div className="w-[700px] h-[450px] bg-[#16181f] rounded-3xl flex overflow-hidden">
@@ -18,7 +46,7 @@ export default function VerifyEmail() {
 
         <div className="w-[55%] m-4">
           <div className="flex justify-end">
-            <Link to={`/login`}>
+            <Link to={`/`}>
               <svg
                 width="20px"
                 height="20px"
@@ -43,37 +71,27 @@ export default function VerifyEmail() {
                 fontFamily: '"Inter",sans-serif',
               }}
             >
-              Forgot Password
+              Click to verify
             </h1>
-
-            <br />
-
-            <div>
-              <input
-                type="text"
-                placeholder="Enter your registered email"
-                name="email"
-                className="px-4 py-2 text-lg rounded-md m-2 bg-[#16181f] border-none text-white"
-                style={{ border: "1px solid rgb(177, 177, 177)" }}
-              />
-            </div>
-
             <br />
             <br />
             <br />
-
+            <br />
             <div>
               <input
                 type="submit"
-                value="Send Email"
+                value="Verify"
                 className="px-4 py-2 text-lg rounded-md m-2 bg-[#16181f] border-none text-white cursor-pointer hover:bg-[#414141]"
                 style={{ border: "1px solid rgb(177, 177, 177)" }}
+                onClick={(e) => {
+                  submitHandler(e);
+                }}
               />
             </div>
 
-            <Link to={`/login`} className="m-2 text-[#b1b1b1] text-sm">
-              Login
-            </Link>
+            {/* <Link to={`/register`} className="m-2 text-[#b1b1b1] text-sm">
+              New? Signup
+            </Link> */}
           </div>
         </div>
       </div>

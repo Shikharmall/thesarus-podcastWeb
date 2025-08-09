@@ -93,9 +93,9 @@ const registerUser = async (req, res) => {
 
 const verifyMail = async (req, res) => {
   try {
-    const { id } = req.query;
+    const { userId } = req.query;
 
-    const userData = await User.findById({ _id: id });
+    const userData = await User.findById({ _id: userId });
 
     if (!userData) {
       return res
@@ -104,7 +104,7 @@ const verifyMail = async (req, res) => {
     }
 
     const updatedinfo = await User.updateOne(
-      { _id: id },
+      { _id: userId },
       { $set: { isVerified: true } },
       { new: true }
     );

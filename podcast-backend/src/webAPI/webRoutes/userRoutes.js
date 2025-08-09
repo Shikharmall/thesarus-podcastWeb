@@ -52,8 +52,8 @@ user_route.use(express.static("public"));
 
 user_route.post("/registerUser", validateForm, registerUser);
 user_route.post("/sendTempEmail", sendTempEmail);
-user_route.post("/getMyDetails", getMyDetails);
 user_route.post("/verifymail", verifyMail);
+user_route.post("/getMyDetails", getMyDetails);
 user_route.post("/loginUser", loginUser);
 user_route.post("/logout", isLogin, logout);
 user_route.post("/forgotPasswordSendEmail", forgotPasswordSendEmail);

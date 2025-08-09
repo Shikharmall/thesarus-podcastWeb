@@ -13,6 +13,7 @@ import DraggableSliderTabs from "../pages/DraggableSliderTabs";
 import Testing from "../pages/Testing";
 import User from "../pages/User";
 import CreatePodcast from "../pages/CreatePodcast";
+import VerifyMail from "../pages/VerifyMail";
 
 function NavigationDesktop() {
   const location = useLocation();
@@ -26,6 +27,7 @@ function NavigationDesktop() {
     <Routes>
       <Route exact path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/verifymail/:userId" element={<VerifyMail />} />
       <Route path="/register" element={<Register />} />
       <Route path="/forgotpassword" element={<ForgotPassword />} />
       <Route path="/watch/:podcastId" element={<WatchVideo />} />
