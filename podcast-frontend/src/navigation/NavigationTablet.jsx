@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import Home from "../pages/Home";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
-import ForgotPassword from "../pages/ForgotPassword";
+import AppSoon from "../pages//AppSoon";
+// import Login from "../pages/Login";
+// import Register from "../pages/Register";
+// import ForgotPassword from "../pages/ForgotPassword";
 
 function NavigationTablet() {
   const location = useLocation();
@@ -15,10 +15,10 @@ function NavigationTablet() {
   }, [location.pathname]); // triggered on route change
   return (
     <Routes>
-      <Route exact path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
+      <Route exact path="/" element={<AppSoon />} />
+      {/* <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/forgotpassword" element={<ForgotPassword />} />
+      <Route path="/forgotpassword" element={<ForgotPassword />} /> */}
       {/*<Route exact path="/leaderboard" element={<Leaderboard />} />
       <Route exact path="/userdetails" element={<UserDetails />} />
       <Route
