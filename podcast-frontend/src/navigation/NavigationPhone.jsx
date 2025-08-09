@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import Home from "../pages/Home";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
-import ForgotPassword from "../pages/ForgotPassword";
+import AppSoon from "../pages/AppSoon";
+// import Home from "../pages/Home";
+// import Login from "../pages/Login";
+// import Register from "../pages/Register";
+// import ForgotPassword from "../pages/ForgotPassword";
 
 function NavigationPhone() {
   const location = useLocation();
@@ -15,10 +16,11 @@ function NavigationPhone() {
   }, [location.pathname]); // triggered on route change
   return (
     <Routes>
-      <Route exact path="/" element={<Home />} />
+      <Route path="/" element={<AppSoon />} />
+      {/* <Route exact path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/forgotpassword" element={<ForgotPassword />} />
+      <Route path="/forgotpassword" element={<ForgotPassword />} /> */}
       {/*<Route exact path="/leaderboard" element={<Leaderboard />} />
       <Route exact path="/userdetails" element={<UserDetails />} />
       <Route
