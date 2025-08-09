@@ -4,8 +4,12 @@ const {
   sendVerifyMail,
   sendforgotpasswordMail,
 } = require("../../utils/sendEmail");
-const { generateToken } = require("../../utils/jwtTokenManagement");
+const {
+  generateToken,
+  verifyToken,
+} = require("../../utils/jwtTokenManagement");
 const { uploadImage } = require("../../utils/uploadContent");
+const getTokenFromCookie = require("../../utils/getTokenFromCookie");
 
 /*-------------------------register user-----------------------*/
 
@@ -312,16 +316,18 @@ const unsubscribe = async (req, res) => {
   }
 };
 
-/*-------------------------get user details-----------------------*/
+/*-------------------------get logged in user details-----------------------*/
 
-const getUser = async (req, res) => {
+const getMyDetails = async (req, res) => {
   try {
-    const { userId } = req.query;
-    //const token = req.cookies.userid;
-    //const verifyUser = jwt.verify(token, config.jwtSecret);
-    //const userid = verifyUser.user_id;
+    const { project } = req.body;
 
-    const userData = await User.findById({ _id: userId });
+    const token = getTokenFromCookie(req);
+    //console.log(token);
+    const verifyUser = await verifyToken(token);
+    const userid = verifyUser.userId;
+
+    const userData = await User.findById({ _id: userid }).select(project);
 
     return res.status(200).json({ status: "success", data: userData });
   } catch (error) {
@@ -429,7 +435,6 @@ const changeProfileImage = async (req, res) => {
 
 const changeCoverImage = async (req, res) => {
   try {
-
     const { id } = req.body;
     const uploadedImage = await uploadImage(req.file.path);
 
@@ -471,4 +476,5 @@ module.exports = {
   editUser,
   changeProfileImage,
   changeCoverImage,
+  getMyDetails,
 };

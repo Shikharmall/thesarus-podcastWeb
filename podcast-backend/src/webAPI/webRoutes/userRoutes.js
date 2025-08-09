@@ -11,6 +11,7 @@ const {
   changeProfileImage,
   changeCoverImage,
   forgotPasswordSendEmail,
+  getMyDetails,
 } = require("../webControllers/userController");
 
 const cookieParser = require("cookie-parser");
@@ -47,6 +48,7 @@ const uploader = multer({
 user_route.use(express.static("public"));
 
 user_route.post("/registerUser", registerUser);
+user_route.post("/getMyDetails", getMyDetails);
 user_route.post("/verifymail", verifyMail);
 user_route.post("/loginUser", loginUser);
 user_route.post("/logout", isLogin, logout);
